@@ -1,16 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Login - InfoMec</title>
-    
-</head>
-
 <body class="bg-gradient-primary">
     <div class="container" style="margin-top: 100px;">
         <div class="row justify-content-center">
@@ -29,7 +19,7 @@
                                     <form class="user">
                                         <div class="form-group"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nickname" name="email"></div>
                                         <div class="form-group"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Contraseña" name="password"></div>
-                                        <div class="form-group d-flex justify-content-center"><button onclick="swal('Login!');" class="btn btn-primary" type="button" style="width: 50%;">Acceder</button></div>
+                                        <div class="form-group d-flex justify-content-center"><button onclick="swal('Login!');" class="btn btn-primary btn-block text-white btn-user" type="button" style="width: 50%;">Acceder</button></div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small"></div>
                                         </div>
@@ -46,5 +36,4 @@
         </div>
     </div>
 </body>
-</html>
 @endsection

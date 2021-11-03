@@ -24,3 +24,19 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::get('/ordenesDeTrabajo', function () {
+    return view('ordenesDeTrabajo');
+});
+
+Route::get('/reparaciones', function () {
+    return view('reparaciones');
+});
+
+Route::get('/stock', function () {
+    return view('stock');
+});
+
+Route::get('/vehiculos', function () {
+    return view('vehiculos');
+});
