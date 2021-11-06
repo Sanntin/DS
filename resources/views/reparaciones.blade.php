@@ -37,7 +37,7 @@
                             <thead>
                                 <tr>
                                     <th>Patente</th>
-                                    <th>DNI</th>
+                                    <th>Titular</th>
                                     <th style="width: 180px;">Fecha ingreso</th>
                                     <th>Estado</th>
                                     <th style="padding-right: 0;width: 90px;">Kilometraje</th>
@@ -48,7 +48,7 @@
                             <tbody>
                                 <tr class="t-row task" data-id="1">
                                     <td>ABC-123</td>
-                                    <td>35148596</td>
+                                    <td>Elon Musk</td>
                                     <td>21/09/2021</td>
                                     <td>En proceso</td>
                                     <td style="padding-right: 0;">54000</td>
