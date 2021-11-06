@@ -15,11 +15,28 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Bienvenido devuelta!</h4>
+                                        
+                                        {{-- Ver que hacer... cuando lo crea al usaaurio lo manda aca y aparece ese mensaje... hay que foramtearlo --}}
+                                        {{-- El mensaje puede ser de exito de registro y que se logee, o que cerrro sesion --}}
+                                        @if(session()->has('mensajeUsuario'))
+                                        <p>{{ session('mensajeUsuario') }}</p>
+                                        @endif
+
                                     </div>
-                                    <form class="user">
-                                        <div class="form-group"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nickname" name="email"></div>
-                                        <div class="form-group"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Contraseña" name="password"></div>
-                                        <div class="form-group d-flex justify-content-center"><button onclick="swal('Login!');" class="btn btn-primary btn-block text-white btn-user" type="button" style="width: 50%;">Acceder</button></div>
+                                    <form method="POST" action="/login" class="user">
+                                        @csrf
+                                        <div class="form-group"><input class="form-control form-control-user" type="nickname" id="nickname" placeholder="Nickname" name="nickname">
+                                        </div>
+
+                                        <div class="form-group"><input class="form-control form-control-user" type="password" id="password" placeholder="Contraseña" name="password">
+                                      
+                                            {{-- Formatear --}}
+                                            @error('nickname')
+                                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group d-flex justify-content-center"><button  class="btn btn-primary btn-block text-white btn-user" type="submit" style="width: 50%;">Acceder</button></div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small"></div>
                                         </div>

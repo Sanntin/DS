@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     // Mutator, ve si hay una funcion con esa sintaxis y lo que hace se guarda en la basedeDAtos.
 
-    public function setPasswrodAttribute($password){
+    public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
     }
 }
