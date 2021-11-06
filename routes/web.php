@@ -52,3 +52,7 @@ Route::get('/clientes', function () {
 Route::get('/usuario', function () {
     return view('usuario');
 });
+
+Route::get('/reporteDeReparaciones', function () {
+    return view('reporteDeReparaciones');
+});
