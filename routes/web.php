@@ -42,3 +42,11 @@ Route::get('/stock', function () {
 Route::get('/vehiculos', function () {
     return view('vehiculos');
 });
+
+Route::get('/clientes', function () {
+    return view('clientes');
+});
+
+Route::get('/usuario', function () {
+    return view('usuario');
+});
