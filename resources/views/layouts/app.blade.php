@@ -43,6 +43,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="reparaciones"><i class="fas fa-tachometer-alt"></i><span>Reparaciones</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="stock"><i class="fas fa-list-alt"></i><span>Stock</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="vehiculos"><i class="fas fa-car"></i><span>Vehículos</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="clientes"><i class="fas fa-users"></i><span>Clientes</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="usuario"><i class="fas fa-user"></i><span>Usuario</span></a></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
