@@ -18,8 +18,12 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellido',
+        'direccion',
+        'telefono',
         'email',
+        'nickname',
         'password',
     ];
 
@@ -41,4 +45,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // Mutator, ve si hay una funcion con esa sintaxis y lo que hace se guarda en la basedeDAtos.
+
+    public function setPasswrodAttribute($password){
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

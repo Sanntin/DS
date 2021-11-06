@@ -14,30 +14,71 @@
                             <div class="text-center">
                                 <h4 class="text-dark mb-4">Cree su cuenta!</h4>
                             </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Nombre" name="first_name"></div>
-                                    <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Apellido" name="last_name"></div>
-                                </div>
+
+                          
+                            <form method="POST" action="/register" class="user">
+                                @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <!-- Start: #adress --><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Dirección" name="adress">
-                                        <!-- End: #adress -->
+                                        <input class="form-control form-control-user" type="text" id="nombre" name="nombre" placeholder="Nombre" value="{{old('nombre')}}" >
+                                        @error('nombre')
+                                        {{-- !!! @eze formatear el texto de error --}}
+                                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                        @enderror
                                     </div>
+                                   
+                                    <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="apellido"  name="apellido" placeholder="Apellido" value="{{old('apellido')}}"> 
+                                        @error('apellido')
+                                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <!-- Start: #adress --><input class="form-control form-control-user" type="text" id="direccion" name="direccion" placeholder="Dirección" value="{{old('direccion')}}">
+                                        @error('direccion')
+                                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    
                                     <div class="col-sm-6">
-                                        <!-- Start: #phone --><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Teléfono" name="phone">
+                                        <!-- Start: #phone --><input class="form-control form-control-user" type="number" id="telefono" name="telefono" placeholder="Teléfono" value="{{old('telefono')}}" >
+                                        @error('telefono')
+                                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                        @enderror
                                         <!-- End: #phone -->
                                     </div>
                                 </div>
-                                <div class="form-group"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Mail" name="email"></div>
+
+
+                                <div class="form-group"><input class="form-control form-control-user" type="email" id="email"  name="email" aria-describedby="emailHelp" placeholder="Mail" value="{{old('email')}}" >
+                                    @error('email')
+                                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                    @enderror
+                                </div>
+                               
+                               
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="examplePasswordInput" placeholder="Contraseña" name="password"></div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="password" name="password" placeholder="Contraseña">
+                                        @error('password')
+                                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                   
                                     <div class="col-sm-6">
-                                        <!-- Start: #nickname --><input class="form-control form-control-user" type="text" id="exampleFirstName-1" placeholder="Nickname" name="nickname">
+                                        <!-- Start: #nickname --><input class="form-control form-control-user" type="text" id="nickname" name="nickname" placeholder="Nickname" value="{{old('nickname')}}">
+                                        @error('nickname')
+                                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                        @enderror
                                         <!-- End: #nickname -->
                                     </div>
-                                </div><button class="btn btn-primary btn-block text-white btn-user" onclick="swal('Register!');">Registrar usuario</button>
+                                    
+                                </div><button class="btn btn-primary btn-block text-white btn-user" type="submit">Registrar usuario</button>
+                                <!-- "swal('Register!');" -->
                                 <hr>
+                            
                             </form>
                             <div class="text-center"></div>
                             <div class="text-center"><a class="small" href="login">Ya tiene una cuenta? Ingrese aquí!</a></div>
