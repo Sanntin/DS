@@ -32,25 +32,75 @@
 <body id="page-top">
     <div id="app">
         <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
-            <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-                    <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
-                    <div class="sidebar-brand-text mx-3"><span>InfoMec</span></div>
-                </a>
-                <hr class="sidebar-divider my-0">
-                <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="reparaciones"><i class="fas fa-tachometer-alt"></i><span>Reparaciones</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="stock"><i class="fas fa-list-alt"></i><span>Stock</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="vehiculos"><i class="fas fa-car"></i><span>Vehículos</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="clientes"><i class="fas fa-user"></i><span>Clientes</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="usuario"><i class="fas fa-user"></i><span>Usuario</span></a></li>
-                    <li class="nav-item" role="presentation"></li>
-                </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
-            </div>
-        </nav>
-            @yield('content')
+            <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+                <div class="container-fluid d-flex flex-column p-0">
+                    <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                        <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
+                        <div class="sidebar-brand-text mx-3"><span>InfoMec</span></div>
+                    </a>
+                    <hr class="sidebar-divider my-0">
+                    <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="reparaciones"><i class="fas fa-tachometer-alt"></i><span>Reparaciones</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="stock"><i class="fas fa-list-alt"></i><span>Stock</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="vehiculos"><i class="fas fa-car"></i><span>Vehículos</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="clientes"><i class="fas fa-group"></i><span>Clientes</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="usuario"><i class="fas fa-user"></i><span>Usuario</span></a></li>
+                        <li class="nav-item" role="presentation"></li>
+                    </ul>
+                    <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+                </div>
+            </nav>
+            <div class="d-flex flex-column" id="content-wrapper">
+                <div id="content">
+                    <div class="container-fluid" style="padding-top: 18px;">
+                        @yield('content')
+                    </div>
+                </div>
+                <nav id="context-menu" class="context-menu">
+                    <ul class="context-menu__items">
+                        <div id="tasks-repairs">
+                            <li class="context-menu__item item-repair">
+                                <a href="#" class="context-menu__link" data-action="View"><i class="fa fa-download"></i> Generar comprobante</a>
+                            </li>
+                            <li class="context-menu__item item-repair">
+                                <a href="#" class="context-menu__link" data-action="Edit"><i class="fa fa-times"></i> Cancelar reparación</a>
+                            </li>
+                            <li class="context-menu__item item-repair">
+                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-plus"></i> Agregar orden de trabajo</a>
+                            </li>
+                            <li class="context-menu__item item-repair">
+                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-eye"></i> Ver órdenes de trabajo</a>
+                            </li>
+                        </div>
+                        <div id="tasks-vehicles">
+                            <li class="context-menu__item item-vehicle">
+                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-refresh"></i> Cambiar titularidad de vehículo</a>
+                            </li>
+                        </div>
+                        <div id="tasks-clientes">
+                            <li class="context-menu__item item-cliente">
+                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-times"></i> Borrar cliente</a>
+                            </li>
+                            <li class="context-menu__item item-cliente">
+                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-random"></i> Modificar cliente</a>
+                            </li>
+                        </div>
+                        <div id="tasks-stock">
+                            <li class="context-menu__item item-stock">
+                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-plus"></i> Cargar stock</a>
+                            </li>
+                            <li class="context-menu__item item-stock">
+                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-envelope-o"></i> Realizar pedido de pieza</a>
+                            </li>
+                        </div>
+                    </ul>
+                </nav>
+                <footer class="sticky-footer">
+                    <div class="container my-auto">
+                        <div class="text-center my-auto copyright"><span>Copyright © InfoMec 2021</span></div>
+                    </div>
+                </footer>
+            </div>     
         </div>
     </div>
     <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>

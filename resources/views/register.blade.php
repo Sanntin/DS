@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appSimple')
 
 @section('content')
 <body class="bg-gradient-primary">
