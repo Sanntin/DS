@@ -18,7 +18,7 @@ class CreatePiezasTable extends Migration
             $table->string('nombre', 20);
             $table->string('modelo', 30);
             $table->float('precio');
-            $table->foreignId('id_fabricante')->references('id')->on('fabricante');
+            $table->foreignId('id_fabricante')->references('id')->on('fabricantes');
             $table->timestamps();
         });
     }

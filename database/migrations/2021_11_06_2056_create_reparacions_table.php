@@ -13,13 +13,13 @@ class CreateReparacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reparacions', function (Blueprint $table) {
+        Schema::create('reparaciones', function (Blueprint $table) {
             $table->id();
             $table->date('fechaDeEntrada');
             $table->text('motivo');
             $table->integer('kilometraje');
             $table->date('fechaDeSalida')->nullable();
-            $table->boolean('estado');
+            $table->enum('estado', ['diagnostico', 'en proceso','completado'])->default('diagnostico');
 
             $table->string('dniCliente')->references('dni')->on('clientes');
             $table->string('patente')->references('patente')->on('vehiculos');
@@ -34,6 +34,6 @@ class CreateReparacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reparacions');
+        Schema::dropIfExists('reparaciones');
     }
 }

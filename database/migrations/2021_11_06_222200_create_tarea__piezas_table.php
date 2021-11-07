@@ -15,6 +15,10 @@ class CreateTareaPiezasTable extends Migration
     {
         Schema::create('tarea__piezas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_tarea')->references('id')->on('tareas');
+            $table->foreignId('id_pieza')->references('id')->on('piezas');
+            $table->integer('cantidad')->unsigned();
+            $table->float('precio');
             $table->timestamps();
         });
     }

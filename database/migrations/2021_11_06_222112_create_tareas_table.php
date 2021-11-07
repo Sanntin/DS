@@ -15,6 +15,14 @@ class CreateTareasTable extends Migration
     {
         Schema::create('tareas', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('fechaHora');
+            $table->enum('estado', ['no realizado', 'completada'])->default('no realizado');
+            $table->float('precio');
+
+            $table->foreignId('id_ordenTrabajo')->references('id')->on('orden_trabajos');
+            $table->foreignId('id_accion')->references('id')->on('acciones');
+            $table->string('id_nickname')->references('nickname')->on('users');
+
             $table->timestamps();
         });
     }

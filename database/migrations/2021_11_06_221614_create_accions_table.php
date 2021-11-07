@@ -13,7 +13,7 @@ class CreateAccionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accions', function (Blueprint $table) {
+        Schema::create('acciones', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->float('precio');
@@ -29,6 +29,6 @@ class CreateAccionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accions');
+        Schema::dropIfExists('acciones');
     }
 }
