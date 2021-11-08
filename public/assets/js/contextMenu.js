@@ -20,7 +20,7 @@
      */
     function clickInsideElement( e, className ) {
       var el = e.srcElement || e.target;
-      
+      taskType = el.parentElement.classList[2];
       if ( el.classList.contains(className) ) {
         return el;
       } else {
@@ -92,6 +92,8 @@
     var menuPositionX;
     var menuPositionY;
   
+    var taskType;
+
     var windowWidth;
     var windowHeight;
   
@@ -161,13 +163,36 @@
         toggleMenuOff();
       };
     }
-  
+
+    /**
+     * Display the correct task list acording to the task type selected
+     */
+    function loadMenuType(type, onOrOff){
+      switch (type) {
+        case "task-repair":
+          $(".item-repair").css("display", onOrOff);
+          break;
+        case "task-vehicle":
+          $(".item-vehicle").css("display", onOrOff);
+          break;
+        case "task-cliente":
+          $(".item-cliente").css("display", onOrOff);
+          break;
+        case "task-stock":
+          $(".item-stock").css("display", onOrOff);
+          break;
+        default:
+          break;
+      }
+    }
+
     /**
      * Turns the custom context menu on.
      */
     function toggleMenuOn() {
       if ( menuState !== 1 ) {
         menuState = 1;
+        loadMenuType(taskType, "block")
         menu.classList.add( contextMenuActive );
       }
     }
@@ -178,6 +203,7 @@
     function toggleMenuOff() {
       if ( menuState !== 0 ) {
         menuState = 0;
+        loadMenuType(taskType, "none")
         menu.classList.remove( contextMenuActive );
       }
     }

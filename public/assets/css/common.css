@@ -2,3 +2,30 @@
     background-color: rgba(54, 145, 230, 0.185);
 }
 
+.rounded {
+    border-radius: 5px;
+}
+
+.item-repair {
+    display: none;
+}
+
+.item-vehicle {
+    display: none;
+}
+
+.item-cliente {
+    display: none;
+}
+
+.item-stock {
+    display: none;
+}
+
+.shown {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
