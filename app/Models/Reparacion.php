@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Reparacion extends Model
 {
@@ -19,5 +20,11 @@ class Reparacion extends Model
         'dniCliente',
         'patente',
     ];
+
+    public function cliente()
+    {
+     return $this->belongsTo('App\Models\Cliente','dniCliente','dni');
+    }
+
 
 }

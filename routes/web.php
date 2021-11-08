@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
-
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PiezaController;
+use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\ReparacionController;
+use App\Http\Controllers\OrdenTrabajoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,9 +24,8 @@ Route::get('/', function () {
 });
 
 // Autenticacion de usuario
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', function () {return view('login');
+})->name('login');
 Route::post('/login',[SessionController::class,'login'])->middleware('guest');
 
 Route::get('/register', [RegisterController::class,'create'])->middleware('guest');
@@ -33,25 +36,22 @@ Route::get('/ordenesDeTrabajo', function () {
     return view('ordenesDeTrabajo');
 });
 
-Route::get('/reparaciones', function () {
-    return view('reparaciones');
-});
 
-Route::get('/stock', function () {
-    return view('stock');
-});
+Route::get('/ordenesDeTrabajo', [OrdenTrabajoController::class,'obtenerOrdenTrabajos'])->middleware('auth');
 
-Route::get('/vehiculos', function () {
-    return view('vehiculos');
-});
+Route::get('/reparaciones', [ReparacionController::class,'obtenerReparaciones'])->middleware('auth');
 
-Route::get('/clientes', function () {
-    return view('clientes');
-});
+Route::get('/stock', [PiezaController::class,'obtenerPiezas'])->middleware('auth');
 
+Route::get('/vehiculos', [VehiculoController::class,'obtenerVehiculo'])->middleware('auth');
+
+
+Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');
+
+// Route::get('/usuario');
 Route::get('/usuario', function () {
     return view('usuario');
-});
+})->middleware('auth');
 
 Route::get('/reporteDeReparaciones', function () {
     return view('reporteDeReparaciones');

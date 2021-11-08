@@ -27,10 +27,10 @@ class SessionController extends Controller
             return redirect('reparaciones');
         }
         {
-            dd(($atributos));
-            // return back()
-            // ->withInput()
-            // ->withErrors(['nickname'=>'La cuenta no puede ser válidada, intente nuevamente']);
+            
+            return back()
+            ->withInput()
+            ->withErrors(['nickname'=>'La cuenta no puede ser válidada, intente nuevamente']);
         }
     }
 

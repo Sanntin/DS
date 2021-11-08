@@ -21,6 +21,7 @@
                         </article>
                         <!-- End: header -->
                         <article>
+                            
                             <div class="row" style="padding-left: 10px;margin-top: 15px;">
                                 <div class="col" style="font-weight: 700;">
                                     <p style="margin-bottom: 0;">Patente</p>
@@ -46,25 +47,25 @@
                             </div>
                             <div class="row" style="padding-left: 10px;">
                                 <div class="col" style="font-weight: 400;">
-                                    <p style="margin-bottom: 0;">ABC-123</p>
+                                    <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->patente}}</p>
                                 </div>
                                 <div class="col" style="font-weight: 400;">
-                                    <p style="margin-bottom: 0;">Elon Musk</p>
+                                    <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->cliente->apellido}} {{$ordenTrabajos[0]->reparacion->cliente->nombre}}</p>
                                 </div>
                                 <div class="col" style="font-weight: 400;">
-                                    <p style="margin-bottom: 0;">12/10/21</p>
+                                    <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->fechaDeEntrada}}</p>
                                 </div>
                                 <div class="col" style="font-weight: 400;">
-                                    <p style="margin-bottom: 0;">En proceso</p>
+                                    <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->estado}}</p>
                                 </div>
                                 <div class="col" style="font-weight: 400;">
-                                    <p style="margin-bottom: 0;">-</p>
+                                    <p style="margin-bottom: 0;">@isset($ordenTrabajos[0]->reparacion->fechaDeSalida){{$ordenTrabajos[0]->reparacion->fechaDeSalida}} @else-@endisset</p>
                                 </div>
                                 <div class="col" style="font-weight: 400;">
-                                    <p style="margin-bottom: 0;">120000km</p>
+                                    <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->kilometraje}}</p>
                                 </div>
                                 <div class="col" style="font-weight: 400;">
-                                    <p style="margin-bottom: 0;">No arranca</p>
+                                    <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->motivo}}</p>
                                 </div>
                             </div>
                         </article>
@@ -74,18 +75,22 @@
             </div>
             <!-- End: #reparacion -->
             <!-- Start: #ordenDeTrabajo -->
+            @foreach ($ordenTrabajos as $ordenTrabajo)
+                
+        
             <div class="card shadow" style="margin-top: 15px;">
                 <div class="card-body">
                     <div class="row">
                         <div class="col" style="max-width: 200px;">
-                            <h4 style="font-weight: 700;font-size: 17px;">Orden de trabajo 1</h4>
+                            <h4 style="font-weight: 700;font-size: 17px;">Orden de trabajo {{$loop->index+1}}</h4>
                         </div>
+                        @if ($ordenTrabajo->porcentajeAvance==0.0)
                         <div class="col">
-                            <div class="row" style="margin-right: 0;">
+                            {{-- <div class="row" style="margin-right: 0;">
                                 <div class="col" style="padding-right: 11px;">
                                     <p style="margin-bottom: 0;font-size: 13px;">Orden de trabajo</p>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="col"><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" href="confirmarOrdenDeTrabajo.html" title="Confirmar esta orden de trabajo" style="background-color: rgb(78,223,84);"><i class="fa fa-check"></i></a>
                                     <button
@@ -93,6 +98,9 @@
                                 </div>
                             </div>
                         </div>
+                            @endif
+
+                       
                     </div>
                     <div class="row">
                         <div class="col">
@@ -101,19 +109,19 @@
                                     <p style="margin-bottom: 0;font-weight: 700;">Estado:</p>
                                 </div>
                                 <div class="col">
-                                    <p style="margin-bottom: 0;">En proceso</p>
+                                    <p style="margin-bottom: 0;">{{$ordenTrabajo->estado}}</p>
                                 </div>
                                 <div class="col">
                                     <p style="margin-bottom: 0;font-weight: 700;">% de avance:</p>
                                 </div>
                                 <div class="col">
-                                    <p style="margin-bottom: 0;">0%</p>
+                                    <p style="margin-bottom: 0;">{{$ordenTrabajo->porcentajeAvance}}%</p>
                                 </div>
                                 <div class="col">
                                     <p style="margin-bottom: 0;font-weight: 700;">Horas totales:</p>
                                 </div>
                                 <div class="col">
-                                    <p style="margin-bottom: 0;">2H</p>
+                                    <p style="margin-bottom: 0;">{{$ordenTrabajo->horasTotales}}h</p>
                                 </div>
                             </div>
                         </div>
@@ -319,6 +327,7 @@
                     </div>
                 </div>
             </div>
+            @endforeach
             <!-- End: #ordenDeTrabajo -->
         </div>
     </div>
