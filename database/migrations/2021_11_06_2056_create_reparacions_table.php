@@ -13,7 +13,7 @@ class CreateReparacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reparaciones', function (Blueprint $table) {
+        Schema::create('reparacions', function (Blueprint $table) {
             $table->id();
             $table->date('fechaDeEntrada');
             $table->text('motivo');
@@ -34,6 +34,6 @@ class CreateReparacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reparaciones');
+        Schema::dropIfExists('reparacions');
     }
 }

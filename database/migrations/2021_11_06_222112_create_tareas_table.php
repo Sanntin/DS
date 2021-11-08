@@ -15,7 +15,7 @@ class CreateTareasTable extends Migration
     {
         Schema::create('tareas', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('fechaHora');
+            $table->dateTime('fechaHora')->nullable();
             $table->enum('estado', ['no realizado', 'completada'])->default('no realizado');
             $table->float('precio');
 

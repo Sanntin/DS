@@ -19,7 +19,7 @@ class CreateOrdenTrabajosTable extends Migration
             $table->float('porcentajeAvance')->default(0.0);
             $table->integer('horasTotales');
           
-            $table->foreignId('id_reparacion')->references('id')->on('reparaciones');
+            $table->foreignId('id_reparacion')->references('id')->on('reparacions');
             $table->timestamps();
         });
     }
