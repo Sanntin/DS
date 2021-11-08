@@ -29,24 +29,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($clientes as $cliente)
                         <tr class="t-row task task-cliente">
-                            <td>Elon</td>
-                            <td>Musk</td>
-                            <td>35148594</td>
-                            <td>2974581594</td>
-                            <td>Houston</td>
-                            <td>ABC</td>
-                            <td>elon@musk.com</td>
+                            <td>{{$cliente->nombre}}</td>
+                            <td>{{$cliente->apellido}}</td>
+                            <td>{{$cliente->dni}}</td>
+                            <td>{{$cliente->telefono}}</td>
+                            <td>{{$cliente->localidad}}</td>
+                            <td>{{$cliente->direccion}}</td>
+                            <td>{{$cliente->mail}}</td>
                         </tr>
-                        <tr class="t-row task task-cliente">
-                            <td>Bill</td>
-                            <td>Gates</td>
-                            <td>1541587</td>
-                            <td>893747</td>
-                            <td>Seatle<br></td>
-                            <td>Av Polonia 1500<br></td>
-                            <td>bill@gates.com<br></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -115,29 +108,7 @@
                     {{$clientes->links()}}
                 </div>
             </div>           
-    
-                    {{-- <div class="row">
-                        <div class="col-md-6 align-self-center">
-                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Mostrando 1 de 10 de los 27 totales</p>
-                        </div>
-                        <div class="col-md-6">
-                          
-                          
-                                                      
-                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                <ul class="pagination">
-                                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                       
-                                    <li class="page-item active"> {{$clientes->links()}}</li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div> --}}
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
@@ -180,4 +151,5 @@
         </div>
     </div>
 </div>
+
 @endsection
