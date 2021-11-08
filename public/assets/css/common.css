@@ -22,3 +22,10 @@
     display: none;
 }
 
+.shown {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}

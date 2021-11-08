@@ -82,7 +82,7 @@
                                 <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-times"></i> Borrar cliente</a>
                             </li>
                             <li class="context-menu__item item-cliente">
-                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-random"></i> Modificar cliente</a>
+                                <a id="btnModificarCliente" href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-random"></i> Modificar cliente</a>
                             </li>
                         </div>
                         <div id="tasks-stock">
