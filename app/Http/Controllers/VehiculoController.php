@@ -28,6 +28,6 @@ class VehiculoController extends Controller
         }
     
         // Que hacer si no tiene token
-        return view('vehiculos', ['vehiculos' => Vehiculo::paginate(7)]);
+        // return view('vehiculos', ['vehiculos' => Vehiculo::paginate(7)]);
     }
 }

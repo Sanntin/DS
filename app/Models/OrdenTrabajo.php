@@ -11,6 +11,13 @@ class OrdenTrabajo extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'estado',
+        'porcentajeAvance',
+        'horasTotales',
+        'id_reparacion',
+    ];
+
     public function reparacion()
     {
      return $this->belongsTo('App\Models\Reparacion','id_reparacion','id');

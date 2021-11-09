@@ -107,7 +107,7 @@ $("#btnVerOrdenesTrabajo").click(function(){
 
 
 
-// -- Reparaciones --
+// -- Ordenes de trabajo --
 
 $("#btnAceptarOrdendeTrabajo").click(function(){
     $.ajaxSetup({
@@ -116,36 +116,40 @@ $("#btnAceptarOrdendeTrabajo").click(function(){
         }
     });
 
-    $.ajax({
-        url: "/reparaciones/ordenesDeTrabajo/1/aceptarOrdenTrabajo",
-        method: 'post',
-        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data: {
-           idOrdenTrabajo : $("#btnAceptarOrdendeTrabajo").attr("value"),
-        },
-        success: function(result){
-            console.log(result);
-            swal("La orden de trabajo fue aceptada correcamente", {
-                icon: "success",
+    swal({
+        title: "¿Esta seguro que desea aceptar la orden de trabajo?",
+        icon: "info",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: "/reparaciones/ordenesDeTrabajo/1/aceptarOrdenTrabajo",
+                method: 'post',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: {
+                   idOrdenTrabajo : $("#btnAceptarOrdendeTrabajo").attr("value"),
+                   
+                },
+                success: function(result){
+                    swal("La orden de trabajo fue aceptada correcamente", {
+                        icon: "success",
+                      })
+                      .then((value) => {
+                        location.reload();
+                      });
+                    
+                }
+               
               });
+        } else {
+          swal("La orden de trabajo no se acepto");
+
         }
       });
-    // swal({
-    //     title: "¿Esta seguro que desea aceptar la orden de trabajo?",
-    //     icon: "info",
-    //     buttons: true,
-    //     dangerMode: true,
-    //   })
-    //   .then((willDelete) => {
-    //     if (willDelete) {
-         
-        
 
-    //     } else {
-    //       swal("La orden de trabajo no se acepto");
-
-    //     }
-    //   });
+    //   
 });
 
 // ---- Functions ----
