@@ -12,11 +12,39 @@ $(".t-row").mouseout(function() {
 
 // -- Vehículos --
 $("#btnAgregarVehiculo").click(function(){
+    $.ajax({
+        url: "/vehiculos/agregar",
+        method: 'GET',
+        data: {
+           _token: '{!! csrf_token() !!}',
+        },
+        success: function(result){
+    
+      
+           result['marcas'].forEach(i => {
+              var txt1 = "<option>"+ i.nombre +"</option>";    
+              $('#marcas').append(txt1);
+           });
+           result['modelos'].forEach(i => {
+            var txt1 = "<option>"+ i.nombre +"</option>";    
+            $('#modelos').append(txt1);
+         });
+         result['clientes'].forEach(i => {
+            var txt1 = "<option>"+ i.apellido+  ' '+i.nombre + ' DNI: '+i.dni+"</option>";    
+            $('#clientes').append(txt1);
+         });
+           $('#clientes').attr("disabled",false);
+           $('#modelos').attr("disabled",false);
+           $('#marcas').attr("disabled",false);
+        }
+      });
     showElement($("#vehiculos-main"), $("#vehiculos-agregar"));
+
 });
 
 $("#btnVolverAgregarVehiculo").click(function(){
-    showElement($("#vehiculos-agregar"), $("#vehiculos-main"));
+    window.location = "/vehiculos";
+    // showElement($("#vehiculos-agregar"), $("#vehiculos-main"));
 });
 
 $("#btnGuardarVehiculo").click(function(){

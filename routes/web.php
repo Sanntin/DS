@@ -47,6 +47,7 @@ Route::get('/reparaciones', [ReparacionController::class,'obtenerReparaciones'])
 Route::get('/stock', [PiezaController::class,'obtenerPiezas'])->middleware('auth');
 
 Route::get('/vehiculos', [VehiculoController::class,'obtenerVehiculo'])->middleware('auth');
+Route::get('/vehiculos/agregar', [VehiculoController::class,'datosAgregarVehiculo'])->middleware('auth');
 
 
 Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');

@@ -61,25 +61,35 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Marca</button>
+                                <div class="dropdown border-primary">
+                                    <select name="marcas" id="marcas" class="form-control" disabled>
+                                    <option id='doption' value="0" selected='true' selected>Seleccione un marca</option>
+                                    </select>
+                                    {{-- <button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Marca</button>
                                     <div
                                         class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                    </div>
+                                    </div> --}}
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Modelo</button>
-                                <div
-                                    class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                            <select name="modelos" id="modelos" class="form-control" disabled>
+                                <option id='doption' value="0" selected='true' selected>Seleccione un modelo</option>
+                                </select>
+                            {{-- <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Modelo</button>
+                                <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div> --}}
                         </div>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0" style="max-width: 100%;min-width: 100%;">
-                    <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.158);border-radius: 25px;">Titular</button>
+      
+                    <select name="clientes" id="clientes" class="form-control" disabled>
+                        <option id='doption' value="0" selected='true' selected>Seleccione un titular</option>
+                        </select>
+                    {{-- <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.158);border-radius: 25px;">Titular</button>
                         <div class="dropdown-menu"
                             role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="form-group row">
