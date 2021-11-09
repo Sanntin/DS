@@ -19,6 +19,6 @@ class Pieza extends Model
 
     public function tarea()
     {
-        return $this->belongsToMany(Tarea::class,'Tarea_Pieza');
+        return $this->belongsToMany(Tarea::class,'tarea__piezas','id_pieza','id_tarea');
     }
 }

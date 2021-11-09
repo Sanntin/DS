@@ -110,104 +110,21 @@
         </div>
     </div>
     <div class="card-body" style="padding-top: 0;">
-        <div class="card" style="margin-top: 15px;">
-            <div class="card-header align-items-center">
-                <div class="row" style="width: 100%;">
-                    <div class="col d-xl-flex align-items-xl-center">
-                        <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Tarea 1</h6>
-                    </div>
-                    <div class="col d-xl-flex justify-content-xl-end"><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="background-color: rgb(81,223,78);" href="completarTarea.html" title="Completar esta tarea"><i class="fa fa-check"></i></a>
-                        <button
-                            class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,95);" title="Eliminar esta tarea"><i class="fa fa-remove"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body" style="padding-top: 0;padding-bottom: 0;">
-                <!-- Start: #tarea -->
-                <section>
-                    <div class="row">
-                        <div class="col">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Fecha</th>
-                                            <th>Hora</th>
-                                            <th>Estado</th>
-                                            <th>Precio tarea</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>10/10/21</td>
-                                            <td>10:00</td>
-                                            <td>En proceso</td>
-                                            <td>1200</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        
 
-                       
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Acción</th>
-                                            <th>Pieza</th>
-                                            <th>Cantidad</th>
-                                            <th>Precio pieza</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Cambio de aceite</td>
-                                            <td>
-                                                <div class="row" style="margin-left: 0;margin-right: 0;">
-                                                    <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">Aceite Marolio z85</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="row" style="margin-left: 0;margin-right: 0;">
-                                                    <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">1</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="row" style="margin-left: 0;margin-right: 0;">
-                                                    <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">1200</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- End: #tarea -->
-            </div>
-        </div>
+        @foreach ($ordenTrabajo->tareas as $tarea)
+            
+     
         <div class="card" style="margin-top: 15px;">
             <div class="card-header align-items-center">
                 <div class="row" style="width: 100%;">
                     <div class="col d-xl-flex align-items-xl-center">
-                        <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Tarea 2</h6>
+                        <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Tarea {{$loop->index+1}}</h6>
                     </div>
+                    @if ($tarea->estado=='no realizado');
                     <div class="col d-xl-flex justify-content-xl-end"><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="background-color: rgb(81,223,78);" href="completarTarea.html" title="Completar esta tarea"><i class="fa fa-check"></i></a>
-                        <button
-                            class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,95);" title="Eliminar esta tarea"><i class="fa fa-remove"></i></button>
+                        <button class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,95);" title="Eliminar esta tarea"><i class="fa fa-remove"></i></button>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="card-body" style="padding-top: 0;padding-bottom: 0;">
@@ -227,15 +144,26 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>10/10/21</td>
-                                            <td>10:00</td>
-                                            <td>En proceso</td>
-                                            <td>5500</td>
+                                            <td>
+                                                @isset($tarea->fechaHora)
+                                                {{date('d/m/y', strtotime($tarea->fechaHora))}}
+                                                @else -
+                                                @endisset
+                                        </td>
+                                            <td>
+                                                @isset($tarea->fechaHora)
+                                                {{date('h:i', strtotime($tarea->fechaHora))}}
+                                                @else -
+                                                @endisset
+                                            </td>
+                                            <td>{{ucfirst($tarea->estado)}}</td>
+                                            <td>{{$tarea->precio}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col">
@@ -251,40 +179,26 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Limpieza</td>
+                                            <td>{{$tarea->accion->nombre}}</td>
+                                           
                                             <td>
                                                 <div class="row" style="margin-left: 0;margin-right: 0;">
                                                     <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">Alfombrilla</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="margin-left: 0;margin-right: 0;">
-                                                    <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">Escobilla</p>
+                                                        <p style="margin-bottom: 0;">{{$tarea->pieza[0]->nombre}} {{$tarea->pieza[0]->modelo}}</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="row" style="margin-left: 0;margin-right: 0;">
                                                     <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">2</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="margin-left: 0;margin-right: 0;">
-                                                    <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">1</p>
+                                                        <p style="margin-bottom: 0;">{{$tarea->pieza[0]->pivot->cantidad}}</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="row" style="margin-left: 0;margin-right: 0;">
                                                     <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">4000</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="margin-left: 0;margin-right: 0;">
-                                                    <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">1500</p>
+                                                        <p style="margin-bottom: 0;">{{$tarea->pieza[0]->pivot->precio}}</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -295,7 +209,11 @@
                         </div>
                     </div>
                 </section>
+
                 <!-- End: #tarea -->
+            </div>
+            @endforeach
+        </div>
             </div>
         </div>
     </div>

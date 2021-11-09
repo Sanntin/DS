@@ -12,7 +12,14 @@ class Tarea extends Model
 
     public function pieza()
     {
-     return $this->belongsToMany(Pieza::class,'Tarea_Pieza');
+     return $this->belongsToMany(Pieza::class,'tarea__piezas','id_tarea','id_pieza')->withPivot('cantidad', 'precio');
+    }
+
+
+
+    public function accion()
+    {
+        return $this->belongsTo(Accion::class, 'id_accion', 'id');
     }
 
 }
