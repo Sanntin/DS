@@ -35,10 +35,10 @@
                 <tr class="t-row task task-repair">
                     <td>{{$reparacion->patente}}</td>
                     <td>{{$reparacion->cliente->apellido}} {{$reparacion->cliente->nombre}}</td>
-                    <td>{{$reparacion->fechaDeEntrada}}</td>
-                    <td>{{$reparacion->estado}}</td>
+                    <td>{{date('d/m/y', strtotime($reparacion->fechaDeEntrada))}}</td>
+                    <td>{{ucfirst($reparacion->estado)}}</td>
                     <td>{{$reparacion->kilometraje}}</td>
-                    <td>@isset($reparacion->fechaDeSalida){{$reparacion->fechaDeSalida}}@else-@endisset</td>
+                    <td>@isset($reparacion->fechaDeSalida){{date('d/m/y', strtotime($reparacion->fechaDeSalida))}}@else-@endisset</td>
                     <td>{{$reparacion->motivo}}</td>
                 </tr>
                 @endforeach
