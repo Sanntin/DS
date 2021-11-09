@@ -40,7 +40,7 @@
                     </a>
                     <hr class="sidebar-divider my-0">
                     <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" href="reparaciones"><i class="fas fa-tachometer-alt"></i><span>Reparaciones</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="reparaciones"><i class="fas fa-tachometer-alt"></i><span>Reparaciones</span></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="stock"><i class="fas fa-list-alt"></i><span>Stock</span></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="vehiculos"><i class="fas fa-car"></i><span>Vehículos</span></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="clientes"><i class="fas fa-group"></i><span>Clientes</span></a></li>
@@ -60,16 +60,16 @@
                     <ul class="context-menu__items">
                         <div id="tasks-repairs">
                             <li class="context-menu__item item-repair">
-                                <a href="#" class="context-menu__link" data-action="View"><i class="fa fa-download"></i> Generar comprobante</a>
+                                <a href="comprobante" class="context-menu__link" data-action="View"><i class="fa fa-download"></i> Generar comprobante</a>
                             </li>
                             <li class="context-menu__item item-repair">
-                                <a href="#" class="context-menu__link" data-action="Edit"><i class="fa fa-times"></i> Cancelar reparación</a>
+                                <a id="btnCancelarReparacion" href="#" class="context-menu__link" data-action="Edit"><i class="fa fa-times"></i> Cancelar reparación</a>
                             </li>
                             <li class="context-menu__item item-repair">
                                 <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-plus"></i> Agregar orden de trabajo</a>
                             </li>
                             <li class="context-menu__item item-repair">
-                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-eye"></i> Ver órdenes de trabajo</a>
+                                <a href="ordenesDeTrabajo.php" class="context-menu__link" data-action="Delete"><i class="fa fa-eye"></i> Ver órdenes de trabajo</a>
                             </li>
                         </div>
                         <div id="tasks-vehicles">

@@ -48,6 +48,27 @@ $("#btnGuardarModificarCliente").click(function(){
     showElement($("#clientes-modificar"), $("#clientes-main"));
 });
 
+// -- Reparaciones --
+
+$("#btnCancelarReparacion").click(function(){
+    swal({
+        title: "Desea cancelar la reparación?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Reparación cancelada exitosamente", {
+            icon: "success",
+          });
+        } else {
+          swal("La reparación no se ha cancelado");
+        }
+      });
+});
+
+
 // ---- Functions ----
 
 //When switching from one page to another in the same view, hide the last one and show the current one
