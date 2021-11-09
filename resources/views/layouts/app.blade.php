@@ -60,13 +60,13 @@
                     <ul class="context-menu__items">
                         <div id="tasks-repairs">
                             <li class="context-menu__item item-repair">
-                                <a href="comprobante" class="context-menu__link" data-action="View"><i class="fa fa-download"></i> Generar comprobante</a>
+                                <a  id="btnGenerarComprobante" href="comprobante" class="context-menu__link" data-action="View"><i class="fa fa-download"></i> Generar comprobante</a>
                             </li>
                             <li class="context-menu__item item-repair">
                                 <a id="btnCancelarReparacion" href="#" class="context-menu__link" data-action="Edit"><i class="fa fa-times"></i> Cancelar reparación</a>
                             </li>
                             <li class="context-menu__item item-repair">
-                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-plus"></i> Agregar orden de trabajo</a>
+                                <a  id="btnAgregarOrdenTrabajo" href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-plus"></i> Agregar orden de trabajo</a>
                             </li>
                             <li class="context-menu__item item-repair">
                                 <a id="btnVerOrdenesTrabajo" href="#" class="context-menu__link" data-action="Ver ordenes"><i class="fa fa-eye"></i> Ver órdenes de trabajo</a>

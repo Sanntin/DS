@@ -171,6 +171,35 @@
       switch (type) {
         case "task-repair":
           $(".item-repair").css("display", onOrOff);
+          
+          console.log( "Task ID - " + taskItemInContext.getAttribute("value"));
+
+                switch (taskItemInContext.getAttribute("value")) {
+                  case 'en proceso':
+                    console.log('p');
+                    $("#btnGenerarComprobante").attr("hidden", true);
+                    $("#btnCancelarReparacion").attr("hidden", true);
+                    $("#btnVerOrdenesTrabajo").attr("hidden", false);
+                    $("#btnAgregarOrdenTrabajo").attr("hidden", false);
+                    break;
+                
+                  case 'diagnostico':
+                    console.log('d');
+                    $("#btnGenerarComprobante").attr("hidden", true);
+                    $("#btnCancelarReparacion").attr("hidden", false);
+                    $("#btnVerOrdenesTrabajo").attr("hidden", false);
+                    $("#btnAgregarOrdenTrabajo").attr("hidden", false);
+                    break;
+
+                    case 'completado':
+                      console.log('c');
+                      $("#btnGenerarComprobante").attr("hidden", false);
+                      $("#btnCancelarReparacion").attr("hidden", true);
+                      $("#btnVerOrdenesTrabajo").attr("hidden", false);
+                      $("#btnAgregarOrdenTrabajo").attr("hidden", true);
+                      break;
+                  }
+
           break;
         case "task-vehicle":
           $(".item-vehicle").css("display", onOrOff);
@@ -194,6 +223,7 @@
         menuState = 1;
         loadMenuType(taskType, "block")
         menu.classList.add( contextMenuActive );
+        
       }
     }
   

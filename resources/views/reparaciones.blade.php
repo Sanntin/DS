@@ -32,7 +32,7 @@
             </thead>
             <tbody>
                 @foreach ($reparaciones as $reparacion)
-                <tr class="t-row task task-repair" data-id={{$reparacion->id}}>
+                <tr class="t-row task task-repair" data-id={{$reparacion->id}} value="{{$reparacion->estado}}">
                     <td>{{$reparacion->patente}}</td>
                     <td>{{$reparacion->cliente->apellido}} {{$reparacion->cliente->nombre}}</td>
                     <td>{{date('d/m/y', strtotime($reparacion->fechaDeEntrada))}}</td>
