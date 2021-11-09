@@ -70,3 +70,7 @@ Route::get('/comprobante', function () {
 Route::get('/agregarTarea', function () {
     return view('agregarTarea');
 });
+
+Route::get('/generarOrdenDeTrabajo', function () {
+    return view('generarOrdenDeTrabajo');
+});
