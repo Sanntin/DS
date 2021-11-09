@@ -49,13 +49,16 @@
                         <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->cliente->apellido}} {{$ordenTrabajos[0]->reparacion->cliente->nombre}}</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
-                        <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->fechaDeEntrada}}</p>
+                        <p style="margin-bottom: 0;"> {{date('d/m/y', strtotime($ordenTrabajos[0]->reparacion->fechaDeEntrada))}}</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
-                        <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->estado}}</p>
+                        <p style="margin-bottom: 0;">{{ucfirst($ordenTrabajos[0]->reparacion->estado)}}</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
-                        <p style="margin-bottom: 0;">@isset($ordenTrabajos[0]->reparacion->fechaDeSalida){{$ordenTrabajos[0]->reparacion->fechaDeSalida}} @else-@endisset</p>
+                        <p style="margin-bottom: 0;">
+                            @isset($ordenTrabajos[0]->reparacion->fechaDeSalida)
+                            {{date('d/m/y', strtotime($ordenTrabajos[0]->reparacion->fechaDeSalida))}} 
+                            @else-@endisset</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
                         <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->kilometraje}}</p>
@@ -91,7 +94,7 @@
                         <p style="margin-bottom: 0;font-weight: 700;width: 60px;">Estado:</p>
                     </div>
                     <div class="col" style="width: 110px;min-width: 110px;max-width: 110px;">
-                        <p style="margin-bottom: 0;width: 90px;">{{$ordenTrabajo->estado}}</p>
+                        <p style="margin-bottom: 0;width: 90px;">{{ucfirst($ordenTrabajo->estado)}}</p>
                     </div>
                     <div class="col" style="width: 110px;max-width: 110px;">
                         <p style="margin-bottom: 0;font-weight: 700;width: 100px;">% de avance:</p>
