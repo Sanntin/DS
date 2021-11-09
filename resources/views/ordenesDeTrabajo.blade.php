@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <h3 class="text-dark mb-4">Órdenes de trabajo</h3>
 <!-- Start: #reparacion -->
 <div class="card shadow">
@@ -82,7 +83,7 @@
                 <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Orden de trabajo {{$loop->index+1}}</h6>
             </div>
             @if ($ordenTrabajo->porcentajeAvance==0.0)
-            <div class="col d-xl-flex justify-content-xl-end"><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" href="confirmarOrdenDeTrabajo.html" title="Confirmar esta orden de trabajo" style="background-color: rgb(78,223,84);"><i class="fa fa-check"></i></a>
+            <div class="col d-xl-flex justify-content-xl-end"><a  id="btnAceptarOrdendeTrabajo" class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" title="Confirmar esta orden de trabajo" style="background-color: rgb(78,223,84);" value={{$ordenTrabajo->id}}><i class="fa fa-check"></i></a>
                 <button class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,87);" title="Cancelar esta orden de trabajo"><i class="fa fa-remove"></i></button>
             </div>
             @endif
@@ -222,5 +223,5 @@
     </div>
 </div>
 @endforeach
-<!-- End: #ordenDeTrabajo -->
+
 @endsection
