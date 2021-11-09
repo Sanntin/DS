@@ -66,3 +66,7 @@ Route::get('/reporteDeReparaciones', function () {
 Route::get('/comprobante', function () {
     return view('comprobante');
 });
+
+Route::get('/agregarTarea', function () {
+    return view('agregarTarea');
+});
