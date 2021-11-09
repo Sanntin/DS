@@ -74,3 +74,7 @@ Route::get('/agregarTarea', function () {
 Route::get('/generarOrdenDeTrabajo', function () {
     return view('generarOrdenDeTrabajo');
 });
+
+Route::get('/generarReparacion', function () {
+    return view('generarReparacion');
+});
