@@ -243,6 +243,7 @@
      * @param {HTMLElement} link The link that was clicked
      */
     function menuItemListener( link ) {
+      link.setAttribute('value',taskItemInContext.getAttribute("data-id"));
       console.log( "Task ID - " + taskItemInContext.getAttribute("data-id") + ", Task action - " + link.getAttribute("data-action"));
       toggleMenuOff();
     }

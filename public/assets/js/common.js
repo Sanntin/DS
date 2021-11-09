@@ -68,6 +68,16 @@ $("#btnCancelarReparacion").click(function(){
       });
 });
 
+$("#btnVerOrdenesTrabajo").click(function(){
+    // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
+    setTimeout(() => {
+        window.location = "/reparaciones/ordenesDeTrabajo/"+ $("#btnVerOrdenesTrabajo").attr("value");
+        console.log('hola');
+      }, 1);
+   
+    
+});
+
 
 // ---- Functions ----
 

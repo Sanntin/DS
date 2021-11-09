@@ -20,14 +20,14 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Template assets -->
-    <link rel="stylesheet" href='assets/bootstrap/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='/assets/bootstrap/css/bootstrap.min.css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="assets/css/common.css">
-    <link rel="stylesheet" href="assets/css/contextMenu.css">
+    <link rel="stylesheet" href="/assets/css/common.css">
+    <link rel="stylesheet" href="/assets/css/contextMenu.css">
 </head>
 <body id="page-top">
     <div id="app">
@@ -40,11 +40,11 @@
                     </a>
                     <hr class="sidebar-divider my-0">
                     <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="reparaciones"><i class="fas fa-tachometer-alt"></i><span>Reparaciones</span></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="stock"><i class="fas fa-list-alt"></i><span>Stock</span></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="vehiculos"><i class="fas fa-car"></i><span>Vehículos</span></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="clientes"><i class="fas fa-group"></i><span>Clientes</span></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="usuario"><i class="fas fa-user"></i><span>Usuario</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/reparaciones"><i class="fas fa-tachometer-alt"></i><span>Reparaciones</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/stock"><i class="fas fa-list-alt"></i><span>Stock</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/vehiculos"><i class="fas fa-car"></i><span>Vehículos</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/clientes"><i class="fas fa-group"></i><span>Clientes</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/usuario"><i class="fas fa-user"></i><span>Usuario</span></a></li>
                         <li class="nav-item" role="presentation"></li>
                     </ul>
                     <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -69,7 +69,7 @@
                                 <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-plus"></i> Agregar orden de trabajo</a>
                             </li>
                             <li class="context-menu__item item-repair">
-                                <a href="ordenesDeTrabajo.php" class="context-menu__link" data-action="Delete"><i class="fa fa-eye"></i> Ver órdenes de trabajo</a>
+                                <a id="btnVerOrdenesTrabajo" href="#" class="context-menu__link" data-action="Ver ordenes"><i class="fa fa-eye"></i> Ver órdenes de trabajo</a>
                             </li>
                         </div>
                         <div id="tasks-vehicles">
@@ -106,13 +106,13 @@
     <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
 </body>
 <!-- Template assets -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/chart.min.js"></script>
-<script src="assets/js/bs-init.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/js/chart.min.js"></script>
+<script src="/assets/js/bs-init.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/sweetalert.min.js"></script>
-<script src="assets/js/common.js"></script>
-<script src="assets/js/contextMenu.js"></script>
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/sweetalert.min.js"></script>
+<script src="/assets/js/common.js"></script>
+<script src="/assets/js/contextMenu.js"></script>
 </html>

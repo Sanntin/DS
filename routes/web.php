@@ -32,14 +32,17 @@ Route::get('/register', [RegisterController::class,'create'])->middleware('guest
 Route::post('/register',[RegisterController::class,'store'])->middleware('guest');
 
 
-Route::get('/ordenesDeTrabajo', function () {
-    return view('ordenesDeTrabajo');
-});
+// Route::get('/ordenesDeTrabajo', function () {
+//     return view('ordenesDeTrabajo');
+// });
 
 
-Route::get('/ordenesDeTrabajo', [OrdenTrabajoController::class,'obtenerOrdenTrabajos'])->middleware('auth');
+Route::get('/reparaciones/ordenesDeTrabajo/{id}', [OrdenTrabajoController::class,'obtenerOrdenTrabajos'])->middleware('auth');
 
 Route::get('/reparaciones', [ReparacionController::class,'obtenerReparaciones'])->middleware('auth');
+
+
+
 
 Route::get('/stock', [PiezaController::class,'obtenerPiezas'])->middleware('auth');
 

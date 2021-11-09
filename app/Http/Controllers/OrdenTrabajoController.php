@@ -7,8 +7,8 @@ use App\Models\OrdenTrabajo;
 
 class OrdenTrabajoController extends Controller
 {
-    public function obtenerOrdenTrabajos()
+    public function obtenerOrdenTrabajos($id)
     {
-        return view('ordenesDeTrabajo', ['ordenTrabajos' => OrdenTrabajo::where('id_reparacion',1)->get()]);
+        return view('ordenesDeTrabajo', ['ordenTrabajos' => OrdenTrabajo::where('id_reparacion',$id)->get()]);
     }
 }

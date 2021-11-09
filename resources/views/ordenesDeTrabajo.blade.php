@@ -10,7 +10,7 @@
             <!-- Start: header -->
             <article>
                 <div class="row">
-                    <div class="col" style="width: 20px;max-width: 65px;"><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" href="reparaciones.html" title="Volver a reparaciones"><i class="fa fa-arrow-left"></i></a></div>
+                    <div class="col" style="width: 20px;max-width: 65px;"><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" href="\reparaciones" title="Volver a reparaciones"><i class="fa fa-arrow-left"></i></a></div>
                     <div class="col d-flex justify-content-xl-center align-items-xl-center">
                         <h3 class="text-center" style="font-size: 17px;margin-top: 0;font-weight: 700;margin-bottom: 0;">Usted ha seleccionado la siguiente reparación</h3>
                     </div>
