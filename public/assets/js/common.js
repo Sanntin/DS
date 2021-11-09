@@ -100,12 +100,53 @@ $("#btnVerOrdenesTrabajo").click(function(){
     // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
     setTimeout(() => {
         window.location = "/reparaciones/ordenesDeTrabajo/"+ $("#btnVerOrdenesTrabajo").attr("value");
-        console.log('hola');
       }, 1);
    
     
 });
 
+
+
+// -- Reparaciones --
+
+$("#btnAceptarOrdendeTrabajo").click(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: "/reparaciones/ordenesDeTrabajo/1/aceptarOrdenTrabajo",
+        method: 'post',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: {
+           idOrdenTrabajo : $("#btnAceptarOrdendeTrabajo").attr("value"),
+        },
+        success: function(result){
+            console.log(result);
+            swal("La orden de trabajo fue aceptada correcamente", {
+                icon: "success",
+              });
+        }
+      });
+    // swal({
+    //     title: "¿Esta seguro que desea aceptar la orden de trabajo?",
+    //     icon: "info",
+    //     buttons: true,
+    //     dangerMode: true,
+    //   })
+    //   .then((willDelete) => {
+    //     if (willDelete) {
+         
+        
+
+    //     } else {
+    //       swal("La orden de trabajo no se acepto");
+
+    //     }
+    //   });
+});
 
 // ---- Functions ----
 

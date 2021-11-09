@@ -39,6 +39,8 @@ Route::post('/register',[RegisterController::class,'store'])->middleware('guest'
 
 Route::get('/reparaciones/ordenesDeTrabajo/{id}', [OrdenTrabajoController::class,'obtenerOrdenTrabajos'])->middleware('auth');
 
+Route::post('/reparaciones/ordenesDeTrabajo/1/aceptarOrdenTrabajo', [OrdenTrabajoController::class,'aceptar'])->middleware('auth');
+
 Route::get('/reparaciones', [ReparacionController::class,'obtenerReparaciones'])->middleware('auth');
 
 

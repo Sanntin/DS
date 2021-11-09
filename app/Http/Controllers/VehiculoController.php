@@ -26,8 +26,8 @@ class VehiculoController extends Controller
 
              return  response()->json($array);
         }
-
-        return  response()->json('hola2');
-        // return $this->volverDestino();
+    
+        // Que hacer si no tiene token
+        return view('vehiculos', ['vehiculos' => Vehiculo::paginate(7)]);
     }
 }
