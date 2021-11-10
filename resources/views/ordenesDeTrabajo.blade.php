@@ -124,9 +124,11 @@
                     <div class="col d-xl-flex align-items-xl-center">
                         <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Tarea {{$loop->index+1}}</h6>
                     </div>
-                    @if ($tarea->estado=='no realizado');
-                    <div class="col d-xl-flex justify-content-xl-end"><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="background-color: rgb(81,223,78);" href="completarTarea.html" title="Completar esta tarea"><i class="fa fa-check"></i></a>
+                  
+                    @if ($tarea->estado=='no realizado'  and $ordenTrabajo->estado!=="pendiente")
+                    <div class="col d-xl-flex justify-content-xl-end"><a id="btnCompletarTarea" class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="background-color: rgb(81,223,78);" title="Completar esta tarea" value={{$tarea->id}}><i class="fa fa-check"></i></a>
                         <button class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,95);" title="Eliminar esta tarea"><i class="fa fa-remove"></i></button>
+                
                     </div>
                     @endif
                 </div>
