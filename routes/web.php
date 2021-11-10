@@ -72,3 +72,11 @@ Route::get('/comprobante', function () {
 Route::get('/agregarTarea', function () {
     return view('agregarTarea');
 });
+
+Route::get('/generarOrdenDeTrabajo', function () {
+    return view('generarOrdenDeTrabajo');
+});
+
+Route::get('/generarReparacion', function () {
+    return view('generarReparacion');
+});

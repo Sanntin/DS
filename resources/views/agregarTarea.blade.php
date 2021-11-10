@@ -44,19 +44,23 @@
                                 <tr>
                                     <th>Pieza</th>
                                     <th style="width: 100px;">Precio</th>
-                                    <th style="width: 20px;">Cantidad</th>
+                                    <th style="width: 40px;">Cantidad</th>
+                                    <th style="width: 30px;">Agregar</th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;">Piezas</button>
+                                            <div class="dropdown-menu" role="menu"><a id="piezaDropdown" class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                                        </div>
+                                    </th>
+                                    <th><input id="piezaPrecio" type="number" style="width: 100px;"></th>
+                                    <th><input id="piezaCantidad" type="number" style="width: 70px;"></th>
+                                    <th>
+                                        <button id="btnAgregarPieza" class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="margin-left: 10px;background-color: rgb(116,223,78);" title="Agregar pieza"><i class="fa fa-plus"></i></button>
+                                    </th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;">Piezas</button>
-                                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
-                                        </div>
-                                    </td>
-                                    <td><input type="number" style="width: 100px;"></td>
-                                    <td><input type="number" style="width: 70px;"></td>
-                                </tr>
+                            <tbody id="piezaListado">
                             </tbody>
                         </table>
                     </div>
@@ -65,14 +69,18 @@
                 <!-- Start: botones -->
                 <article>
                     <div class="row">
-                        <div class="col d-flex justify-content-center align-content-center"><a class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar tarea" href="generarOrdenDeTrabajo.html">Listo</a></div>
-                        <div
-                            class="col d-flex justify-content-center align-items-center align-content-center align-self-center"><a class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);" href="generarOrdenDeTrabajo.html"
-                                title="Cancelar y volver a la orden de trabajo">Cancelar</a></div>
+                        <div class="col d-flex justify-content-center align-content-center">
+                            <button class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar tarea" href="generarOrdenDeTrabajo.html">Agregar tarea</button>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
+                            <button class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);" href="generarOrdenDeTrabajo.html"
+                                title="Cancelar y volver a la orden de trabajo">Cancelar</button>
+                        </div>
         </div>
         </article>
         <!-- End: botones -->
         </section>
     </div>
 </div>
+<script src="/assets/js/agregarTarea.js"></script>
 @endsection
