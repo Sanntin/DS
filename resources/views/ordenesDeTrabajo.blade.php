@@ -113,11 +113,9 @@
             </div>
         </div>
     </div>
-    <div class="card-body" style="padding-top: 0;">
 
-        @foreach ($ordenTrabajo->tareas as $tarea)
-            
-     
+    @foreach ($ordenTrabajo->tareas as $tarea)
+    <div class="card-body" style="padding-top: 0;">
         <div class="card" style="margin-top: 15px;">
             <div class="card-header align-items-center">
                 <div class="row" style="width: 100%;">
@@ -218,11 +216,12 @@
 
                 <!-- End: #tarea -->
             </div>
-            @endforeach
+           
         </div>
-            </div>
-        </div>
+        
+
     </div>
+    @endforeach
 </div>
 @endforeach
 
