@@ -26,5 +26,10 @@ class Reparacion extends Model
      return $this->belongsTo('App\Models\Cliente','dniCliente','dni');
     }
 
+    public function ordenesTrabajo()
+    {
+     return $this->hasMany('App\Models\OrdenTrabajo','id_reparacion','id');
+    }
+
 
 }

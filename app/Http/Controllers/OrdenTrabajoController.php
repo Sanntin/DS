@@ -36,9 +36,7 @@ class OrdenTrabajoController extends Controller
 
     public function completarTarea(Request $request)
     {
-            // no compruebo token por que no anda... habira que revisar que onda la seguridad
-            Tarea::find($request->idTarea)->update(['estado' => 'completada']);
-
+          
 
             // Acualizo el porcentaje de avance
             $tarea = Tarea::where('id',$request->idTarea)->get();
@@ -50,5 +48,28 @@ class OrdenTrabajoController extends Controller
 
             $cantidaCompletaTareas=ceil($porcentaje*$cantidadTotalTareas/100)+1;
             OrdenTrabajo::find($ordenTrabajo[0]->id)->update(['porcentajeAvance' => $cantidaCompletaTareas/$cantidadTotalTareas*100]);
+
+            // Modificar esto es para comprobar que las reparaciones tiene todas las ordenes de trabajo completas
+            if($cantidaCompletaTareas/$cantidadTotalTareas*100==100.0){
+              
+                $reparacion = $ordenTrabajo[0]->reparacion;
+               
+                $todasOrdenesTrabajo= $reparacion->ordenesTrabajo;
+                $completado = true;
+                foreach ($todasOrdenesTrabajo as $orden) {
+                    if($orden->porcentajeAvance!=100){
+                        $completado=false;
+                    }
+                }
+                
+                if($completado){
+                    Reparacion::find($reparacion->id)->update(['estado' => "completado"]);            
+                    }
+                
+            }
+
+              // no compruebo token por que no anda... habira que revisar que onda la seguridad
+              Tarea::find($request->idTarea)->update(['estado' => 'completada']);
+
     }
 }
