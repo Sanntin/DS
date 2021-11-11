@@ -21,7 +21,7 @@ class CreateTareasTable extends Migration
 
             $table->foreignId('id_ordenTrabajo')->references('id')->on('orden_trabajos');
             $table->foreignId('id_accion')->references('id')->on('acciones');
-            $table->string('id_nickname')->references('nickname')->on('users');
+            $table->string('id_nickname')->references('nickname')->on('users')->nullable();
 
             $table->timestamps();
         });
