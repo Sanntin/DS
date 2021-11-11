@@ -72,4 +72,17 @@ class OrdenTrabajoController extends Controller
               Tarea::find($request->idTarea)->update(['estado' => 'completada']);
 
     }
+
+
+    public function formAgregar($id)
+    {
+        $reparacion = Reparacion::where('id',$id)->get();
+        $ordenTrabajo = new OrdenTrabajo;
+        $ordenTrabajo->id_reparacion=$id;
+
+        // session()->flash('id_ordenTrabajo', $ordenTrabajo->id);
+
+        return view('generarOrdenDeTrabajo',['reparacion' => $ordenTrabajo]);
+
+    }
 }

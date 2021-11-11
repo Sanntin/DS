@@ -33,18 +33,23 @@ Route::get('/register', [RegisterController::class,'create'])->middleware('guest
 Route::post('/register',[RegisterController::class,'store'])->middleware('guest');
 
 
-// Route::get('/ordenesDeTrabajo', function () {
-//     return view('ordenesDeTrabajo');
-// });
+//Reparaciones
 
+Route::get('/reparaciones', [ReparacionController::class,'obtenerReparaciones'])->middleware('auth');
+
+Route::get('/generarReparacion', [ReparacionController::class,'formGenerarReparacion'])->middleware('auth');
+Route::get('/obtenerVehiculoCliente', [VehiculoController::class,'obtenerVehiculoCliente'])->middleware('auth');
+
+//Ordenes de Trabajo
 
 Route::get('/reparaciones/ordenesDeTrabajo/{id}', [OrdenTrabajoController::class,'obtenerOrdenTrabajos'])->middleware('auth');
+
+Route::get('/reparaciones/agregarOrdenTrabajo/{id}', [OrdenTrabajoController::class,'formAgregar'])->middleware('auth');
 
 Route::post('/reparaciones/ordenesDeTrabajo/aceptarOrdenTrabajo', [OrdenTrabajoController::class,'aceptar'])->middleware('auth');
 
 Route::post('/reparaciones/ordenesDeTrabajo/completarTarea', [OrdenTrabajoController::class,'completarTarea'])->middleware('auth');
 
-Route::get('/reparaciones', [ReparacionController::class,'obtenerReparaciones'])->middleware('auth');
 
 
 
@@ -74,10 +79,7 @@ Route::get('/agregarTarea', [TareaController::class,'mostrarForm'])->middleware(
 Route::post('/agregarTarea/form', [TareaController::class,'agregarTarea'])->middleware('auth');
 Route::get('/obtenerPrecioPieza', [PiezaController::class,'precioPieza'])->middleware('auth');
 
-Route::get('/generarOrdenDeTrabajo', function () {
-    return view('generarOrdenDeTrabajo');
-});
+// Route::get('/generarOrdenDeTrabajo', function () {
+//     return view('generarOrdenDeTrabajo');
+// });
 
-Route::get('/generarReparacion', function () {
-    return view('generarReparacion');
-});

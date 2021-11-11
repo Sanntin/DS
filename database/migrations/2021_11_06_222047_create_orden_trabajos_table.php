@@ -17,7 +17,7 @@ class CreateOrdenTrabajosTable extends Migration
             $table->id();
             $table->enum('estado', ['pendiente', 'en proceso','completado'])->default('pendiente');
             $table->float('porcentajeAvance')->default(0.0);
-            $table->integer('horasTotales');
+            $table->integer('horasTotales')->default(0);
           
             $table->foreignId('id_reparacion')->references('id')->on('reparacions');
             $table->timestamps();

@@ -9,7 +9,7 @@
             <h6 class="text-primary font-weight-bold m-0">Reparaciones</h6>
         </div>
         <div class="col d-xl-flex justify-content-xl-end">
-            <!-- Start: #generarReparacion --><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="margin-left: 10px;background-color: rgb(116,223,78);" title="Nueva reparación" href="generarReparacion1.html"><i class="fa fa-plus"></i></a>
+            <!-- Start: #generarReparacion --><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="margin-left: 10px;background-color: rgb(116,223,78);" title="Nueva reparación" href="/generarReparacion"><i class="fa fa-plus"></i></a>
                     <!-- End: #generarReparacion -->
                     <!-- Start: #reporteReparaciones --><button class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;" title="Generar reporte de reparaciones"><i class="fa fa-list-alt"></i></button>
                     <!-- End: #reporteReparaciones -->

@@ -78,6 +78,29 @@ $("#btnGuardarModificarCliente").click(function(){
 
 // -- Reparaciones --
 
+function obtenerVehiculos() {
+  console.log("cambio");
+  $('#generarReparacion').attr("disabled",true);
+  let id=clientesListado.value;
+  console.log(id);
+  $.ajax({
+      url: "/obtenerVehiculoCliente",
+      method: 'GET',
+      data: {
+         _token: '{!! csrf_token() !!}',
+         id: id,
+      },
+      success: function(result){
+        console.log( result['vehiculos']);
+        result['vehiculos'].forEach(i => {
+          var txt1 = "<option value'"+i.patente+"'>"+ i.patente+"</option>";    
+          $('#vehiculosListado').append(txt1);
+       });
+       $('#vehiculosListado').attr("disabled",false);
+      }
+    });
+}
+
 $("#btnCancelarReparacion").click(function(){
     swal({
         title: "Desea cancelar la reparación?",
@@ -103,6 +126,15 @@ $("#btnVerOrdenesTrabajo").click(function(){
       }, 1);
    
     
+});
+
+$("#btnAgregarOrdenTrabajo").click(function(){
+  // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
+  setTimeout(() => {
+      window.location = "/reparaciones/agregarOrdenTrabajo/"+ $("#btnAgregarOrdenTrabajo").attr("value");
+    }, 1);
+ 
+  
 });
 
 

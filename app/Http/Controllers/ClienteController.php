@@ -15,4 +15,6 @@ class ClienteController extends Controller
         return view('clientes', ['clientes' => DB::table('clientes')->paginate(7)]);
     }
 
+
+
 }

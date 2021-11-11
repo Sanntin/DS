@@ -25,6 +25,7 @@
                         </div>
                     </article>
                     <!-- End: header -->
+    
                     <article>
                         <div class="row" style="padding-left: 10px;margin-top: 15px;">
                             <div class="col" style="font-weight: 700;">
@@ -51,27 +52,31 @@
                         </div>
                         <div class="row" style="padding-left: 10px;">
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">ABC-123</p>
+                                <p style="margin-bottom: 0;">{{$reparacion[0]->patente}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">Elon Musk</p>
+                                <p style="margin-bottom: 0;">{{$reparacion[0]->cliente->apellido}} {{$reparacion[0]->cliente->nombre}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">12/10/21</p>
+                                <p style="margin-bottom: 0;"> {{date('d/m/y', strtotime($reparacion[0]->fechaDeEntrada))}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">En proceso</p>
+                                <p style="margin-bottom: 0;">{{ucfirst($reparacion[0]->estado)}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">-</p>
+                                <p style="margin-bottom: 0;">
+                                    @isset($reparacion[0]->fechaDeSalida)
+                                    {{date('d/m/y', strtotime($reparacion[0]->fechaDeSalida))}} 
+                                    @else-@endisset</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">120000km</p>
+                                <p style="margin-bottom: 0;">{{$reparacion[0]->kilometraje}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">No arranca</p>
+                                <p style="margin-bottom: 0;">{{$reparacion[0]->motivo}}</p>
                             </div>
                         </div>
+                       
                     </article>
                 </section>
                 <!-- End: Reparacion-seleccionada -->
@@ -89,13 +94,18 @@
                         </div>
                     </div>
                     <!-- End: #title -->
+                    @isset($tareas)
+
+                    @foreach ($tareas as $tarea)
+                        
+
                     <div class="row">
                         <div class="col" style="padding-right: 200px;padding-left: 200px;">
                             <div class="card" style="margin-top: 15px;">
                                 <div class="card-header align-items-center">
                                     <div class="row" style="width: 100%;">
                                         <div class="col d-xl-flex align-items-xl-center">
-                                            <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Tarea 1</h6>
+                                            <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Tarea {{$loop->index+1}}</h6>
                                         </div>
                                         <div class="col d-xl-flex justify-content-xl-end"><button onclick="quitarTarea(this);" class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,95);" title="Quitar tarea"><i class="fa fa-remove"></i></button></div>
                                     </div>
@@ -115,11 +125,13 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td>Cambio de aceite</td>
+                                                                <td>{{$tarea->accion->nombre}}</td>
                                                                 <td>
                                                                     <div class="row" style="margin-left: 0;margin-right: 0;">
                                                                         <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                                            <p style="margin-bottom: 0;">Aceite Marolio z85</p>
+                                                                            @foreach ($tarea->pieza as $pieza)
+                                                                            <p style="margin-bottom: 0;">{{$pieza->nombre}} {{$pieza->modelo}}</p><br>
+                                                                            @endforeach
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -135,8 +147,10 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                    @endisset
                     <div class="row" style="margin-top: 15px;">
-                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center"><a class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" href="agregarTarea1.html" title="Agregar nueva tarea para esta orden de trabajo">Agregar tarea</a></div>
+                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center"><a class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar nueva tarea para esta orden de trabajo" onclick="agregarTarea()">Agregar tarea</a></div>
                     </div>
                 </article>
                 <!-- End: #tareas -->
@@ -146,7 +160,7 @@
                         <div class="col d-flex justify-content-center align-items-center"><a class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(78,115,223);" href="reparaciones.html"
                                 title="Generar orden de trabajo">Generar orden</a></div>
                         <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center"><a class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);color: rgb(255,255,255);"
-                                href="reparaciones.html" title="Cancelar y volver a reparaciones">Cancelar</a></div>
+                                href="/reparaciones" title="Cancelar y volver a reparaciones">Cancelar</a></div>
                     </div>
                 </article>
                 <!-- End: botones -->

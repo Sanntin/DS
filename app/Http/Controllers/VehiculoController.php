@@ -30,4 +30,15 @@ class VehiculoController extends Controller
         // Que hacer si no tiene token
         // return view('vehiculos', ['vehiculos' => Vehiculo::paginate(7)]);
     }
+
+    public function obtenerVehiculoCliente(Request $request)
+    {
+       
+        if ($request->has('_token')) {
+            $array=[];
+            $array['vehiculos']  =  Vehiculo ::where('dniCliente',$request->id)->get();
+             return  response()->json($array);
+        }
+    
+    }
 }
