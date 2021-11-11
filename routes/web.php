@@ -83,3 +83,6 @@ Route::get('/obtenerPrecioPieza', [PiezaController::class,'precioPieza'])->middl
 //     return view('generarOrdenDeTrabajo');
 // });
 
+Route::get('/agregarCliente', function () {
+    return view('agregarCliente');
+});
