@@ -33,4 +33,6 @@ class Tarea extends Model
         return $this->belongsTo(Accion::class, 'id_accion', 'id');
     }
 
+    
+
 }

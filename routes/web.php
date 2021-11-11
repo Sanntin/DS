@@ -8,6 +8,7 @@ use App\Http\Controllers\PiezaController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\OrdenTrabajoController;
+use App\Http\Controllers\TareaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,7 @@ use App\Http\Controllers\OrdenTrabajoController;
 */
 
 Route::get('/', function () {
-    return view('home');
+     return redirect('/reparaciones');
 });
 
 // Autenticacion de usuario
@@ -69,9 +70,9 @@ Route::get('/comprobante', function () {
     return view('comprobante');
 });
 
-Route::get('/agregarTarea', function () {
-    return view('agregarTarea');
-});
+Route::get('/agregarTarea', [TareaController::class,'mostrarForm'])->middleware('auth');
+Route::post('/agregarTarea/form', [TareaController::class,'agregarTarea'])->middleware('auth');
+Route::get('/obtenerPrecioPieza', [PiezaController::class,'precioPieza'])->middleware('auth');
 
 Route::get('/generarOrdenDeTrabajo', function () {
     return view('generarOrdenDeTrabajo');
