@@ -17,7 +17,7 @@ class CreateReparacionsTable extends Migration
             $table->id();
             $table->date('fechaDeEntrada');
             $table->text('motivo');
-            $table->integer('kilometraje');
+            $table->mediumInteger('kilometraje')->unsigned();
             $table->date('fechaDeSalida')->nullable();
             $table->enum('estado', ['diagnostico', 'en proceso','completado'])->default('diagnostico');
 
