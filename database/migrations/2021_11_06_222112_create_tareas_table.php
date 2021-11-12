@@ -19,8 +19,8 @@ class CreateTareasTable extends Migration
             $table->enum('estado', ['no realizado', 'completada'])->default('no realizado');
             $table->float('precio');
 
-            $table->foreignId('id_ordenTrabajo')->references('id')->on('orden_trabajos');
-            $table->foreignId('id_accion')->references('id')->on('acciones');
+            $table->foreignId('id_ordenTrabajo')->references('id')->on('orden_trabajos')->onDelete('cascade');
+            $table->foreignId('id_accion')->references('id')->on('accions');
             $table->string('id_nickname')->references('nickname')->on('users')->nullable();
 
             $table->timestamps();

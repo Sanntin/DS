@@ -16,3 +16,19 @@ function quitarTarea(btn){
       });
 }
 
+function generarOrden(btn) {
+  
+  if ($("#Tarea1").length) {
+    window.location = "/reparaciones";
+  }
+  else{
+    $("#errorFaltaTarea").attr("hidden",false);
+  }
+
+}
+
+function agregarTarea(btn) {
+  idOrden= $("#OrdenTrabajo").attr("value");
+  window.location = "/agregarTarea/"+idOrden;
+
+}

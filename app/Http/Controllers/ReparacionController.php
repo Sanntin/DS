@@ -18,6 +18,30 @@ class ReparacionController extends Controller
         return view('generarReparacion', ['clientes' => Cliente::all()]);
     }
 
+    public function crearReparacion(Request $request)
+    {
+        $fechaActual=now()->format('Y-m-d');
+
+        $reparacion= new Reparacion;
+        $reparacion->fechaDeEntrada=$fechaActual;
+        $reparacion->motivo=$request->motivo;
+        $reparacion->kilometraje=$request->kilometraje;
+        $reparacion->estado='diagnostico';
+        $reparacion->dniCliente=$request->cliente;
+        $reparacion->patente=$request->vehiculo;
+        
+        $reparacion->save();
+
+        return redirect('/reparaciones/agregarOrdenTrabajo/'.$reparacion->id);
+    }
+
+    public function cancelar(Request $request)
+    {
+       Reparacion::destroy($request->idReparacion);
+        
+    }
+
+
     public function comprobante($id)
     {
         $reparacion=Reparacion::where('id',$id)->get();

@@ -31,6 +31,10 @@ Route::post('/login',[SessionController::class,'login'])->middleware('guest');
 
 Route::get('/register', [RegisterController::class,'create'])->middleware('guest');
 Route::post('/register',[RegisterController::class,'store'])->middleware('guest');
+// Route::get('/usuario');
+Route::get('/usuario', function () {
+    return view('usuario');
+})->middleware('auth');
 
 
 //Reparaciones
@@ -38,53 +42,49 @@ Route::post('/register',[RegisterController::class,'store'])->middleware('guest'
 Route::get('/reparaciones', [ReparacionController::class,'obtenerReparaciones'])->middleware('auth');
 
 Route::get('/generarReparacion', [ReparacionController::class,'formGenerarReparacion'])->middleware('auth');
+Route::POST('/generarReparacion/crear', [ReparacionController::class,'crearReparacion'])->middleware('auth');
 Route::get('/obtenerVehiculoCliente', [VehiculoController::class,'obtenerVehiculoCliente'])->middleware('auth');
+Route::POST('/reparaciones/cancelar', [ReparacionController::class,'cancelar'])->middleware('auth');
 
 Route::get('/reparaciones/comprobante/{id}', [ReparacionController::class,'comprobante'])->middleware('auth');
 
+Route::get('/reporteDeReparaciones', function () {
+    return view('reporteDeReparaciones');
+});
 //Ordenes de Trabajo
 
 Route::get('/reparaciones/ordenesDeTrabajo/{id}', [OrdenTrabajoController::class,'obtenerOrdenTrabajos'])->middleware('auth');
 
 Route::get('/reparaciones/agregarOrdenTrabajo/{id}', [OrdenTrabajoController::class,'formAgregar'])->middleware('auth');
 
+Route::get('/reparaciones/agregarOrdenTrabajo/Orden/{id}', [OrdenTrabajoController::class,'volverAgregar'])->middleware('auth');
+
+Route::get('/reparaciones/cancelarOrdenTrabajo', [OrdenTrabajoController::class,'cancelar'])->middleware('auth');
+
 Route::post('/reparaciones/ordenesDeTrabajo/aceptarOrdenTrabajo', [OrdenTrabajoController::class,'aceptar'])->middleware('auth');
 
 Route::post('/reparaciones/ordenesDeTrabajo/completarTarea', [OrdenTrabajoController::class,'completarTarea'])->middleware('auth');
 
 
+//Tareas
+Route::get('/agregarTarea/{id}', [TareaController::class,'mostrarForm'])->middleware('auth');
+Route::post('/agregarTarea/form/', [TareaController::class,'agregarTarea'])->middleware('auth');
 
-
+//Pieza
 
 Route::get('/stock', [PiezaController::class,'obtenerPiezas'])->middleware('auth');
+Route::get('/obtenerPrecioPieza', [PiezaController::class,'precioPieza'])->middleware('auth');
 
+//Vehiculi
 Route::get('/vehiculos', [VehiculoController::class,'obtenerVehiculo'])->middleware('auth');
 Route::get('/vehiculos/agregar', [VehiculoController::class,'datosAgregarVehiculo'])->middleware('auth');
 
 
-Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');
 
-// Route::get('/usuario');
-Route::get('/usuario', function () {
-    return view('usuario');
-})->middleware('auth');
 
-Route::get('/reporteDeReparaciones', function () {
-    return view('reporteDeReparaciones');
-});
-
-Route::get('/comprobante', function () {
-    return view('comprobante');
-});
-
-Route::get('/agregarTarea', [TareaController::class,'mostrarForm'])->middleware('auth');
-Route::post('/agregarTarea/form', [TareaController::class,'agregarTarea'])->middleware('auth');
-Route::get('/obtenerPrecioPieza', [PiezaController::class,'precioPieza'])->middleware('auth');
-
-// Route::get('/generarOrdenDeTrabajo', function () {
-//     return view('generarOrdenDeTrabajo');
-// });
-
+//Clientes
 Route::get('/agregarCliente', function () {
     return view('agregarCliente');
 });
+
+Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');

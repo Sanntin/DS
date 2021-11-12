@@ -66,3 +66,22 @@ function quitarTarea(btn) {
     id=id-1;
     btn.parentElement.parentElement.remove();
 }
+
+
+function guardarTarea(params) {
+    if( document.getElementById("acciones")!=0){
+        console.log("hay acciones")
+    }
+    // idOrden= $("#OrdenTrabajo").attr("value");
+    // window.location = "/agregarTarea/"+idOrden;
+    
+
+    // idOrden= $("#OrdenTrabajo").attr("value");
+    // window.location = "/reparaciones/agregarOrdenTrabajo/Orden/"+idOrden;
+}
+
+function cancelarTarea(params) {
+    idOrden= $("#OrdenTrabajo").attr("value");
+    window.location = "/reparaciones/agregarOrdenTrabajo/Orden/"+idOrden;
+}
+

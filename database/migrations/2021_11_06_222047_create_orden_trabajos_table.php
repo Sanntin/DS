@@ -19,7 +19,7 @@ class CreateOrdenTrabajosTable extends Migration
             $table->float('porcentajeAvance')->default(0.0);
             $table->integer('horasTotales')->default(0);
           
-            $table->foreignId('id_reparacion')->references('id')->on('reparacions');
+            $table->foreignId('id_reparacion')->references('id')->on('reparacions')->onDelete('cascade');;
             $table->timestamps();
         });
     }

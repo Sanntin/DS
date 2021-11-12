@@ -81,8 +81,8 @@ $("#btnGuardarModificarCliente").click(function(){
 function obtenerVehiculos() {
   console.log("cambio");
   $('#generarReparacion').attr("disabled",true);
+  $('#vehiculosListado').attr("disabled",true);
   let id=clientesListado.value;
-  console.log(id);
   $.ajax({
       url: "/obtenerVehiculoCliente",
       method: 'GET',
@@ -91,9 +91,9 @@ function obtenerVehiculos() {
          id: id,
       },
       success: function(result){
-        console.log( result['vehiculos']);
+        $('#vehiculosListado').empty();
         result['vehiculos'].forEach(i => {
-          var txt1 = "<option value'"+i.patente+"'>"+ i.patente+"</option>";    
+          var txt1 = "<option name='"+i.patente+"'value'"+i.patente+"'>"+ i.patente+"</option>";    
           $('#vehiculosListado').append(txt1);
        });
        $('#vehiculosListado').attr("disabled",false);
@@ -111,8 +111,24 @@ $("#btnCancelarReparacion").click(function(){
       })
       .then((willDelete) => {
         if (willDelete) {
-          swal("Reparación cancelada exitosamente", {
-            icon: "success",
+          $.ajax({
+            url: "/reparaciones/cancelar",
+            method: 'post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+               idReparacion : $("#btnCancelarReparacion").attr("value"),
+               
+            },
+            success: function(result){
+                swal("Reparación cancelada exitosamente", {
+                    icon: "success",
+                  })
+                  .then((value) => {
+                    location.reload();
+                  });
+                
+            }
+           
           });
         } else {
           swal("La reparación no se ha cancelado");

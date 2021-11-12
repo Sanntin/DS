@@ -6,7 +6,7 @@
     <div class="card-header d-flex justify-content-between align-items-center">
         <div class="row" style="width: 100%;">
             <div class="col d-xl-flex align-items-xl-center">
-                <h6 class="text-primary font-weight-bold m-0">Nueva orden de trabajo</h6>
+                <h6 id="OrdenTrabajo" value={{session()->get('id_ordenTrabajo')}} class="text-primary font-weight-bold m-0">Nueva orden de trabajo</h6>
             </div>
         </div>
     </div>
@@ -25,7 +25,6 @@
                         </div>
                     </article>
                     <!-- End: header -->
-    
                     <article>
                         <div class="row" style="padding-left: 10px;margin-top: 15px;">
                             <div class="col" style="font-weight: 700;">
@@ -52,28 +51,28 @@
                         </div>
                         <div class="row" style="padding-left: 10px;">
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">{{$reparacion[0]->patente}}</p>
+                                <p style="margin-bottom: 0;">{{$reparacion->patente}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">{{$reparacion[0]->cliente->apellido}} {{$reparacion[0]->cliente->nombre}}</p>
+                                <p style="margin-bottom: 0;">{{$reparacion->cliente->apellido}} {{$reparacion->cliente->nombre}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;"> {{date('d/m/y', strtotime($reparacion[0]->fechaDeEntrada))}}</p>
+                                <p style="margin-bottom: 0;"> {{date('d/m/y', strtotime($reparacion->fechaDeEntrada))}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">{{ucfirst($reparacion[0]->estado)}}</p>
+                                <p style="margin-bottom: 0;">{{ucfirst($reparacion->estado)}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
                                 <p style="margin-bottom: 0;">
-                                    @isset($reparacion[0]->fechaDeSalida)
-                                    {{date('d/m/y', strtotime($reparacion[0]->fechaDeSalida))}} 
+                                    @isset($reparacion->fechaDeSalida)
+                                    {{date('d/m/y', strtotime($reparacion->fechaDeSalida))}} 
                                     @else-@endisset</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">{{$reparacion[0]->kilometraje}}</p>
+                                <p style="margin-bottom: 0;">{{$reparacion->kilometraje}}</p>
                             </div>
                             <div class="col" style="font-weight: 400;">
-                                <p style="margin-bottom: 0;">{{$reparacion[0]->motivo}}</p>
+                                <p style="margin-bottom: 0;">{{$reparacion->motivo}}</p>
                             </div>
                         </div>
                        
@@ -94,11 +93,11 @@
                         </div>
                     </div>
                     <!-- End: #title -->
+            
                     @isset($tareas)
 
                     @foreach ($tareas as $tarea)
                         
-
                     <div class="row">
                         <div class="col" style="padding-right: 200px;padding-left: 200px;">
                             <div class="card" style="margin-top: 15px;">
@@ -112,7 +111,7 @@
                                 </div>
                                 <div class="card-body" style="padding-top: 0;padding-bottom: 0;">
                                     <!-- Start: #tarea -->
-                                    <section>
+                                    <section id="Tarea"{{$loop->index+1}}>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="table-responsive">
@@ -150,17 +149,33 @@
                     @endforeach
                     @endisset
                     <div class="row" style="margin-top: 15px;">
-                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center"><a class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar nueva tarea para esta orden de trabajo" onclick="agregarTarea()">Agregar tarea</a></div>
+                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
+                            <button class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar nueva tarea para esta orden de trabajo" onclick="agregarTarea()">Agregar Tarea</button>
+                        </div>
                     </div>
                 </article>
                 <!-- End: #tareas -->
                 <!-- Start: botones -->
                 <article>
                     <div class="row">
-                        <div class="col d-flex justify-content-center align-items-center"><a class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(78,115,223);" href="reparaciones.html"
-                                title="Generar orden de trabajo">Generar orden</a></div>
-                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center"><a class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);color: rgb(255,255,255);"
-                                href="/reparaciones" title="Cancelar y volver a reparaciones">Cancelar</a></div>
+
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <button id='btnGenerarOrden' title="Generar orden de trabajo" class="btn btn-primary text-center d-flex justify-content-center align-self-center"  data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(78,115,223);" onclick="generarOrden()" >Generar orden</button>
+                        </div>
+
+                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
+                            <a class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);color: rgb(255,255,255);"
+                                href="/reparaciones/cancelarOrdenTrabajo" title="Cancelar y volver a reparaciones">Cancelar</a></div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <p id='errorFaltaTarea' hidden>Agregar al menos 1 tarea</p>
+                        </div>
+
+                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
+                        </div>
                     </div>
                 </article>
                 <!-- End: botones -->

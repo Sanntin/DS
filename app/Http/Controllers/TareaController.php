@@ -17,14 +17,17 @@ class TareaController extends Controller
             // return  response()->json("hola");
     }
 
-    public function mostrarForm()
+    public function mostrarForm($id)
     {
-          
+    
+        session()->flash('id_ordenTrabajo',$id);
         return view('agregarTarea', ['acciones' => Accion::all(),'piezas'=>Pieza::all()]);
     }
 
     public function agregarTarea(Request $request)
     {   
+
+        session()->flash('id_ordenTrabajo',$request->id_ordenTrabajo);
         $data=$request->all();
 
         

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<h3 class="text-dark mb-4">Agregar nueva tarea</h3>
+<h3 class="text-dark mb-4">Agregar nueva tarea a la Orden de trabajo</h3>
+<div id='OrdenTrabajo' value={{session()->get('id_ordenTrabajo')}}></div>
 <div class="card shadow">
     <div class="card-header d-flex justify-content-between align-items-center">
         <div class="row" style="width: 100%;">
@@ -11,16 +12,15 @@
         </div>
     </div>
     
-    @isset($request)
-        {{dd($request)}}
-    @endisset
+   
     <div class="card-body">
-     <form method="POST" action="/agregarTarea/form">
         @csrf
             <div class="container" style="width: 100%;min-width: 100%;padding-left: 0;padding-right: 0;min-height: 100%;height: 100%;max-height: 100%;background-color: rgba(255,0,0,0);">
                 <section>
                     <!-- Start: #accion -->
                     <article style="padding-right: 200px;padding-left: 200px;">
+                        <div value={{session()->get('id_ordenTrabajo')}} id='ordenTrabajo'></div>
+                        
                         <h1 class="text-center" style="font-size: 17px;margin-top: 20px;font-weight: 700;">Seleccione una acción</h1>
                         <div class="table-responsive">
                             <table class="table">
@@ -90,17 +90,17 @@
                     <article>
                         <div class="row">
                             <div class="col d-flex justify-content-center align-content-center">
-                                <button class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar tarea" >Agregar tarea</button>
+                                <button class="btn btn-primary d-flex justify-content-center align-self-center"  data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar tarea" onclick="guardarTarea()" >
+                                    Agregar tarea</button>
                             </div>
                             <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
-                                <button class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);" onclick="submit"
-                                    title="Cancelar y volver a la orden de trabajo">Cancelar</button>
+                                <button class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);" title="Cancelar y volver a la orden de trabajo" onclick="cancelarTarea()">
+                                    Cancelar</button>
                             </div>
             </div>
             </article>
             <!-- End: botones -->
             </section>
-        </form>
     </div>
 </div>
 <script src="/assets/js/agregarTarea.js"></script>

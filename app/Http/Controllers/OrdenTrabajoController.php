@@ -68,6 +68,9 @@ class OrdenTrabajoController extends Controller
                 
             }
 
+            // $fechaActual=now();
+            // $usuario=
+
               // no compruebo token por que no anda... habira que revisar que onda la seguridad
               Tarea::find($request->idTarea)->update(['estado' => 'completada']);
 
@@ -76,13 +79,49 @@ class OrdenTrabajoController extends Controller
 
     public function formAgregar($id)
     {
+    
         $reparacion = Reparacion::where('id',$id)->get();
+        $reparacion=$reparacion[0];
+
+        $ordenTrabajo=OrdenTrabajo::where('id',session()->get('id_ordenTrabajo'))->first();
+
+        if($ordenTrabajo==null){
         $ordenTrabajo = new OrdenTrabajo;
         $ordenTrabajo->id_reparacion=$id;
+        $ordenTrabajo->estado='pendiente';
 
-        // session()->flash('id_ordenTrabajo', $ordenTrabajo->id);
+        $ordenTrabajo->save();
+        }
+        session()->flash('id_ordenTrabajo', $ordenTrabajo->id);
 
-        return view('generarOrdenDeTrabajo',['reparacion' => $ordenTrabajo]);
+        return view('generarOrdenDeTrabajo',['reparacion' => $reparacion,'tareas'=>$ordenTrabajo->tareas]);
 
+    }
+
+    public function cancelar(Request $request)
+    {
+
+        if ( $request->session()->get('id_ordenTrabajo')) {
+            OrdenTrabajo::destroy( $request->session()->get('id_ordenTrabajo'));
+            return redirect('/reparaciones');
+        }
+        else {
+            // Con error que reintente, deberia volverlo a genear orden de trabajo de esa reparacion
+            return redirect('/reparaciones');
+        }
+       
+    }
+
+    public function volverAgregar($id)
+    {
+        $ordenTrabajo=OrdenTrabajo::where('id',$id)->get();
+        $ordenTrabajo=$ordenTrabajo[0];
+        $reparacion=$ordenTrabajo->reparacion;
+
+    
+        session()->flash('id_ordenTrabajo', $ordenTrabajo->id);
+        
+        return redirect('reparaciones/agregarOrdenTrabajo/'.$reparacion->id)
+        ->withInput(['reparacion' => $reparacion,'tareas'=>$ordenTrabajo->tareas]);
     }
 }
