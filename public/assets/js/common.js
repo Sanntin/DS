@@ -120,6 +120,14 @@ $("#btnCancelarReparacion").click(function(){
       });
 });
 
+$("#btnGenerarComprobante").click(function(){
+  // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
+  setTimeout(() => {
+      window.location = "/reparaciones/comprobante/"+ $("#btnGenerarComprobante").attr("value");
+    }, 1);
+  
+});
+
 $("#btnVerOrdenesTrabajo").click(function(){
     // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
     setTimeout(() => {

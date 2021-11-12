@@ -40,6 +40,8 @@ Route::get('/reparaciones', [ReparacionController::class,'obtenerReparaciones'])
 Route::get('/generarReparacion', [ReparacionController::class,'formGenerarReparacion'])->middleware('auth');
 Route::get('/obtenerVehiculoCliente', [VehiculoController::class,'obtenerVehiculoCliente'])->middleware('auth');
 
+Route::get('/reparaciones/comprobante/{id}', [ReparacionController::class,'comprobante'])->middleware('auth');
+
 //Ordenes de Trabajo
 
 Route::get('/reparaciones/ordenesDeTrabajo/{id}', [OrdenTrabajoController::class,'obtenerOrdenTrabajos'])->middleware('auth');

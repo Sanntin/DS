@@ -19,15 +19,19 @@
                     <tbody>
                         <tr>
                             <td>Nombre</td>
-                            <td>Elon</td>
+                            <td>{{$reparacion[0]->cliente->nombre}}</td>
                         </tr>
                         <tr>
                             <td>Apellido</td>
-                            <td>Musk</td>
+                            <td>{{$reparacion[0]->cliente->apellido}} </td>
                         </tr>
                         <tr>
                             <td>DNI</td>
-                            <td>24587485</td>
+                            <td>{{$reparacion[0]->cliente->dni}}</td>
+                        </tr>
+                        <tr>
+                            <td>Patente</td>
+                            <td>{{$reparacion[0]->patente}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -46,7 +50,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>27/09/2021</td>
+                            <td>De entrada</td>
+                            <td>{{date('d/m/y', strtotime($reparacion[0]->fechaDeEntrada))}}</td>
+                        </tr>
+                        <tr>
+                            <td>De salida</td>
+                            <td>{{date('d/m/y', strtotime($reparacion[0]->fechaDeSalida))}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -60,10 +69,11 @@
 <div class="container" style="width: 100%;max-width: 100%;">
     <h4 class="text-center" style="padding-top: 30px;">DETALLE</h4>
     <!-- Start: #tarea1 -->
+    @foreach ($tareas as $tarea)
     <div class="row" style="border-bottom: 1px solid black;">
         <!-- Start: #tarea -->
         <div class="col">
-            <p>Tarea 1</p>
+            <p>Tarea {{$loop->index+1}}</p>
         </div>
         <!-- End: #tarea -->
         <!-- Start: #detalle-tarea -->
@@ -76,7 +86,7 @@
                             <p style="font-weight: 700;">Acción:</p>
                         </div>
                         <div class="col">
-                            <p style="font-weight: 400;">Cambio de aceite ($1000)</p>
+                            <p style="font-weight: 400;">{{$tarea->accion->nombre}} (${{$tarea->accion->precio}})</p>
                         </div>
                     </div>
                 </div>
@@ -87,10 +97,14 @@
                 <div class="col" style="width: 20%;max-width: 20%;">
                     <p style="font-weight: 700;">Piezas:</p>
                 </div>
+           
                 <div class="col">
-                    <p style="font-weight: 400;">Aceite Marolio Girasol x1 ($4000)</p>
+                    @foreach ($tarea->pieza as $pieza)
+                    <p style="font-weight: 400;">{{$pieza->nombre.' '.$pieza->modelo.' x'.$pieza->pivot->cantidad. "($".$pieza->pivot->precio.")"}}</p><br>
+                    @endforeach
                 </div>
             </div>
+ 
             <!-- End: #piezas -->
             <!-- Start: #subtotal -->
             <div class="row">
@@ -98,16 +112,17 @@
                     <p style="font-weight: 700;">Subtotal:</p>
                 </div>
                 <div class="col">
-                    <p style="font-weight: 400;">$5000</p>
+                    <p style="font-weight: 400;">${{$tarea->precio}}</p>
                 </div>
             </div>
             <!-- End: #subtotal -->
         </div>
         <!-- End: #detalle-tarea -->
     </div>
+    @endforeach
     <!-- End: #tarea1 -->
     <!-- Start: #tarea2 -->
-    <div class="row" style="border-bottom: 1px solid black;">
+    {{-- <div class="row" style="border-bottom: 1px solid black;">
         <!-- Start: #tarea -->
         <div class="col">
             <p>Tarea 2</p>
@@ -150,7 +165,7 @@
             </div>
             <!-- End: #subtotal -->
         </div>
-        <!-- End: #detalle-tarea -->
+        <!-- End: #detalle-tarea --> --}}
     </div>
     <!-- End: #tarea2 -->
     <!-- Start: #total -->
@@ -165,7 +180,7 @@
                     <p style="font-weight: 700;">Total:</p>
                 </div>
                 <div class="col">
-                    <p>$14800</p>
+                    <p>${{$totalprecio}}</p>
                 </div>
             </div>
             <div class="row">
@@ -173,7 +188,7 @@
                     <p style="font-weight: 700;">Tiempo:</p>
                 </div>
                 <div class="col">
-                    <p>1H</p>
+                    <p>{{$totalHoras}}H</p>
                 </div>
             </div>
         </div>
