@@ -8,9 +8,25 @@ function quitarTarea(btn){
       })
       .then((willDelete) => {
         if (willDelete) {
-            tarea.remove();
-            swal("La tarea fue removida exitosamente", {
-                icon: "success",
+
+            $.ajax({
+              url: "/eliminarTarea",
+              method: 'post',
+              headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+              data: {
+                 idtarea : $("#quitarTarea").attr("value"),
+                 
+              },
+              success: function(result){
+                  swal("Tarea eliminada exitosamente", {
+                      icon: "success",
+                    })
+                    .then((value) => {
+                      tarea.remove();
+                      location.reload();
+                    });
+                  
+              }
             });
         }
       });

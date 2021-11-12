@@ -69,6 +69,6 @@ class TareaController extends Controller
 
     public function eliminarTarea(Request $request)
     {
-        Reparacion::destroy($request->idReparacion);
+        Tarea::destroy($request->idtarea);
     }
 }

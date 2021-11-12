@@ -59,6 +59,7 @@ Route::get('/reparaciones/agregarOrdenTrabajo/{id}', [OrdenTrabajoController::cl
 
 Route::get('/reparaciones/agregarOrdenTrabajo/Orden/{id}', [OrdenTrabajoController::class,'volverAgregar'])->middleware('auth');
 
+Route::post('/reparaciones/cancelarOrdenTrabajo/vista', [OrdenTrabajoController::class,'cancelaVista'])->middleware('auth');
 Route::get('/reparaciones/cancelarOrdenTrabajo', [OrdenTrabajoController::class,'cancelar'])->middleware('auth');
 
 Route::post('/reparaciones/ordenesDeTrabajo/aceptarOrdenTrabajo', [OrdenTrabajoController::class,'aceptar'])->middleware('auth');

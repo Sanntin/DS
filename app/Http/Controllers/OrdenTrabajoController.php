@@ -112,6 +112,13 @@ class OrdenTrabajoController extends Controller
        
     }
 
+    public function cancelaVista(Request $request)
+    {
+        $data=$request->all();
+     
+            OrdenTrabajo::destroy($data['idOrdenTrabajo']);
+       
+    }
     public function volverAgregar($id)
     {
         $ordenTrabajo=OrdenTrabajo::where('id',$id)->get();

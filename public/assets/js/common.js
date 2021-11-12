@@ -166,48 +166,94 @@ $("#btnAgregarOrdenTrabajo").click(function(){
 
 // -- Ordenes de trabajo --
 
-$("#btnAceptarOrdendeTrabajo").click(function(){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    swal({
-        title: "¿Esta seguro que desea aceptar la orden de trabajo?",
-        icon: "info",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-            $.ajax({
-                url: "/reparaciones/ordenesDeTrabajo/aceptarOrdenTrabajo",
-                method: 'post',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: {
-                   idOrdenTrabajo : $("#btnAceptarOrdendeTrabajo").attr("value"),
-                   
-                },
-                success: function(result){
-                    swal("La orden de trabajo fue aceptada correcamente", {
-                        icon: "success",
-                      })
-                      .then((value) => {
-                        location.reload();
-                      });
-                    
-                }
-               
-              });
-        } else {
-          swal("La orden de trabajo no se acepto");
-
-        }
-      });
-
-    //   
+function aceptarOrdenTrabajo(btn) {
+  console.log(btn);
+  console.log(btn.value);
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
 });
+
+swal({
+    title: "¿Esta seguro que desea aceptar la orden de trabajo?",
+    icon: "info",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+        $.ajax({
+            url: "/reparaciones/ordenesDeTrabajo/aceptarOrdenTrabajo",
+            method: 'post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+               idOrdenTrabajo :btn.value,
+               
+            },
+            success: function(result){
+                swal("La orden de trabajo fue aceptada correcamente", {
+                    icon: "success",
+                  })
+                  .then((value) => {
+                    location.reload();
+                  });
+                
+            }
+           
+          });
+    } else {
+      swal("La orden de trabajo no se acepto");
+
+    }
+  });
+}
+
+function rechazarOrdenTrabajo(btn) {
+  console.log(btn);
+  console.log(btn.value);
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+swal({
+    title: "¿Esta seguro que desea eliminar la orden de trabajo?",
+    icon: "info",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+        $.ajax({
+            url: "/reparaciones/cancelarOrdenTrabajo/vista",
+            method: 'post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+               idOrdenTrabajo :btn.value,
+               
+            },
+            success: function(result){
+                swal("La orden de trabajo fue eliminada correcamente", {
+                    icon: "success",
+                  })
+                  .then((value) => {
+                    location.reload();
+                  });
+                
+            }
+           
+          });
+    } else {
+      swal("La orden de trabajo no fue elimada");
+
+    }
+  });
+}
+// $("#btnAceptarOrdendeTrabajo").click(function(){
+     
+// });
 
 
 // --Tareas --
