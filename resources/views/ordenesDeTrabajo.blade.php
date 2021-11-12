@@ -114,7 +114,6 @@
             </div>
         </div>
     </div>
-
     @foreach ($ordenTrabajo->tareas as $tarea)
     <div class="card-body" style="padding-top: 0;">
         <div class="card" style="margin-top: 15px;">
@@ -125,8 +124,9 @@
                     </div>
                   
                     @if ($tarea->estado=='no realizado'  and $ordenTrabajo->estado!=="pendiente")
-                    <div class="col d-xl-flex justify-content-xl-end"><a id="'btnCompletarTarea" class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="background-color: rgb(81,223,78);" title="Completar esta tarea" value={{$tarea->id}}><i class="fa fa-check"></i></a>
-                        <button class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,95);" title="Eliminar esta tarea" value={{$tarea->id}}><i class="fa fa-remove"></i></button>
+                    <div class="col d-xl-flex justify-content-xl-end">
+                        <button id="'btnCompletarTarea" class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="background-color: rgb(81,223,78);" title="Completar esta tarea" value="{{$tarea->id}}" onclick="completarTarea(this)"><i class="fa fa-check"></i></button>
+                        <button class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,95);" title="Eliminar esta tarea" value="{{$tarea->id}}" onclick="cancelarTarea(this)"><i class="fa fa-remove"></i></button>
                 
                     </div>
                     @endif

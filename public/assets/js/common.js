@@ -257,48 +257,86 @@ swal({
 
 
 // --Tareas --
-$("#btnCompletarTarea").click(function(){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+function completarTarea(btn) {
+console.log(btn.value);
 
-    swal({
-        title: "¿Esta seguro que desea completar la Tarea?",
-        icon: "info",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-            $.ajax({
-                url: "/reparaciones/ordenesDeTrabajo/completarTarea",
-                method: 'post',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: {
-                   idTarea : $("#btnCompletarTarea").attr("value"),
-                   
-                },
-                success: function(result){
-                    swal("La tarea fue completada correcamente", {
-                        icon: "success",
-                      })
-                      .then((value) => {
-                        location.reload();
-                      });
-                    
-                }
+swal({
+    title: "¿Esta seguro que desea completar la Tarea?",
+    icon: "info",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+        $.ajax({
+            url: "/reparaciones/ordenesDeTrabajo/completarTarea",
+            method: 'post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+               idTarea : btn.value,
                
-              });
-        } else {
-          swal("La tarea no fue completada");
+            },
+            success: function(result){
+                swal("La tarea fue completada correcamente", {
+                    icon: "success",
+                  })
+                  .then((value) => {
+                    location.reload();
+                  });
+                
+            }
+           
+          });
+    } else {
+      swal("La tarea no fue completada");
 
-        }
-      });
+    }
+  });
+}
 
-    //   
+
+function cancelarTarea(btn) {
+  console.log(btn);
+  console.log(btn.value);
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
 });
+
+swal({
+    title: "¿Esta seguro que desea cancelar la tarea?",
+    icon: "info",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+        $.ajax({
+            url: "/eliminarTarea",
+            method: 'post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+               idtarea :btn.value,
+               
+            },
+            success: function(result){
+                swal("La tarea fue cancelada correcamente", {
+                    icon: "success",
+                  })
+                  .then((value) => {
+                    location.reload();
+                  });
+                
+            }
+           
+          });
+    } else {
+      swal("La tarea no fue cancelada");
+
+    }
+  });
+}
 // ---- Functions ----
 
 //When switching from one page to another in the same view, hide the last one and show the current one

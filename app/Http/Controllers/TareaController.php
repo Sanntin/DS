@@ -7,14 +7,15 @@ use App\Models\Tarea;
 use App\Models\Pieza;
 use App\Models\Accion;
 use App\Models\Tarea_Pieza;
+use Illuminate\Support\Facades\Auth;
 
 class TareaController extends Controller
 {
     public function completar(Request $request)
     {
             // no compruebo token por que no anda... habira que revisar que onda la seguridad
-            $tarea = Tarea::find($request->idTarea)->update(['estado' => 'completada']);
-            // return  response()->json("hola");
+
+            $tarea = Tarea::find($request->idtarea)->update(['estado' => 'completada','id_nickname'=>Auth::id(),'fechaHora'=>now()->format('YYYY-MM-DD hh:ii:ss')]);
     }
 
     public function mostrarForm($id)
@@ -71,4 +72,5 @@ class TareaController extends Controller
     {
         Tarea::destroy($request->idtarea);
     }
+
 }

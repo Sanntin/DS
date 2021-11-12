@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\OrdenTrabajo;
 use App\Models\Tarea;
 use App\Models\Reparacion;
+use Illuminate\Support\Facades\Auth;
+
 
 class OrdenTrabajoController extends Controller
 {
@@ -36,8 +38,6 @@ class OrdenTrabajoController extends Controller
 
     public function completarTarea(Request $request)
     {
-          
-
             // Acualizo el porcentaje de avance
             $tarea = Tarea::where('id',$request->idTarea)->get();
             
@@ -63,7 +63,7 @@ class OrdenTrabajoController extends Controller
                 }
                 
                 if($completado){
-                    Reparacion::find($reparacion->id)->update(['estado' => "completado"]);            
+                    Reparacion::find($reparacion->id)->update(['estado' => 'completada']);            
                     }
                 
             }
@@ -72,7 +72,7 @@ class OrdenTrabajoController extends Controller
             // $usuario=
 
               // no compruebo token por que no anda... habira que revisar que onda la seguridad
-              Tarea::find($request->idTarea)->update(['estado' => 'completada']);
+              Tarea::find($request->idTarea)->update(['estado' => 'completada','id_nickname'=>Auth::id(),'fechaHora'=>now()->format('Y-m-d h:i:s')]);
 
     }
 

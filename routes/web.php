@@ -64,13 +64,14 @@ Route::get('/reparaciones/cancelarOrdenTrabajo', [OrdenTrabajoController::class,
 
 Route::post('/reparaciones/ordenesDeTrabajo/aceptarOrdenTrabajo', [OrdenTrabajoController::class,'aceptar'])->middleware('auth');
 
-Route::post('/reparaciones/ordenesDeTrabajo/completarTarea', [OrdenTrabajoController::class,'completarTarea'])->middleware('auth');
+
 
 
 //Tareas
 Route::get('/agregarTarea/{id}', [TareaController::class,'mostrarForm'])->middleware('auth');
 Route::post('/agregarTarea/form', [TareaController::class,'agregarTarea'])->middleware('auth');
 Route::post('/eliminarTarea', [TareaController::class,'eliminarTarea'])->middleware('auth');
+Route::post('/reparaciones/ordenesDeTrabajo/completarTarea', [OrdenTrabajoController::class,'completarTarea'])->middleware('auth');
 
 //Pieza
 
