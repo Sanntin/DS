@@ -29,11 +29,9 @@ class TareaController extends Controller
 
         session()->flash('id_ordenTrabajo',$request->id_ordenTrabajo);
         $data=$request->all();
-
-        
         $tarea= new Tarea;
         $tarea->estado="no realizado";
-        $tarea->id_ordenTrabajo=1;
+        $tarea->id_ordenTrabajo=$data['ordenTrabajo'];
         $tarea->id_accion=$data['acciones'];
         $tarea->precio=$tarea->accion->precio;
         $tarea->save();
@@ -65,6 +63,12 @@ class TareaController extends Controller
         $tarea->save();
 
         
-        return view('agregarTarea', ['request' => $tarea]);
+        return redirect('/reparaciones/agregarOrdenTrabajo/Orden/'.$data['ordenTrabajo']);
+
+    }
+
+    public function eliminarTarea(Request $request)
+    {
+        Reparacion::destroy($request->idReparacion);
     }
 }

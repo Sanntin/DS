@@ -104,14 +104,14 @@
                                 <div class="card-header align-items-center">
                                     <div class="row" style="width: 100%;">
                                         <div class="col d-xl-flex align-items-xl-center">
-                                            <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Tarea {{$loop->index+1}}</h6>
+                                            <h6 id='Tarea' class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Tarea {{$loop->index+1}}</h6>
                                         </div>
                                         <div class="col d-xl-flex justify-content-xl-end"><button onclick="quitarTarea(this);" class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,95);" title="Quitar tarea"><i class="fa fa-remove"></i></button></div>
                                     </div>
                                 </div>
                                 <div class="card-body" style="padding-top: 0;padding-bottom: 0;">
                                     <!-- Start: #tarea -->
-                                    <section id="Tarea"{{$loop->index+1}}>
+                                    <section>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="table-responsive">

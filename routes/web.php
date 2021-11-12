@@ -68,7 +68,8 @@ Route::post('/reparaciones/ordenesDeTrabajo/completarTarea', [OrdenTrabajoContro
 
 //Tareas
 Route::get('/agregarTarea/{id}', [TareaController::class,'mostrarForm'])->middleware('auth');
-Route::post('/agregarTarea/form/', [TareaController::class,'agregarTarea'])->middleware('auth');
+Route::post('/agregarTarea/form', [TareaController::class,'agregarTarea'])->middleware('auth');
+Route::post('/eliminarTarea', [TareaController::class,'eliminarTarea'])->middleware('auth');
 
 //Pieza
 

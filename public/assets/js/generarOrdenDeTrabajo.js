@@ -18,11 +18,30 @@ function quitarTarea(btn){
 
 function generarOrden(btn) {
   
-  if ($("#Tarea1").length) {
-    window.location = "/reparaciones";
+  if ($("#Tarea").length) {
+
+    swal({
+      title: "Desea agregar la Orden de Trabajo?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+          swal("La orden de trabajo fue agregada", {
+              icon: "success",
+          });
+          setTimeout(() => {
+            window.location = "/reparaciones";
+          }, 1000);
+       
+      }
+    });
+    
   }
   else{
     $("#errorFaltaTarea").attr("hidden",false);
+    console.log('gola');
   }
 
 }

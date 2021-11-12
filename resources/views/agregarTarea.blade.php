@@ -14,12 +14,13 @@
     
    
     <div class="card-body">
+        <form method="POST" action="/agregarTarea/form" > 
         @csrf
             <div class="container" style="width: 100%;min-width: 100%;padding-left: 0;padding-right: 0;min-height: 100%;height: 100%;max-height: 100%;background-color: rgba(255,0,0,0);">
                 <section>
                     <!-- Start: #accion -->
                     <article style="padding-right: 200px;padding-left: 200px;">
-                        <div value={{session()->get('id_ordenTrabajo')}} id='ordenTrabajo'></div>
+                       
                         
                         <h1 class="text-center" style="font-size: 17px;margin-top: 20px;font-weight: 700;">Seleccione una acción</h1>
                         <div class="table-responsive">
@@ -31,7 +32,7 @@
                                     <tr>
                                         <td style="font-weight: 700;">Acción</td>
                                         <td>
-                                            <select name="acciones" id="acciones" class="form-control">
+                                            <select name="acciones" id="acciones" class="form-control" required>
                                                 <option value='0' selected disabled hidden>-</option>
                                                 @foreach ($acciones as $accion)
                                                 <option id='doption' value="{{$accion->id}}" >{{$accion->nombre}}</option>
@@ -63,7 +64,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            <select name="piezas" id="piezasListado" class="form-control" onchange="obtenerPrecio()">
+                                            <select name="piezas" id="piezasListado" class="form-control" onchange="obtenerPrecio()" required>
                                                 <option value='0' selected disabled hidden>-</option>
                                                 @foreach ($piezas as $pieza)
                                                 <option id='doption' value="{{$pieza->id}}" >{{$pieza->nombre}} - {{$pieza->modelo}}</option>
@@ -90,7 +91,7 @@
                     <article>
                         <div class="row">
                             <div class="col d-flex justify-content-center align-content-center">
-                                <button class="btn btn-primary d-flex justify-content-center align-self-center"  data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar tarea" onclick="guardarTarea()" >
+                                <button class="btn btn-primary d-flex justify-content-center align-self-center"  data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar tarea" onclick="submit()"  id="AgregarTarea" disabled>
                                     Agregar tarea</button>
                             </div>
                             <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
@@ -99,6 +100,8 @@
                             </div>
             </div>
             </article>
+            <input name='ordenTrabajo' value={{session()->get('id_ordenTrabajo')}} id='ordenTrabajo' hidden readonly>
+        </form>
             <!-- End: botones -->
             </section>
     </div>

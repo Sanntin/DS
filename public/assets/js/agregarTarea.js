@@ -3,6 +3,7 @@ const piezasListado = document.getElementById("piezasListado");
 const piezaPrecio = document.getElementById("piezaPrecio");
 const piezaCantidad = document.getElementById("piezaCantidad");
 const btnsQuitarPieza = document.getElementsByClassName("btn-quitar-pieza");
+
 var id=0;
 document.getElementById("btnAgregarPieza").onclick = function (e) {
     console.log(piezasListado.value);
@@ -34,6 +35,10 @@ document.getElementById("btnAgregarPieza").onclick = function (e) {
             tr.appendChild(td);
             piezaListado.appendChild(tr);
         } 
+
+        if(  $('#AgregarTarea').attr("disabled")){
+            $('#AgregarTarea').attr("disabled",false)
+        }
     }
 }
 
