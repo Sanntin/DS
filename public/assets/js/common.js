@@ -97,6 +97,7 @@ function obtenerVehiculos() {
           $('#vehiculosListado').append(txt1);
        });
        $('#vehiculosListado').attr("disabled",false);
+       $('#generarReparacion').attr("disabled",false);
       }
     });
 }
