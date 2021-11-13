@@ -10,6 +10,14 @@ $(".t-row").mouseout(function() {
     $(this).toggleClass("t-row-hover");
 });
 
+function loadingScreen(loading){
+  if(loading){
+    $(".loading").css("display", "block");
+  }else{
+    $(".loading").css("display", "none");
+  }
+}
+
 // -- Vehículos --
 $("#btnAgregarVehiculo").click(function(){
     $.ajax({
@@ -83,6 +91,7 @@ function obtenerVehiculos() {
   $('#generarReparacion').attr("disabled",true);
   $('#vehiculosListado').attr("disabled",true);
   let id=clientesListado.value;
+  loadingScreen(true);
   $.ajax({
       url: "/obtenerVehiculoCliente",
       method: 'GET',
@@ -91,6 +100,7 @@ function obtenerVehiculos() {
          id: id,
       },
       success: function(result){
+        loadingScreen(false);
         $('#vehiculosListado').empty();
         result['vehiculos'].forEach(i => {
           var txt1 = "<option name='"+i.patente+"'value'"+i.patente+"'>"+ i.patente+"</option>";    
@@ -98,6 +108,7 @@ function obtenerVehiculos() {
        });
        $('#vehiculosListado').attr("disabled",false);
        $('#generarReparacion').attr("disabled",false);
+       loadingScreen(false);
       }
     });
 }
@@ -111,6 +122,7 @@ $("#btnCancelarReparacion").click(function(){
       })
       .then((willDelete) => {
         if (willDelete) {
+          loadingScreen(true);
           $.ajax({
             url: "/reparaciones/cancelar",
             method: 'post',
@@ -120,6 +132,7 @@ $("#btnCancelarReparacion").click(function(){
                
             },
             success: function(result){
+                loadingScreen(false);
                 swal("Reparación cancelada exitosamente", {
                     icon: "success",
                   })
@@ -131,6 +144,7 @@ $("#btnCancelarReparacion").click(function(){
            
           });
         } else {
+          loadingScreen(false);
           swal("La reparación no se ha cancelado");
         }
       });
@@ -183,6 +197,7 @@ swal({
   })
   .then((willDelete) => {
     if (willDelete) {
+      loadingScreen(true);
         $.ajax({
             url: "/reparaciones/ordenesDeTrabajo/aceptarOrdenTrabajo",
             method: 'post',
@@ -192,6 +207,7 @@ swal({
                
             },
             success: function(result){
+              loadingScreen(false);
                 swal("La orden de trabajo fue aceptada correcamente", {
                     icon: "success",
                   })
@@ -203,8 +219,8 @@ swal({
            
           });
     } else {
+      loadingScreen(false);
       swal("La orden de trabajo no se acepto");
-
     }
   });
 }
@@ -226,6 +242,7 @@ swal({
   })
   .then((willDelete) => {
     if (willDelete) {
+      loadingScreen(true);
         $.ajax({
             url: "/reparaciones/cancelarOrdenTrabajo/vista",
             method: 'post',
@@ -235,6 +252,7 @@ swal({
                
             },
             success: function(result){
+              loadingScreen(false);
                 swal("La orden de trabajo fue eliminada correcamente", {
                     icon: "success",
                   })
@@ -246,7 +264,8 @@ swal({
            
           });
     } else {
-      swal("La orden de trabajo no fue elimada");
+      loadingScreen(false);
+      swal("La orden de trabajo no fue cancelada");
 
     }
   });
@@ -268,6 +287,7 @@ swal({
   })
   .then((willDelete) => {
     if (willDelete) {
+        loadingScreen(true);
         $.ajax({
             url: "/reparaciones/ordenesDeTrabajo/completarTarea",
             method: 'post',
@@ -277,6 +297,7 @@ swal({
                
             },
             success: function(result){
+                loadingScreen(false);
                 swal("La tarea fue completada correcamente", {
                     icon: "success",
                   })
@@ -288,12 +309,11 @@ swal({
            
           });
     } else {
+      loadingScreen(false);
       swal("La tarea no fue completada");
-
     }
   });
 }
-
 
 function cancelarTarea(btn) {
   console.log(btn);
@@ -311,6 +331,7 @@ swal({
     dangerMode: true,
   })
   .then((willDelete) => {
+    loadingScreen(true);
     if (willDelete) {
         $.ajax({
             url: "/eliminarTarea",
@@ -321,6 +342,7 @@ swal({
                
             },
             success: function(result){
+              loadingScreen(false);
                 swal("La tarea fue cancelada correcamente", {
                     icon: "success",
                   })
@@ -332,6 +354,7 @@ swal({
            
           });
     } else {
+      loadingScreen(false);
       swal("La tarea no fue cancelada");
 
     }

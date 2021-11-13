@@ -53,6 +53,7 @@
             <div class="d-flex flex-column" id="content-wrapper">
                 <div id="content">
                     <div class="container-fluid" style="padding-top: 18px;">
+                        <div class="loading">Loading&#8230;</div>
                         @yield('content')
                     </div>
                 </div>
