@@ -200,27 +200,37 @@
                                         <tr>
                                             <td>{{$tarea->accion->nombre}}</td>
                                            
+                                           
+                                                
+                                         
                                             <td>
                                                 <div class="row" style="margin-left: 0;margin-right: 0;">
                                                     <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">{{$tarea->pieza[0]->nombre}} {{$tarea->pieza[0]->modelo}}</p>
+                                                        @foreach ($tarea->pieza as $pieza)
+                                                        <p style="margin-bottom: 0;">{{$pieza->nombre}} {{$pieza->modelo}}</p>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="row" style="margin-left: 0;margin-right: 0;">
                                                     <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">{{$tarea->pieza[0]->pivot->cantidad}}</p>
+                                                        @foreach ($tarea->pieza as $pieza)
+                                                        <p style="margin-bottom: 0;">{{$pieza->pivot->cantidad}}</p>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="row" style="margin-left: 0;margin-right: 0;">
                                                     <div class="col" style="padding-left: 0;padding-right: 0;">
-                                                        <p style="margin-bottom: 0;">{{$tarea->pieza[0]->pivot->precio}}</p>
+                                                        @foreach ($tarea->pieza as $pieza)
+                                                        <p style="margin-bottom: 0;">{{$pieza->pivot->precio}}</p>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </td>
+                                         
                                         </tr>
                                     </tbody>
                                 </table>
