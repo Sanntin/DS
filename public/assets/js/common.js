@@ -2,13 +2,17 @@
 
 // -- General --
 //When mouse hovers over a list item, turn it's background to a different color
-$(".t-row").mouseenter(function() {
-    $(this).addClass( "t-row-hover" );
-});
+function turnListHover() {
+  $(".t-row").mouseenter(function() {
+      $(this).addClass( "t-row-hover" );
+  });
+  
+  $(".t-row").mouseout(function() {
+      $(this).toggleClass("t-row-hover");
+  });
+}
 
-$(".t-row").mouseout(function() {
-    $(this).toggleClass("t-row-hover");
-});
+turnListHover();
 
 function loadingScreen(loading){
   if(loading){

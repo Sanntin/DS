@@ -32,6 +32,7 @@
                         <script src="/assets/js/jquery.min.js"></script>
                         <script src="/assets/js/Cliente.js"></script>
                         <script src="/assets/js/clientes.js" type="module"></script>
+                        <script src="/assets/js/common.js"></script>
                         <!-- @foreach ($clientes as $cliente)
                             <tr class="t-row task task-cliente">
                                 <td>{{$cliente->nombre}}</td>
@@ -46,10 +47,12 @@
                         <script>
                             let clientes = [];
                             let clnt;
+                            loadingScreen(true);
                             $.ajax({
-                                url: "/agregarClienteAjax",
+                                url: "/clientesAjax",
                                 method: 'get',
                                 success: function(result){
+                                    loadingScreen(false);
                                     for (const cliente of result.clientes) {
                                         clnt = new Cliente(cliente);
                                         clientes.push(clnt);
@@ -57,6 +60,8 @@
                                     }
                                 }
                             });
+                            turnListHover();
+                            loadingScreen(false);
                         </script>
                     </tbody>
                 </table>
