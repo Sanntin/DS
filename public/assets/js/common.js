@@ -132,7 +132,7 @@ $("#btnCancelarReparacion").click(function(){
                
             },
             success: function(result){
-                loadingScreen(false);
+                //loadingScreen(false);
                 swal("Reparación cancelada exitosamente", {
                     icon: "success",
                   })

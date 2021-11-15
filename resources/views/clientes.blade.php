@@ -28,18 +28,36 @@
                             <th>Mail</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($clientes as $cliente)
-                        <tr class="t-row task task-cliente">
-                            <td>{{$cliente->nombre}}</td>
-                            <td>{{$cliente->apellido}}</td>
-                            <td>{{$cliente->dni}}</td>
-                            <td>{{$cliente->telefono}}</td>
-                            <td>{{$cliente->localidad}}</td>
-                            <td>{{$cliente->direccion}}</td>
-                            <td>{{$cliente->mail}}</td>
-                        </tr>
-                        @endforeach
+                    <tbody id="clientes">
+                        <script src="/assets/js/jquery.min.js"></script>
+                        <script src="/assets/js/Cliente.js"></script>
+                        <script src="/assets/js/clientes.js" type="module"></script>
+                        <!-- @foreach ($clientes as $cliente)
+                            <tr class="t-row task task-cliente">
+                                <td>{{$cliente->nombre}}</td>
+                                <td>{{$cliente->apellido}}</td>
+                                <td>{{$cliente->dni}}</td>
+                                <td>{{$cliente->telefono}}</td>
+                                <td>{{$cliente->localidad}}</td>
+                                <td>{{$cliente->direccion}}</td>
+                                <td>{{$cliente->mail}}</td>
+                            </tr>
+                        @endforeach -->
+                        <script>
+                            let clientes = [];
+                            let clnt;
+                            $.ajax({
+                                url: "/agregarClienteAjax",
+                                method: 'get',
+                                success: function(result){
+                                    for (const cliente of result.clientes) {
+                                        clnt = new Cliente(cliente);
+                                        clientes.push(clnt);
+                                        document.getElementById("clientes").appendChild(clnt.getElement());
+                                    }
+                                }
+                            });
+                        </script>
                     </tbody>
                 </table>
             </div>

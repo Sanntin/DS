@@ -15,6 +15,12 @@ class ClienteController extends Controller
         return view('clientes', ['clientes' => DB::table('clientes')->paginate(7)]);
     }
 
+    public function getClientes()
+    {
+        $array=[];
+        $array['clientes']  =  Cliente ::all();
 
+        return  response()->json($array);
+    }
 
 }
