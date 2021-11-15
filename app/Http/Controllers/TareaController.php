@@ -7,6 +7,7 @@ use App\Models\Tarea;
 use App\Models\Pieza;
 use App\Models\Accion;
 use App\Models\Tarea_Pieza;
+use App\Models\OrdenTrabajo;
 use Illuminate\Support\Facades\Auth;
 
 class TareaController extends Controller
@@ -37,7 +38,13 @@ class TareaController extends Controller
         $tarea->precio=$tarea->accion->precio;
         $tarea->save();
 
+        $horasAccion=Accion::where('id',$data['acciones'])->get();
+        $horasAccion=$horasAccion[0]->horas;
 
+ 
+        $ordenTrabajo=OrdenTrabajo::find($data['ordenTrabajo']);
+        $ordenTrabajo->horasTotales=$ordenTrabajo->horasTotales+$horasAccion;    
+        $ordenTrabajo->save();
 
         $i=1;
         $precioPiezas=0;
@@ -70,7 +77,26 @@ class TareaController extends Controller
 
     public function eliminarTarea(Request $request)
     {
-        Tarea::destroy($request->idtarea);
+        $tarea=Tarea::find($request->idtarea);
+        
+        $horasTareaEliminada=Accion::where('id',$tarea->id_accion)->get();
+        $horasTareaEliminada=$horasTareaEliminada[0]->horas;
+
+        $ordenTrabajo=$tarea->ordenTrabajo;
+        $cantidadTotal=sizeof($ordenTrabajo->tareas);
+ 
+
+        if($cantidadTotal<=1){
+            OrdenTrabajo::destroy($ordenTrabajo->id);
+        }
+        else{ 
+            $porcentaje=$ordenTrabajo->porcentajeAvance;
+            $tareasCompletadas=ceil($porcentaje*$cantidadTotal/100);
+            $ordenTrabajo->porcentajeAvance=$tareasCompletadas/($cantidadTotal-1)*100;
+            $ordenTrabajo->horasTotales=$ordenTrabajo->horasTotales-$horasTareaEliminada;
+            Tarea::destroy($request->idtarea);
+            $ordenTrabajo->save();
+        }
     }
 
 }

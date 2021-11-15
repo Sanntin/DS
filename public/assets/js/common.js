@@ -181,8 +181,8 @@ $("#btnAgregarOrdenTrabajo").click(function(){
 // -- Ordenes de trabajo --
 
 function aceptarOrdenTrabajo(btn) {
-  console.log(btn);
-  console.log(btn.value);
+//Para que no hagan cagadas descativo todos los botones
+$(':button').prop('disabled', true);
   $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -226,6 +226,9 @@ swal({
 }
 
 function rechazarOrdenTrabajo(btn) {
+  //Para que no hagan cagadas descativo todos los botones
+$(':button').prop('disabled', true);
+
   console.log(btn);
   console.log(btn.value);
   $.ajaxSetup({
@@ -278,7 +281,8 @@ swal({
 // --Tareas --
 function completarTarea(btn) {
 console.log(btn.value);
-
+//Para que no hagan cagadas descativo todos los botones
+$(':button').prop('disabled', true);
 swal({
     title: "¿Esta seguro que desea completar la Tarea?",
     icon: "info",
@@ -316,6 +320,8 @@ swal({
 }
 
 function cancelarTarea(btn) {
+  //Para que no hagan cagadas descativo todos los botones
+$(':button').prop('disabled', true);
   console.log(btn);
   console.log(btn.value);
   $.ajaxSetup({

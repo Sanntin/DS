@@ -13,7 +13,9 @@ class OrdenTrabajoController extends Controller
 {
     public function obtenerOrdenTrabajos($id)
     {
-        return view('ordenesDeTrabajo', ['ordenTrabajos' => OrdenTrabajo::where('id_reparacion',$id)->get()]);
+        $reparacion= Reparacion::where('id',$id)->first();
+
+        return view('ordenesDeTrabajo', ['ordenTrabajos' =>$reparacion->ordenesTrabajo,'reparacion'=>$reparacion]);
     }
 
     public function aceptar(Request $request)
@@ -47,29 +49,35 @@ class OrdenTrabajoController extends Controller
             $porcentaje=$ordenTrabajo[0]->porcentajeAvance;
 
             $cantidaCompletaTareas=ceil($porcentaje*$cantidadTotalTareas/100)+1;
-            OrdenTrabajo::find($ordenTrabajo[0]->id)->update(['porcentajeAvance' => $cantidaCompletaTareas/$cantidadTotalTareas*100]);
+            
+            $porcentaje=$cantidaCompletaTareas/$cantidadTotalTareas*100;
+            
+            if($porcentaje>=100){
+                OrdenTrabajo::find($ordenTrabajo[0]->id)->update(['porcentajeAvance' => $porcentaje,'estado'=>'completado']);
+            }
+            else{
+                OrdenTrabajo::find($ordenTrabajo[0]->id)->update(['porcentajeAvance' =>$porcentaje]);
+            }
+        
 
             // Modificar esto es para comprobar que las reparaciones tiene todas las ordenes de trabajo completas
-            if($cantidaCompletaTareas/$cantidadTotalTareas*100==100.0){
+            if($cantidaCompletaTareas/$cantidadTotalTareas*100>=100.0){
               
                 $reparacion = $ordenTrabajo[0]->reparacion;
                
                 $todasOrdenesTrabajo= $reparacion->ordenesTrabajo;
                 $completado = true;
                 foreach ($todasOrdenesTrabajo as $orden) {
-                    if($orden->porcentajeAvance!=100){
+                    if($orden->porcentajeAvance<100){
                         $completado=false;
                     }
                 }
                 
                 if($completado){
-                    Reparacion::find($reparacion->id)->update(['estado' => 'completada']);            
+                    Reparacion::find($reparacion->id)->update(['estado' => 'completado']);            
                     }
                 
             }
-
-            // $fechaActual=now();
-            // $usuario=
 
               // no compruebo token por que no anda... habira que revisar que onda la seguridad
               Tarea::find($request->idTarea)->update(['estado' => 'completada','id_nickname'=>Auth::id(),'fechaHora'=>now()->format('Y-m-d h:i:s')]);

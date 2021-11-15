@@ -44,28 +44,28 @@
                 </div>
                 <div class="row" style="padding-left: 10px;">
                     <div class="col" style="font-weight: 400;">
-                        <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->patente}}</p>
+                        <p style="margin-bottom: 0;">{{$reparacion->patente}}</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
-                        <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->cliente->apellido}} {{$ordenTrabajos[0]->reparacion->cliente->nombre}}</p>
+                        <p style="margin-bottom: 0;">{{$reparacion->cliente->apellido}} {{$reparacion->cliente->nombre}}</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
-                        <p style="margin-bottom: 0;"> {{date('d/m/y', strtotime($ordenTrabajos[0]->reparacion->fechaDeEntrada))}}</p>
+                        <p style="margin-bottom: 0;"> {{date('d/m/y', strtotime($reparacion->fechaDeEntrada))}}</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
-                        <p style="margin-bottom: 0;">{{ucfirst($ordenTrabajos[0]->reparacion->estado)}}</p>
+                        <p style="margin-bottom: 0;">{{ucfirst($reparacion->estado)}}</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
                         <p style="margin-bottom: 0;">
-                            @isset($ordenTrabajos[0]->reparacion->fechaDeSalida)
-                            {{date('d/m/y', strtotime($ordenTrabajos[0]->reparacion->fechaDeSalida))}} 
+                            @isset($reparacion->fechaDeSalida)
+                            {{date('d/m/y', strtotime($reparacion->fechaDeSalida))}} 
                             @else-@endisset</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
-                        <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->kilometraje}}</p>
+                        <p style="margin-bottom: 0;">{{$reparacion->kilometraje}}</p>
                     </div>
                     <div class="col" style="font-weight: 400;">
-                        <p style="margin-bottom: 0;">{{$ordenTrabajos[0]->reparacion->motivo}}</p>
+                        <p style="margin-bottom: 0;">{{$reparacion->motivo}}</p>
                     </div>
                 </div>
             </article>
@@ -75,6 +75,18 @@
 </div>
 <!-- End: #reparacion -->
 <!-- Start: #ordenDeTrabajo -->
+@if (empty($ordenesTrabajo))
+<div class="card shadow" style="margin-top: 30px;">
+    <div class="card-header align-items-center">
+        <div class="row" style="width: 100%;">
+            <div class="col d-xl-flex align-items-xl-center">
+                <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Esta reparación no tiene ordenes de trabajo</h6>
+            </div>
+
+        </div>
+    </div>
+</div>   
+@endif
 @foreach ($ordenTrabajos as $ordenTrabajo)
 <div class="card shadow" style="margin-top: 30px;">
     <div class="card-header align-items-center">
@@ -84,7 +96,9 @@
             </div>
             @if ($ordenTrabajo->estado=="pendiente" )
             <div class="col d-xl-flex justify-content-xl-end">
+                @if (!empty($ordenTrabajo->tareas))
                 <button  id="btnAceptarOrdendeTrabajo" class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" title="Confirmar esta orden de trabajo" style="background-color: rgb(78,223,84);" value="{{$ordenTrabajo->id}}" onclick="aceptarOrdenTrabajo(this)" ><i class="fa fa-check"></i></button>
+                @endif
                 <button class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;background-color: rgb(223,78,87);" title="Cancelar esta orden de trabajo" value="{{$ordenTrabajo->id}}" onclick="rechazarOrdenTrabajo(this)"><i class="fa fa-remove"></i></button>
             </div>
             @endif
@@ -122,7 +136,7 @@
                     <div class="col d-xl-flex align-items-xl-center">
                         <h6 class="text-primary d-xl-flex align-items-xl-center font-weight-bold m-0">Tarea {{$loop->index+1}}</h6>
                     </div>
-                  
+    
                     @if ($tarea->estado=='no realizado'  and $ordenTrabajo->estado!=="pendiente")
                     <div class="col d-xl-flex justify-content-xl-end">
                         <button id="'btnCompletarTarea" class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="background-color: rgb(81,223,78);" title="Completar esta tarea" value="{{$tarea->id}}" onclick="completarTarea(this)"><i class="fa fa-check"></i></button>
