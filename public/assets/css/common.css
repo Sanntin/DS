@@ -149,3 +149,31 @@
       transform: rotate(360deg);
     }
   }
+
+  .redBg{
+    background-color: rgb(223,78,87);
+    color: white;
+  }
+
+  .redBg:hover{
+    background-color: rgb(253, 95, 106)!important;
+  }
+
+  .greenBg{
+    background-color: rgb(78,223,84);
+  }
+
+  .greenBg:hover{
+    background-color: rgb(110, 255, 115)!important;
+  }
+
+  .piezaInput{
+    border: none;
+    cursor: default;
+  }
+
+  .piezaInput::-webkit-inner-spin-button, 
+  .piezaInput::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }

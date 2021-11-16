@@ -64,29 +64,45 @@ $("#btnGuardarVehiculo").click(function(){
 });
 
 // -- Clientes --
+
 $("#btnAgregarCliente").click(function(){
-    showElement($("#clientes-main"), $("#clientes-agregar"));
-});
-
-$("#btnVolverAgregarCliente").click(function(){
-    showElement($("#clientes-agregar"), $("#clientes-main"));
-});
-
-$("#btnGuardarAgregarCliente").click(function(){
-    showElement($("#clientes-agregar"), $("#clientes-main"));
+    window.location = "/agregarCliente";
 });
 
 $("#btnModificarCliente").click(function(){
-    showElement($("#clientes-main"), $("#clientes-modificar"));
+  window.location = "/modificarCliente";
 });
 
-$("#btnVolverModificarCliente").click(function(){
-    showElement($("#clientes-modificar"), $("#clientes-main"));
+$("#btnBorrarCliente").click(function(){
+  swal({
+    title: "Desea cancelar la reparación?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+    buttons: {
+      cancel: {
+        text: "No",
+        visible: true,
+        className: "redBg",
+        closeModal: true,
+      },
+      confirm: {
+        text: "Sí",
+        visible: true,
+        className: "greenBg",
+        closeModal: true,
+      }
+    }
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      swal("Usuario borrado exitosamente", {
+        icon: "success",
+      })
+    }
+  });
 });
 
-$("#btnGuardarModificarCliente").click(function(){
-    showElement($("#clientes-modificar"), $("#clientes-main"));
-});
 
 // -- Reparaciones --
 
@@ -123,6 +139,20 @@ $("#btnCancelarReparacion").click(function(){
         icon: "warning",
         buttons: true,
         dangerMode: true,
+        buttons: {
+          cancel: {
+            text: "No",
+            visible: true,
+            className: "redBg",
+            closeModal: true,
+          },
+          confirm: {
+            text: "Sí",
+            visible: true,
+            className: "greenBg",
+            closeModal: true,
+          }
+        }
       })
       .then((willDelete) => {
         if (willDelete) {
@@ -141,6 +171,7 @@ $("#btnCancelarReparacion").click(function(){
                     icon: "success",
                   })
                   .then((value) => {
+                    loadingScreen(true);
                     location.reload();
                   });
                 
@@ -198,6 +229,20 @@ swal({
     icon: "info",
     buttons: true,
     dangerMode: true,
+    buttons: {
+      cancel: {
+        text: "No",
+        visible: true,
+        className: "redBg",
+        closeModal: true,
+      },
+      confirm: {
+        text: "Sí",
+        visible: true,
+        className: "greenBg",
+        closeModal: true,
+      }
+    }
   })
   .then((willDelete) => {
     if (willDelete) {
@@ -216,6 +261,7 @@ swal({
                     icon: "success",
                   })
                   .then((value) => {
+                    loadingScreen(true);
                     location.reload();
                   });
                 
@@ -246,6 +292,20 @@ swal({
     icon: "info",
     buttons: true,
     dangerMode: true,
+    buttons: {
+      cancel: {
+        text: "No",
+        visible: true,
+        className: "redBg",
+        closeModal: true,
+      },
+      confirm: {
+        text: "Sí",
+        visible: true,
+        className: "greenBg",
+        closeModal: true,
+      }
+    }
   })
   .then((willDelete) => {
     if (willDelete) {
@@ -264,6 +324,7 @@ swal({
                     icon: "success",
                   })
                   .then((value) => {
+                    loadingScreen(true);
                     location.reload();
                   });
                 
@@ -292,6 +353,20 @@ swal({
     icon: "info",
     buttons: true,
     dangerMode: true,
+    buttons: {
+      cancel: {
+        text: "No",
+        visible: true,
+        className: "redBg",
+        closeModal: true,
+      },
+      confirm: {
+        text: "Sí",
+        visible: true,
+        className: "greenBg",
+        closeModal: true,
+      }
+    }
   })
   .then((willDelete) => {
     if (willDelete) {
@@ -310,6 +385,7 @@ swal({
                     icon: "success",
                   })
                   .then((value) => {
+                    loadingScreen(true);
                     location.reload();
                   });
                 
@@ -339,6 +415,20 @@ swal({
     icon: "info",
     buttons: true,
     dangerMode: true,
+    buttons: {
+      cancel: {
+        text: "No",
+        visible: true,
+        className: "redBg",
+        closeModal: true,
+      },
+      confirm: {
+        text: "Sí",
+        visible: true,
+        className: "greenBg",
+        closeModal: true,
+      }
+    }
   })
   .then((willDelete) => {
     loadingScreen(true);
@@ -357,6 +447,7 @@ swal({
                     icon: "success",
                   })
                   .then((value) => {
+                    loadingScreen(true);
                     location.reload();
                   });
                 

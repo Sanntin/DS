@@ -90,5 +90,9 @@ Route::get('/agregarCliente', function () {
     return view('agregarCliente');
 });
 
+Route::get('/modificarCliente', function () {
+    return view('modificarCliente');
+});
+
 Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');
 Route::get('/clientesAjax', [ClienteController::class,'getClientes']);

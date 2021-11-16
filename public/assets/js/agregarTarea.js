@@ -18,9 +18,9 @@ document.getElementById("btnAgregarPieza").onclick = function (e) {
 
 
         const values = [
-            "<input  type='text' value='"+ piezasListado.options[piezasListado.selectedIndex].text +"' readonly disabled>",
-            "<input name='precio N"+id+"' type='number' style='width: 100px;' value='"+ piezaPrecio.value +"' readonly>",
-            "<input name='cantidad N"+id+"' type='number' style='width: 70px;' value='"+  piezaCantidad.value+"'  readonly>",
+            "<input class='piezaInput'  type='text' value='"+ piezasListado.options[piezasListado.selectedIndex].text +"' readonly disabled>",
+            "<input class='piezaInput' name='precio N"+id+"' type='number' style='width: 100px;' value='"+ piezaPrecio.value +"' readonly>",
+            "<input class='piezaInput' name='cantidad N"+id+"' type='number' style='width: 70px;' value='"+  piezaCantidad.value+"'  readonly>",
             '<button onclick="quitarTarea(this);" class="btn btn-primary btn-quitar-pieza" role="button" data-toggle="tooltip" data-bs-tooltip="" style="margin-left: 10px;background-color: rgb(223,78,95);" title="Quitar pieza"><i class="fa fa-times"></i></button>',
             "<input name='pieza N"+id+"' type='text'style='width: 0px' value='"+piezasListado.value +"' readonly hidden>",
         ]; 
@@ -47,6 +47,7 @@ function obtenerPrecio(){
     $('#btnAgregarPieza').attr("disabled",true);
     let id=piezasListado.value;
     console.log(id);
+    loadingScreen(true);
     $.ajax({
         url: "/obtenerPrecioPieza",
         method: 'GET',
@@ -55,6 +56,7 @@ function obtenerPrecio(){
            id: id,
         },
         success: function(result){
+            loadingScreen(false);
         //    $('#piezaPrecio').attr("value",result[0].precio);
         //    $('#piezaPrecio').get(0).type = result[0].precio;
         //    $('#piezaPrecio').val("value",result[0].precio);

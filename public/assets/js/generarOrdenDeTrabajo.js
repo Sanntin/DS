@@ -5,10 +5,24 @@ function quitarTarea(btn){
         icon: "warning",
         buttons: true,
         dangerMode: true,
+        buttons: {
+          cancel: {
+            text: "No",
+            visible: true,
+            className: "redBg",
+            closeModal: true,
+          },
+          confirm: {
+            text: "Sí",
+            visible: true,
+            className: "greenBg",
+            closeModal: true,
+          }
+        }
       })
       .then((willDelete) => {
         if (willDelete) {
-
+            loadingScreen(true);
             $.ajax({
               url: "/eliminarTarea",
               method: 'post',
@@ -18,10 +32,12 @@ function quitarTarea(btn){
                  
               },
               success: function(result){
+                loadingScreen(false);
                   swal("Tarea eliminada exitosamente", {
                       icon: "success",
                     })
                     .then((value) => {
+                      loadingScreen(true);
                       tarea.remove();
                       location.reload();
                     });
@@ -41,6 +57,20 @@ function generarOrden(btn) {
       icon: "warning",
       buttons: true,
       dangerMode: true,
+      buttons: {
+        cancel: {
+          text: "No",
+          visible: true,
+          className: "redBg",
+          closeModal: true,
+        },
+        confirm: {
+          text: "Sí",
+          visible: true,
+          className: "greenBg",
+          closeModal: true,
+        }
+      }
     })
     .then((willDelete) => {
       if (willDelete) {
