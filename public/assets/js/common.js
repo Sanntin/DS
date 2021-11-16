@@ -69,7 +69,7 @@ $("#btnAgregarCliente").click(function(){
     window.location = "/agregarCliente";
 });
 
-$("#btnModificarCliente").click(function(){
+$("#btnModificarCliente").click(function(){ 
   window.location = "/modificarCliente";
 });
 
@@ -187,6 +187,7 @@ $("#btnCancelarReparacion").click(function(){
 
 $("#btnGenerarComprobante").click(function(){
   // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
+  loadingScreen(true);  
   setTimeout(() => {
       window.location = "/reparaciones/comprobante/"+ $("#btnGenerarComprobante").attr("value");
     }, 1);
@@ -194,7 +195,8 @@ $("#btnGenerarComprobante").click(function(){
 });
 
 $("#btnVerOrdenesTrabajo").click(function(){
-    // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
+  loadingScreen(true);  
+  // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
     setTimeout(() => {
         window.location = "/reparaciones/ordenesDeTrabajo/"+ $("#btnVerOrdenesTrabajo").attr("value");
       }, 1);
@@ -204,6 +206,7 @@ $("#btnVerOrdenesTrabajo").click(function(){
 
 $("#btnAgregarOrdenTrabajo").click(function(){
   // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
+  loadingScreen(true);  
   setTimeout(() => {
       window.location = "/reparaciones/agregarOrdenTrabajo/"+ $("#btnAgregarOrdenTrabajo").attr("value");
     }, 1);
@@ -217,7 +220,7 @@ $("#btnAgregarOrdenTrabajo").click(function(){
 
 function aceptarOrdenTrabajo(btn) {
 //Para que no hagan cagadas descativo todos los botones
-$(':button').prop('disabled', true);
+
   $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -277,7 +280,6 @@ swal({
 
 function rechazarOrdenTrabajo(btn) {
   //Para que no hagan cagadas descativo todos los botones
-$(':button').prop('disabled', true);
 
   console.log(btn);
   console.log(btn.value);
@@ -347,7 +349,7 @@ swal({
 function completarTarea(btn) {
 console.log(btn.value);
 //Para que no hagan cagadas descativo todos los botones
-$(':button').prop('disabled', true);
+
 swal({
     title: "¿Esta seguro que desea completar la Tarea?",
     icon: "info",
@@ -401,7 +403,7 @@ swal({
 
 function cancelarTarea(btn) {
   //Para que no hagan cagadas descativo todos los botones
-$(':button').prop('disabled', true);
+
   console.log(btn);
   console.log(btn.value);
   $.ajaxSetup({

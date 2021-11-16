@@ -75,7 +75,8 @@
 </div>
 <!-- End: #reparacion -->
 <!-- Start: #ordenDeTrabajo -->
-@if (empty($ordenesTrabajo))
+
+@if (empty($ordenTrabajos))
 <div class="card shadow" style="margin-top: 30px;">
     <div class="card-header align-items-center">
         <div class="row" style="width: 100%;">

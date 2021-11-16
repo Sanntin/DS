@@ -87,7 +87,13 @@ class TareaController extends Controller
  
 
         if($cantidadTotal<=1){
+            $reparacion=$ordenTrabajo->reparacion;
             OrdenTrabajo::destroy($ordenTrabajo->id);
+
+            if(sizeof($reparacion->ordenesTrabajo)<=1){
+                $reparacion->estado='diagnostico';
+                $reparacion->save();
+            }
         }
         else{ 
             $porcentaje=$ordenTrabajo->porcentajeAvance;
