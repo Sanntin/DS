@@ -23,4 +23,25 @@ class ClienteController extends Controller
         return  response()->json($array);
     }
 
+    public function agregarCliente()
+    {
+            $atributos=request()->validate([
+                'nombre'=> 'required',
+                'apellido'=> 'required',
+                'direccion'=> 'required',
+                'localidad'=> 'required',
+                'telefono'=> 'required|numeric|digits:11',
+                'mail'=> 'required|email|unique:clientes,mail',
+                'dni'=> 'required|numeric|digits:8|unique:clientes,dni',
+              ]);
+              Cliente::create($atributos);
+        
+              return redirect('clientes');
+    }
+
+    public function eliminarCliente(Request $request)
+    {
+       Cliente::destroy($request->idCliente);
+    }
+
 }

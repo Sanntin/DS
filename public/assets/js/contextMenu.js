@@ -170,9 +170,9 @@
     function loadMenuType(type, onOrOff){
       switch (type) {
         case "task-repair":
-          $(".item-repair").css("display", onOrOff);
+            $(".item-repair").css("display", onOrOff);
           
-          console.log( "Task ID - " + taskItemInContext.getAttribute("value"));
+            console.log( "Task ID - " + taskItemInContext.getAttribute("value"));
 
                 switch (taskItemInContext.getAttribute("value")) {
                   case 'en proceso':
@@ -200,7 +200,7 @@
                       break;
                   }
 
-          break;
+        break;
         case "task-vehicle":
           $(".item-vehicle").css("display", onOrOff);
           break;

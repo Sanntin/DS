@@ -81,7 +81,7 @@ $("#btnModificarCliente").click(function(){
 
 $("#btnBorrarCliente").click(function(){
   swal({
-    title: "Desea cancelar la reparación?",
+    title: "Desea borrar al cliente? ",
     icon: "warning",
     buttons: true,
     dangerMode: true,
@@ -102,9 +102,31 @@ $("#btnBorrarCliente").click(function(){
   })
   .then((willDelete) => {
     if (willDelete) {
-      swal("Usuario borrado exitosamente", {
-        icon: "success",
-      })
+      loadingScreen(true);
+      $.ajax({
+        url: "/cliente/cancelar",
+        method: 'post',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: {
+           idCliente : $("#btnBorrarCliente").attr("value"),
+           
+        },
+        success: function(result){
+            // loadingScreen(false);
+            swal("El cliente se elimino exitosamente", {
+                icon: "success",
+              })
+              .then((value) => {
+                loadingScreen(true);
+                location.reload();
+              });
+            
+        }
+       
+      });
+    } else {
+      loadingScreen(false);
+      swal("La cliente no se ha eliminado");
     }
   });
 });
@@ -468,6 +490,40 @@ swal({
 
     }
   });
+}
+
+// Clientes
+
+
+
+
+function cancelarAgregarCliente() {
+  swal({
+      title: "Desea cancelar?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+      buttons: {
+        cancel: {
+          text: "No",
+          visible: true,
+          className: "redBg",
+          closeModal: true,
+        },
+        confirm: {
+          text: "Sí",
+          visible: true,
+          className: "greenBg",
+          closeModal: true,
+        }
+      }
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+          loadingScreen(true);
+          window.location = "/clientes";
+      }
+    });
 }
 // ---- Functions ----
 

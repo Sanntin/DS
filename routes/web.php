@@ -89,7 +89,11 @@ Route::post('/vehiculos/agregarVehiculo', [VehiculoController::class,'agregarVeh
 //Clientes
 Route::get('/agregarCliente', function () {
     return view('agregarCliente');
-});
+})->middleware('auth');
+Route::post('/agregarCiente/agregar', [ClienteController::class,'agregarCliente'])->middleware('auth');
+Route::post('/cliente/cancelar', [ClienteController::class,'eliminarCliente'])->middleware('auth');
+
+
 
 Route::get('/modificarCliente', function () {
     return view('modificarCliente');

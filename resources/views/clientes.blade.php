@@ -32,8 +32,8 @@
                     <script src="/assets/js/Cliente.js"></script>
                     <script src="/assets/js/clientes.js" type="module"></script>
                     <script src="/assets/js/common.js"></script>
-                    <!-- @foreach ($clientes as $cliente)
-                        <tr class="t-row task task-cliente">
+                    @foreach ($clientes as $cliente)
+                        <tr class="t-row task task-cliente" data-id={{$cliente->id}} >
                             <td>{{$cliente->nombre}}</td>
                             <td>{{$cliente->apellido}}</td>
                             <td>{{$cliente->dni}}</td>
@@ -42,8 +42,8 @@
                             <td>{{$cliente->direccion}}</td>
                             <td>{{$cliente->mail}}</td>
                         </tr>
-                    @endforeach -->
-                    <script>
+                    @endforeach 
+                    {{-- <script>
                         let clientes = [];
                         let clnt;
                         loadingScreen(true);
@@ -61,7 +61,7 @@
                         });
                         turnListHover();
                         loadingScreen(false);
-                    </script>
+                    </script> --}}
                 </tbody>
             </table>
         </div>
