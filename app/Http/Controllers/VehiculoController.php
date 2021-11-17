@@ -41,4 +41,35 @@ class VehiculoController extends Controller
         }
     
     }
+
+    public function agregarVehiculo(Request $request)
+    {
+   
+        $data=$request->all();
+        $vehiculo= new Vehiculo;
+        $vehiculo->patente=$data['patente'];
+        $vehiculo->año=$data['anio'];
+        $vehiculo->dniCliente=$data['cliente'];
+        $vehiculo->id_marca=$data['marca'];
+        $vehiculo->id_modelo=$data['modelo'];
+
+        $vehiculo->save();
+
+        return redirect('vehiculos');
+    // $atributos=request()->validate([
+    //     'nombre'=> 'required',
+    //     'apellido'=> 'required',
+    //     'direccion'=> 'required',
+    //     'telefono'=> 'required|numeric|digits:11',
+    //     'email'=> 'required|email|unique:users,email',
+    //     'nickname'=> 'required|min:5|unique:users,nickname',
+    //     'password'=> 'required|min:8',
+    //   ]);
+
+    //   User::create($atributos);
+
+    //   session()->flash('mensajeUsuario','La cuenta a sido creada correctamente, por favor inicie sesión');
+
+    //   return redirect('login');
+    }
 }

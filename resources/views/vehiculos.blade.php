@@ -50,55 +50,65 @@
 </div>
 <div id="vehiculos-agregar" class="hidden">
     <h3 class="text-dark mb-4">Agregar nuevo vehículo</h3>
-    <div class="card shadow">
-        <div class="card-body d-xl-flex justify-content-xl-center">
-            <div class="col-lg-7">
-                <div class="p-5">
-                    <form class="user">
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Patente" name="patente"></div>
-                            <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Año" name="anio"></div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <div class="dropdown border-primary">
-                                    <select name="marcas" id="marcas" class="form-control" disabled>
-                                    <option id='doption' value="0" selected='true' selected>Seleccione un marca</option>
-                                    </select>
-                                    {{-- <button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Marca</button>
-                                    <div
-                                        class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                    </div> --}}
+    <form method="POST" action="/vehiculos/agregarVehiculo">
+        @csrf
+        <div class="card shadow">
+            <div class="card-body d-xl-flex justify-content-xl-center">
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <form class="user">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input class="form-control form-control-user" type="text" id="patente" placeholder="Patente (ABC123 o 12ABC34)" name="patente" maxlength="7" minlength="6" pattern="[A-Z]{3}[0-9]{3}|[0-9]{2}[A-Z]{3}[0-9]{2}" required></div>
+                                <div class="col-sm-6">
+                                    <input class="form-control form-control-user" type="number" min="1900" max="2099" value='2021' id="anio" placeholder="Año" name="anio" required></div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <select name="modelos" id="modelos" class="form-control" disabled>
-                                <option id='doption' value="0" selected='true' selected>Seleccione un modelo</option>
-                                </select>
-                            {{-- <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Modelo</button>
-                                <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div> --}}
-                        </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="dropdown border-primary">
+                                        <select name="marca" id="marcas" class="form-control" disabled required>
+                                        <option id='doption' value="" selected='true' selected hidden>Seleccione un marca</option>
+                                        </select>
+                                        {{-- <button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Marca</button>
+                                        <div
+                                            class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a>
+                                        </div> --}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <select name="modelo" id="modelos" class="form-control" disabled required placeholder="Hola">
+                                    <option id='doption' value="" selected='true' selected hidden>Seleccione un modelo</option>
+                                    </select>
+                                {{-- <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Modelo</button>
+                                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div> --}}
+                            </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0" style="max-width: 100%;min-width: 100%;">
-      
-                    <select name="clientes" id="clientes" class="form-control" disabled>
-                        <option id='doption' value="0" selected='true' selected>Seleccione un titular</option>
-                        </select>
-                    {{-- <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.158);border-radius: 25px;">Titular</button>
-                        <div class="dropdown-menu"
-                            role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
-                    </div> --}}
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0" style="max-width: 100%;min-width: 100%;">
+        
+                        <select name="cliente" id="clientes" class="form-control" disabled required>
+                            <option id='doption' value="" selected='true' selected>Seleccione un titular</option>
+                            </select>
+                        {{-- <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.158);border-radius: 25px;">Titular</button>
+                            <div class="dropdown-menu"
+                                role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                        </div> --}}
+                    </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <button id="btnVolverAgregarVehiculo" class="btn btn-primary btn-block text-white btn-user" style="background-color: rgb(223,78,104);" onclick="volverAgregarVehiculo()">Volver</button>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <button id="btnGuardarVehiculo" class="btn btn-primary btn-block text-white btn-user" onclick="submit">Guardar cambios</button>
+                    </div>
+                </div>
+                </form>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0"><button id="btnVolverAgregarVehiculo" class="btn btn-primary btn-block text-white btn-user" style="background-color: rgb(223,78,104);">Volver</button></div>
-                <div class="col-sm-6"><button id="btnGuardarVehiculo" class="btn btn-primary btn-block text-white btn-user">Guardar cambios</button></div>
-            </div>
-            </form>
         </div>
-    </div>
+    </form>
 </div>
 <div id="vehiculos-cambiar" class="hidden">
 

@@ -81,6 +81,7 @@ Route::get('/obtenerPrecioPieza', [PiezaController::class,'precioPieza'])->middl
 //Vehiculi
 Route::get('/vehiculos', [VehiculoController::class,'obtenerVehiculo'])->middleware('auth');
 Route::get('/vehiculos/agregar', [VehiculoController::class,'datosAgregarVehiculo'])->middleware('auth');
+Route::post('/vehiculos/agregarVehiculo', [VehiculoController::class,'agregarVehiculo'])->middleware('auth');
 
 
 

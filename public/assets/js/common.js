@@ -24,6 +24,8 @@ function loadingScreen(loading){
 
 // -- Vehículos --
 $("#btnAgregarVehiculo").click(function(){
+
+    loadingScreen(true);
     $.ajax({
         url: "/vehiculos/agregar",
         method: 'GET',
@@ -34,33 +36,37 @@ $("#btnAgregarVehiculo").click(function(){
     
       
            result['marcas'].forEach(i => {
-              var txt1 = "<option>"+ i.nombre +"</option>";    
+              var txt1 = "<option value="+i.id+">"+ i.nombre +"</option>";    
               $('#marcas').append(txt1);
            });
            result['modelos'].forEach(i => {
-            var txt1 = "<option>"+ i.nombre +"</option>";    
+            var txt1 = "<option value="+i.id+">"+ i.nombre +"</option>";    
             $('#modelos').append(txt1);
          });
          result['clientes'].forEach(i => {
-            var txt1 = "<option>"+ i.apellido+  ' '+i.nombre + ' DNI: '+i.dni+"</option>";    
+            var txt1 = "<option value="+i.dni+">"+ i.apellido+  ' '+i.nombre + ' DNI: '+i.dni+"</option>";    
             $('#clientes').append(txt1);
          });
            $('#clientes').attr("disabled",false);
            $('#modelos').attr("disabled",false);
            $('#marcas').attr("disabled",false);
+           loadingScreen(false);
         }
       });
     showElement($("#vehiculos-main"), $("#vehiculos-agregar"));
 
 });
 
-$("#btnVolverAgregarVehiculo").click(function(){
+function volverAgregarVehiculo() {
+  loadingScreen(true);
+  setTimeout(() => {
     window.location = "/vehiculos";
-    // showElement($("#vehiculos-agregar"), $("#vehiculos-main"));
-});
+  }, 1); 
+}
+
 
 $("#btnGuardarVehiculo").click(function(){
-    showElement($("#vehiculos-agregar"), $("#vehiculos-main"));
+    // showElement($("#vehiculos-agregar"), $("#vehiculos-main"));
 });
 
 // -- Clientes --
