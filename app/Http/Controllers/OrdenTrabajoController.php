@@ -74,7 +74,7 @@ class OrdenTrabajoController extends Controller
                 }
                 
                 if($completado){
-                    Reparacion::find($reparacion->id)->update(['estado' => 'completado']);            
+                    Reparacion::find($reparacion->id)->update(['estado' => 'completado','fechaDeSalida'=>now()->format('Y-m-d h:i:s')]);            
                     }
                 
             }

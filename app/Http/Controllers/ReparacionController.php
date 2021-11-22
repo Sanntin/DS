@@ -59,6 +59,18 @@ class ReparacionController extends Controller
             }
             
         }
+
+     
         return view('comprobante', ['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
+
+        $data = [
+            'title' => 'Welcome to ItSolutionStuff.com',
+            'date' => date('m/d/Y')
+                ];
+                
+        $pdf = PDF::loadView('myPDF', $data);
+        $pdf = PDF::loadView('myPDF', $data);
+        return $pdf->download('itsolutionstuff.pdf');
+    
     }
 }

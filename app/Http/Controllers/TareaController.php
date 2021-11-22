@@ -58,9 +58,9 @@ class TareaController extends Controller
             $piezaUtilizar->id_tarea=$tarea->id;
             $piezaUtilizar->id_pieza=$request->$idPieza;
             $piezaUtilizar->cantidad=$request->$cantidad;
-            $piezaUtilizar->precio=$request-> $precio * $request->$cantidad;
+            $piezaUtilizar->precio=$request->$precio*$request->$cantidad;
 
-            $precioPiezas=$precioPiezas+$request->$precio;
+            $precioPiezas=$precioPiezas+$piezaUtilizar->precio;
 
             $piezaUtilizar->save();
             $i=$i+1;
