@@ -53,7 +53,24 @@
                                 </div>
 
 
-                                <div class="form-group"><input class="form-control form-control-user" type="email" id="email"  name="email" aria-describedby="emailHelp" placeholder="Mail" value="{{old('email')}}" >
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <!-- Start: #adress --><input class="form-control form-control-user" type="text" id="dni" name="dni" placeholder="DNI" value="{{old('dni')}}">
+                                        @error('dni')
+                                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="col-sm-6">
+                                        <!-- Start: #phone --><input class="form-control form-control-user" type="text" id="legajo" name="legajo" placeholder="Legajo" value="{{old('legajo')}}" >
+                                        @error('legajo')
+                                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                        @enderror
+                                        <!-- End: #phone -->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control form-control-user" type="email" id="email"  name="email" aria-describedby="emailHelp" placeholder="Mail" value="{{old('email')}}"  autocomplete="off"> 
                                     @error('email')
                                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                                     @enderror
@@ -61,7 +78,7 @@
                                
                                
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="password" name="password" placeholder="Contraseña">
+                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="password" name="password" placeholder="Contraseña"  autocomplete="off">
                                         @error('password')
                                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                                         @enderror
@@ -74,11 +91,15 @@
                                         @enderror
                                         <!-- End: #nickname -->
                                     </div>
-                                    
-                                </div><button class="btn btn-primary btn-block text-white btn-user" type="submit">Registrar usuario</button>
+
+                                </div>
+                            
+
+                                <button class="btn btn-primary btn-block text-white btn-user" type="submit">Registrar usuario</button>
                                 <!-- "swal('Register!');" -->
                                 <hr>
                             
+          
                             </form>
                             <div class="text-center"></div>
                             <div class="text-center"><a class="small" href="login">Ya tiene una cuenta? Ingrese aquí!</a></div>

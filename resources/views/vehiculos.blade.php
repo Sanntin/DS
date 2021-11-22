@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="vehiculos-main" class="shown">
+<div id="vehiculos-main"   {{ session()->has('errorEnCargar')?  "class=hidden":"class=shown" }}>
     <h3 class="text-dark mb-4">Vehículos</h3>
+
+
     <div class="card shadow">
         <div class="card-header d-flex justify-content-between align-items-center">
             <div class="row" style="width: 100%;">
@@ -27,6 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @isset($vehiculos)
                         @foreach ($vehiculos as $vehiculo)
                         <tr class="t-row task task-vehicle">
                             <td>{{$vehiculo->patente}}</td>
@@ -36,6 +39,7 @@
                             <td>{{$vehiculo->modelo->nombre}}</td>
                         </tr>
                         @endforeach
+                       
                     </tbody>
                 </table>
             </div>
@@ -43,12 +47,14 @@
             <div class="row">
                 <div class="col-12 d-flex justify-content-center pt-2">
                     {{$vehiculos->links()}}
+                    @endisset
                 </div>
             </div>   
         </div>
     </div>
 </div>
-<div id="vehiculos-agregar" class="hidden">
+
+<div id="vehiculos-agregar"    {{ session()->has('errorEnCargar')? "class=shown" : "class=hidden" }} >
     <h3 class="text-dark mb-4">Agregar nuevo vehículo</h3>
     <form method="POST" action="/vehiculos/agregarVehiculo">
         @csrf
@@ -59,42 +65,73 @@
                         <form class="user">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input class="form-control form-control-user" type="text" id="patente" placeholder="Patente (ABC123 o 12ABC34)" name="patente" maxlength="7" minlength="6" pattern="[A-Z]{3}[0-9]{3}|[0-9]{2}[A-Z]{3}[0-9]{2}" required></div>
+                                    <input class="form-control form-control-user" type="text" id="patente" placeholder="Patente (ABC123)" name="patente" maxlength="7" minlength="6" required value={{old('patente')}}>
+                                    @error('patente')
+                                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                    @enderror
+                                </div>
                                 <div class="col-sm-6">
-                                    <input class="form-control form-control-user" type="number" min="1900" max="2099" value='2021' id="anio" placeholder="Año" name="anio" required></div>
+                                    <input class="form-control form-control-user" type="number" min="1900" max="2099" value={{old('año')? old('año'):'2021'}}  id="año" placeholder="Año" name="año" required}>
+                                    @error('año')
+                                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <div class="dropdown border-primary">
-                                        <select name="marca" id="marcas" class="form-control" disabled required>
-                                        <option id='doption' value="" selected='true' selected hidden>Seleccione un marca</option>
+                                        @if(session()->has('marcas'))
+                                        <select name="id_marca" id="marcas" class="form-control" required>
+                                            <option id='doption' value="" selected hidden>Seleccione un marca</option>
+                                            @foreach (session()->get('marcas') as $marca)
+                                                <option id='doption' value="{{$marca->id}}" {{old('id_marca')==$marca->id ? "selected":''}} > {{$marca->nombre}} </option>
+                                            @endforeach
+
+                                        @else
+                                            <select name="id_marca" id="marcas" class="form-control" disabled required>
+                                            <option id='doption' value="" selected='true' selected hidden>Seleccione un marca</option>
+                                        @endif
                                         </select>
-                                        {{-- <button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Marca</button>
-                                        <div
-                                            class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                                        </div> --}}
-                                </div>
+                                        @error('marca')
+                                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                         @enderror
+                                        </div>
                             </div>
                             <div class="col-sm-6">
-                                <select name="modelo" id="modelos" class="form-control" disabled required placeholder="Hola">
-                                    <option id='doption' value="" selected='true' selected hidden>Seleccione un modelo</option>
+                             
+                                    @if(session()->has('modelos'))
+                                    <select name="id_modelo" id="modelos" class="form-control" required>
+                                        @foreach (session()->get('modelos') as $modelo)
+                                         <option id='doption' value="{{$modelo->id}}" {{old('id_modelo')==$modelo->id ? "selected":''}} >{{$modelo->nombre}}</option>
+                                        @endforeach  
+                                    
+                                    @else 
+                                        <select name="id_modelo" id="modelos" class="form-control" disabled required>
+                                            <option id='doption' value="" selected='true' selected hidden>Seleccione un modelo</option>
+                                    @endif
                                     </select>
-                                {{-- <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.157);border-radius: 25px;">Modelo</button>
-                                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div> --}}
-                            </div>
+                                    @error('modelo')
+                                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                                    @enderror
+                                </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0" style="max-width: 100%;min-width: 100%;">
-        
-                        <select name="cliente" id="clientes" class="form-control" disabled required>
-                            <option id='doption' value="" selected='true' selected>Seleccione un titular</option>
+                            @if(session()->has('clientes'))
+                            <select name="dniCliente" id="clientes" class="form-control" required>
+                                @foreach (session()->get('clientes') as $cliente)
+                                    <option id='doption' value="{{$cliente->dni}}" {{old('dniCliente')==$cliente->dni ? "selected":''}}>{{$cliente->apellido}} {{$cliente->nombre}} DNI: {{$cliente->dni}}</option>
+                                @endforeach
+                            @else
+                            <select name="dniCliente" id="clientes" class="form-control" disabled required>
+                                <option id='doption' value="" selected='true' selected>Seleccione un titular</option>
+                            @endif
                             </select>
-                        {{-- <div class="dropdown border-primary"><button class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;height: 50px;border: 1px solid rgba(0, 0, 0, 0.158);border-radius: 25px;">Titular</button>
-                            <div class="dropdown-menu"
-                                role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
-                        </div> --}}
-                    </div>
+                            @error('cliente')
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                        </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">

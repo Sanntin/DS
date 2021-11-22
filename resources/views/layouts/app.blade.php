@@ -45,6 +45,7 @@
                         <li class="nav-item" role="presentation"><a class="nav-link" href="/vehiculos"><i class="fas fa-car"></i><span>Vehículos</span></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="/clientes"><i class="fas fa-group"></i><span>Clientes</span></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="/usuario"><i class="fas fa-user"></i><span>Usuario</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/cerrarSesion"><i class="fa fa-sign-out"></i><span>Cerrar Sesión</span></a></li>
                         <li class="nav-item" role="presentation"></li>
                     </ul>
                     <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>

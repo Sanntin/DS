@@ -17,7 +17,7 @@ class CreateVehiculosTable extends Migration
             $table->id();
             $table->string('patente',7)->unique()->index();
             $table->year('año');
-            $table->string('dniCliente')->references('dni')->on('clientes')->onDelete('cascade');;
+            $table->string('dniCliente',8)->references('dni')->on('clientes')->onDelete('cascade');
             $table->foreignId('id_marca')->references('id')->on('marcas');
             $table->foreignId('id_modelo')->references('id')->on('modelos');
             $table->timestamps();

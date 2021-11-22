@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::get('/login', function () {return view('login');
 })->name('login');
 Route::post('/login',[SessionController::class,'login'])->middleware('guest');
-
+Route::get('/cerrarSesion',[SessionController::class,'cerrar'])->middleware('auth');
 Route::get('/register', [RegisterController::class,'create'])->middleware('guest');
 Route::post('/register',[RegisterController::class,'store'])->middleware('guest');
 // Route::get('/usuario');
@@ -92,12 +92,9 @@ Route::get('/agregarCliente', function () {
 })->middleware('auth');
 Route::post('/agregarCiente/agregar', [ClienteController::class,'agregarCliente'])->middleware('auth');
 Route::post('/cliente/cancelar', [ClienteController::class,'eliminarCliente'])->middleware('auth');
+Route::post('/modificarCliente', [ClienteController::class,'datosClienteElegido'])->middleware('auth');
 
 
-
-Route::get('/modificarCliente', function () {
-    return view('modificarCliente');
-});
 
 Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');
 Route::get('/clientesAjax', [ClienteController::class,'getClientes']);
