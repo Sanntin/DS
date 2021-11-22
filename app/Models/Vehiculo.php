@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Vehiculo extends Model
 {
+    protected $fillable = [
+        'patente',
+        'id_marca',
+        'id_modelo',
+        'dniCliente',
+        'año',
+    ];
+
     use HasFactory;
 
     public function marca()

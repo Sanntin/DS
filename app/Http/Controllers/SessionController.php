@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class SessionController extends Controller
 {
    
@@ -34,4 +34,14 @@ class SessionController extends Controller
         }
     }
 
+    public function cerrar()
+    {
+        Auth::logout();
+
+        session()->invalidate();
+    
+        session()->regenerateToken();
+    
+        return redirect('/');
+    }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Vehiculo;
+use App\Models\Reparacion;
 use Illuminate\Support\Facades\DB;
 
 
@@ -41,7 +43,25 @@ class ClienteController extends Controller
 
     public function eliminarCliente(Request $request)
     {
-       Cliente::destroy($request->idCliente);
+        $cliente=Cliente::where('id',$request->idCliente)->first();
+        $vehiculos= Vehiculo ::where('dniCliente',$cliente->dni)->get();
+        $reparaciones= Reparacion ::where('dniCliente',$cliente->dni)->get();
+        
+        foreach ($vehiculos as $vehiculo) {
+
+            Vehiculo::destroy($vehiculo->id);
+        }
+
+        foreach ($reparaciones as $reparacion) {
+
+            Reparacion::destroy($reparacion->id);
+        }
+        Cliente::destroy($request->idCliente);
+    }
+
+    public function datosClienteElegido($id)
+    {
+        # code...
     }
 
 }
