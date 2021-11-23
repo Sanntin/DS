@@ -98,3 +98,15 @@ Route::post('/modificarCliente', [ClienteController::class,'datosClienteElegido'
 
 Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');
 Route::get('/clientesAjax', [ClienteController::class,'getClientes']);
+
+Route::get('/cambiarTitularidad', function () {
+    return view('cambiarTitularidad');
+});
+
+Route::get('/cargarStock', function () {
+    return view('cargarStock');
+});
+
+Route::get('/realizarPedido', function () {
+    return view('realizarPedido');
+});
