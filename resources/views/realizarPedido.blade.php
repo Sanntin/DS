@@ -72,11 +72,11 @@
                             <div class="col-sm-6 d-xl-flex justify-content-xl-start align-items-xl-center mb-3 mb-sm-0" style="max-width: 20%;">
                                 <p style="margin-bottom: 0;font-weight: 700;">Cantidad a pedir</p>
                             </div>
-                            <div class="col-sm-6" style="max-width: 80%;width: 85%;min-width: 80%;"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Apellido" name="last_name"></div>
+                            <div class="col-sm-6" style="max-width: 80%;width: 85%;min-width: 80%;"><input class="form-control form-control-user" type="number" id="exampleFirstName" placeholder="Cantidad a pedir" name="last_name"></div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0"><button class="btn btn-primary btn-block text-white btn-user" type="button" style="background-color: rgb(223,78,104);">Cancelar</button></div>
-                            <div class="col-sm-6"><button class="btn btn-primary btn-block text-white btn-user" type="button">Cambiar titularidad</button></div>
+                            <div class="col-sm-6"><button class="btn btn-primary btn-block text-white btn-user" type="button">Realizar pedido</button></div>
                         </div>
                     </form>
                 </div>

@@ -79,7 +79,11 @@
                                 <p style="margin-bottom: 0;font-weight: 700;">Nuevo titular</p>
                             </div>
                             <div class="col-sm-6" style="max-width: 85%;width: 85%;min-width: 85%;">
-                                <input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Apellido" name="last_name">
+                                <div class="dropdown border-primary">
+                                    <select name="acciones" id="acciones" class="form-control" required>
+                                        <option id='doption' value="1" >Tinelli Marcelo DNI:22525643</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
