@@ -134,6 +134,11 @@ $("#btnBorrarCliente").click(function(){
 
 // -- Reparaciones --
 
+$("#generarReparacion").click(function(){
+  alert();
+  //$("formGenerarReparacion").submit();
+});
+
 function obtenerVehiculos() {
   console.log("cambio");
   $('#generarReparacion').attr("disabled",true);
@@ -218,8 +223,8 @@ $("#btnGenerarComprobante").click(function(){
   loadingScreen(true);  
   setTimeout(() => {
       window.location = "/reparaciones/comprobante/"+ $("#btnGenerarComprobante").attr("value");
+      loadingScreen(false); 
     }, 1);
-  
 });
 
 $("#btnVerOrdenesTrabajo").click(function(){
@@ -228,8 +233,6 @@ $("#btnVerOrdenesTrabajo").click(function(){
     setTimeout(() => {
         window.location = "/reparaciones/ordenesDeTrabajo/"+ $("#btnVerOrdenesTrabajo").attr("value");
       }, 1);
-   
-    
 });
 
 $("#btnAgregarOrdenTrabajo").click(function(){
@@ -238,8 +241,6 @@ $("#btnAgregarOrdenTrabajo").click(function(){
   setTimeout(() => {
       window.location = "/reparaciones/agregarOrdenTrabajo/"+ $("#btnAgregarOrdenTrabajo").attr("value");
     }, 1);
- 
-  
 });
 
 
@@ -493,9 +494,6 @@ swal({
 }
 
 // Clientes
-
-
-
 
 function cancelarAgregarCliente() {
   swal({

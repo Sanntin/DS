@@ -90,16 +90,16 @@
                     <!-- Start: botones -->
                     <article>
                         <div class="row">
-                            <div class="col d-flex justify-content-center align-content-center">
-                                <button class="btn btn-primary d-flex justify-content-center align-self-center"  data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar tarea" onclick="submit()"  id="AgregarTarea" disabled>
-                                    Agregar tarea</button>
-                            </div>
                             <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
                                 <button class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);" title="Cancelar y volver a la orden de trabajo" onclick="cancelarTarea()">
                                     Cancelar</button>
                             </div>
-            </div>
-            </article>
+                            <div class="col d-flex justify-content-center align-content-center">
+                                <button class="btn btn-primary d-flex justify-content-center align-self-center"  data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar tarea" onclick="submit()"  id="AgregarTarea" disabled>
+                                    Agregar tarea</button>
+                            </div>
+                        </div>
+                    </article>
             <input name='ordenTrabajo' value={{session()->get('id_ordenTrabajo')}} id='ordenTrabajo' hidden readonly>
         </form>
             <!-- End: botones -->
