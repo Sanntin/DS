@@ -44,4 +44,28 @@ class SessionController extends Controller
     
         return redirect('/');
     }
+
+    public function modificar()
+    {
+
+        // Falta poder cambiar la contraseña, hay que pedir la acutal y la nueva
+        $user=auth()->user();
+        $id=$user->id;
+        $atributos=request()->validate([
+            'nombre'=> 'required',
+            'apellido'=> 'required',
+            'direccion'=> 'required',
+            'telefono'=> 'required|numeric|digits:11',
+            'email'=> 'required|email|unique:users,email,'.$id,
+        ]);
+
+        $user->nombre=$atributos['nombre'];
+        $user->apellido=$atributos['apellido'];
+        $user->direccion=$atributos['direccion'];
+        $user->telefono=$atributos['telefono'];
+        $user->email=$atributos['email'];
+
+        $user->save();
+        return redirect('usuario');
+    }
 }

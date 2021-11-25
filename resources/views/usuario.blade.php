@@ -12,7 +12,8 @@
                             <div class="text-center">
                                 <h4 class="text-dark mb-4">Bienvenido, {{auth()->user()->nickname}}</h4>
                             </div>
-                            <form class="user">
+                            <form class="user" method="POST" action="/modificarUsuario">
+                                @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="nombre" placeholder="Nombre" name="nombre" value="{{auth()->user()->nombre}}">
                                        
