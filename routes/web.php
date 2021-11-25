@@ -35,6 +35,7 @@ Route::post('/register',[RegisterController::class,'store'])->middleware('guest'
 Route::get('/usuario', function () {
     return view('usuario');
 })->middleware('auth');
+Route::post('/modificarUsuario',[SessionController::class,'modificar'])->middleware('auth');
 
 
 //Reparaciones
@@ -92,7 +93,8 @@ Route::get('/agregarCliente', function () {
 })->middleware('auth');
 Route::post('/agregarCiente/agregar', [ClienteController::class,'agregarCliente'])->middleware('auth');
 Route::post('/cliente/cancelar', [ClienteController::class,'eliminarCliente'])->middleware('auth');
-Route::post('/modificarCliente', [ClienteController::class,'datosClienteElegido'])->middleware('auth');
+Route::get('/cliente/modificar/{id}', [ClienteController::class,'datosClienteElegido'])->middleware('auth');
+Route::post('/cliente/modificar/guardar', [ClienteController::class,'modificarCliente'])->middleware('auth');
 
 
 
