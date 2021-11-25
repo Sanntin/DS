@@ -19,7 +19,7 @@ class CreateReparacionsTable extends Migration
             $table->text('motivo');
             $table->mediumInteger('kilometraje')->unsigned();
             $table->date('fechaDeSalida')->nullable();
-            $table->enum('estado', ['diagnostico', 'en proceso','completado'])->default('diagnostico');
+            $table->enum('estado', ['diagnostico', 'en proceso','completado','en carga'])->default('diagnostico');
 
             $table->string('dniCliente')->references('dni')->on('clientes');
             $table->string('patente')->references('patente')->on('vehiculos');
