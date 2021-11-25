@@ -89,10 +89,10 @@
                         </div>
                         <div id="tasks-stock">
                             <li class="context-menu__item item-stock">
-                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-plus"></i> Cargar stock</a>
+                                <a id="btnCargarStock" href="#" class="context-menu__link" data-action="Edit"><i class="fa fa-plus"></i> Cargar stock</a>
                             </li>
                             <li class="context-menu__item item-stock">
-                                <a href="#" class="context-menu__link" data-action="Delete"><i class="fa fa-envelope-o"></i> Realizar pedido de pieza</a>
+                                <a id="btnRealizarPedido" href="#" class="context-menu__link" data-action="Edit"><i class="fa fa-envelope-o"></i> Realizar pedido de pieza</a>
                             </li>
                         </div>
                     </ul>

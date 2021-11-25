@@ -78,6 +78,10 @@ Route::post('/reparaciones/ordenesDeTrabajo/completarTarea', [OrdenTrabajoContro
 
 Route::get('/stock', [PiezaController::class,'obtenerPiezas'])->middleware('auth');
 Route::get('/obtenerPrecioPieza', [PiezaController::class,'precioPieza'])->middleware('auth');
+Route::get('/realizarPedido/{id}', [PiezaController::class,'realizarpedidoForm'])->middleware('auth');
+Route::post('/realizarPedido/enviar', [PiezaController::class,'enviarPedido'])->middleware('auth');
+Route::get('/cargarStock/{id}', [PiezaController::class,'cargarStockForm'])->middleware('auth');
+Route::post('/cargarStock/guardar', [PiezaController::class,'guardarStock'])->middleware('auth');
 
 //Vehiculi
 Route::get('/vehiculos', [VehiculoController::class,'obtenerVehiculo'])->middleware('auth');

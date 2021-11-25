@@ -26,12 +26,12 @@
             <tbody>
                 @foreach ($piezas as $pieza)
 
-                <tr class="t-row task task-stock">
+                <tr class="t-row task task-stock"  data-id={{$pieza->id}}>
                     <td>{{$pieza->nombre}}</td>
                     <td>{{$pieza->fabricante->nombre}}</td>
                     <td>{{$pieza->modelo}}</td>
                     <td>{{$pieza->precio}}</td>
-                    <td>Agregar</td>
+                    <td>{{$pieza->cantidad}}</td>
                     <td>{{$pieza->id}}</td>
                 </tr>
                 @endforeach

@@ -549,6 +549,25 @@ function cancelarAgregarCliente() {
       }
     });
 }
+
+//Stock piezas
+$("#btnCargarStock").click(function(){
+  loadingScreen(true);  
+  // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
+    setTimeout(() => {
+        window.location = "/cargarStock/"+ $("#btnCargarStock").attr("value");
+      }, 1);
+      loadingScreen(false);  
+});
+
+$("#btnRealizarPedido").click(function(){
+  loadingScreen(true);  
+  // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
+    setTimeout(() => {
+        window.location = "/realizarPedido/"+ $("#btnRealizarPedido").attr("value");
+      }, 1);
+      loadingScreen(false);  
+});
 // ---- Functions ----
 
 //When switching from one page to another in the same view, hide the last one and show the current one
