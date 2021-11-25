@@ -72,12 +72,22 @@ $("#btnGuardarVehiculo").click(function(){
 // -- Clientes --
 
 $("#btnAgregarCliente").click(function(){
+  loadingScreen(true);  
+  setTimeout(() => {
     window.location = "/agregarCliente";
+      loadingScreen(false); 
+    }, 1);
+ 
 });
 
 $("#btnModificarCliente").click(function(){ 
-  window.location = "/modificarCliente";
+  loadingScreen(true);  
+  setTimeout(() => {
+      window.location = "/cliente/modificar/"+ $("#btnModificarCliente").attr("value");
+      loadingScreen(false); 
+    }, 1);
 });
+
 
 $("#btnBorrarCliente").click(function(){
   swal({
@@ -132,11 +142,27 @@ $("#btnBorrarCliente").click(function(){
 });
 
 
-// -- Reparaciones --
+
 
 $("#generarReparacion").click(function(){
-  alert();
-  //$("formGenerarReparacion").submit();
+  // swal({
+  //   title: "Seguro desea generar la reparación?",
+  //   icon: "warning",
+  //   buttons: true,
+  //   dangerMode: true,
+  // })
+  // .then((willDelete) => {
+  //   if (willDelete) {
+  //     swal("Se genero la reparación", {
+  //       icon: "success",
+  //     });
+  //     $("formGenerarReparacion").submit();
+  //   } else {
+  //     swal("No se genero la reparación");
+  //   }
+  // });
+
+  
 });
 
 function obtenerVehiculos() {

@@ -13,32 +13,68 @@
     <div class="card-body d-xl-flex justify-content-xl-center">
         <div class="col-lg-7">
             <div class="p-5">
-                <form class="user">
+            @if (session()->has('errorId'))
+                <p>{{session()->get('errorId')}}</p>
+            @endif
+                <form  method="POST"  action="/cliente/modificar/guardar">
+                    @csrf
                     <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Nombre" name="first_name"></div>
-                        <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Apellido" name="last_name"></div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Nombre" name="nombre" value={{$cliente->nombre}}>
+                            @error('nombre')
+                            {{-- !!! @eze formatear el texto de error --}}
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-sm-6">
+                            <input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Apellido" name="apellido" value={{$cliente->apellido}}>
+                            @error('apellido')
+                            {{-- !!! @eze formatear el texto de error --}}
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <!-- Start: #adress --><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="DNI" name="dni">
-                            <!-- End: #adress -->
+                        <input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="DNI" name="dni" disabled value={{$cliente->dni}}>
                         </div>
                         <div class="col-sm-6">
-                            <!-- Start: #phone --><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Teléfono" name="phone">
-                            <!-- End: #phone -->
+                            <input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Teléfono" name="telefono" value={{$cliente->telefono}}>
+                            @error('dni')
+                            {{-- !!! @eze formatear el texto de error --}}
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
                         </div>
                     </div>
-                    <div class="form-group"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Mail" name="email"></div>
+
+                    <div class="form-group">
+                        <input class="form-control form-control-user" type="email" id="email"  placeholder="Mail" name="mail" autocomplete="off" value={{$cliente->mail}}>
+                        @error('mail')
+                        {{-- !!! @eze formatear el texto de error --}}
+                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
+
                     <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="examplePasswordInput" placeholder="Localidad" name="localidad"></div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input class="form-control form-control-user" type="text" id="localidad" placeholder="Localidad" name="localidad" autocomplete="off" value={{$cliente->localidad}}>
+                            @error('localidad')
+                            {{-- !!! @eze formatear el texto de error --}}
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
+                        </div>
                         <div class="col-sm-6">
-                            <!-- Start: #nickname --><input class="form-control form-control-user" type="text" id="exampleFirstName-1" placeholder="Dirección" name="direccion">
-                            <!-- End: #nickname -->
+                            <input class="form-control form-control-user" type="text" id="exampleFirstName-1" placeholder="Dirección" name="direccion" value={{$cliente->direccion}}>
+                            @error('direccion')
+                            {{-- !!! @eze formatear el texto de error --}}
+                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0"><button class="btn btn-primary btn-block text-white btn-user" type="button" style="background-color: rgb(223,78,104);">Cancelar</button></div>
-                        <div class="col-sm-6"><button class="btn btn-primary btn-block text-white btn-user" type="button">Guardar cambios</button></div>
+                        <div class="col-sm-6"><button class="btn btn-primary btn-block text-white btn-user" type="submit">Guardar cambios</button></div>
                     </div>
                 </form>
             </div>

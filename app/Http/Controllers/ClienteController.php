@@ -61,7 +61,39 @@ class ClienteController extends Controller
 
     public function datosClienteElegido($id)
     {
-        # code...
+        session()->flash('idCliente',$id);
+        return view('modificarCliente', ['cliente' => Cliente::where('id',$id)->first()]);
     }
+
+    public function modificarCliente(Request $request)
+    {
+        // dd( session()->has('idCliente'));
+        $id=session()->get('idCliente');
+        $cliente=Cliente::where('id',$id)->first();
+       if ( $cliente!=null) {
+
+            $atributos=request()->validate([
+                'nombre'=> 'required',
+                'apellido'=> 'required',
+                'direccion'=> 'required',
+                'localidad'=> 'required',
+                'telefono'=> 'required|numeric|digits:11',
+                'mail'=> 'required|email|unique:clientes,mail,'.$id,
+            ]);
+
+            $cliente->nombre=$atributos['nombre'];
+            $cliente->apellido=$atributos['apellido'];
+            $cliente->telefono=$atributos['telefono'];
+            $cliente->mail=$atributos['mail'];
+            $cliente->direccion=$atributos['direccion'];
+            $cliente->localidad=$atributos['localidad'];
+
+            $cliente->save();   
+            return redirect('clientes');
+        
+        }
+        return back()->with('errorId','Hubo un error por favor reintente');
+        }
+
 
 }
