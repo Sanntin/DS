@@ -177,3 +177,7 @@
     -webkit-appearance: none; 
     margin: 0; 
   }
+
+  .text-red-500{
+    color: red!important;
+  }
