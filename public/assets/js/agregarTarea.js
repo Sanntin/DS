@@ -86,9 +86,3 @@ function guardarTarea(params) {
     // idOrden= $("#OrdenTrabajo").attr("value");
     // window.location = "/reparaciones/agregarOrdenTrabajo/Orden/"+idOrden;
 }
-
-function cancelarTarea(params) {
-    idOrden= $("#OrdenTrabajo").attr("value");
-    window.location = "/reparaciones/agregarOrdenTrabajo/Orden/"+idOrden;
-}
-

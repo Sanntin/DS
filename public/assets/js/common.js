@@ -557,6 +557,9 @@ $("#AgregarTarea").click(function(){
 
 $("#btnCancelarAgregarTarea").click(function(){
   loadingScreen(true);
+  idOrden= $("#OrdenTrabajo").attr("value");
+  console.log("/reparaciones/agregarOrdenTrabajo/Orden/"+idOrden);
+  window.location = "/reparaciones/agregarOrdenTrabajo/Orden/"+idOrden;
   setTimeout(() => {
     loadingScreen(false);
   }, esperaCorta);
