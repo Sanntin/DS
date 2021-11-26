@@ -150,7 +150,7 @@
                     @endisset
                     <div class="row" style="margin-top: 15px;">
                         <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
-                            <button class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar nueva tarea para esta orden de trabajo" onclick="agregarTarea()">Agregar Tarea</button>
+                            <button id="btnAgregarTarea" class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar nueva tarea para esta orden de trabajo" onclick="agregarTarea()">Agregar Tarea</button>
                         </div>
                     </div>
                 </article>
@@ -158,14 +158,12 @@
                 <!-- Start: botones -->
                 <article>
                     <div class="row">
-
+                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
+                            <a id="btnCancelarGenerarOrden" class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);color: rgb(255,255,255);" href="/reparaciones/cancelarOrdenTrabajo" title="Cancelar y volver a reparaciones">Cancelar</a>
+                        </div>
                         <div class="col d-flex justify-content-center align-items-center">
                             <button id='btnGenerarOrden' title="Generar orden de trabajo" class="btn btn-primary text-center d-flex justify-content-center align-self-center"  data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(78,115,223);" onclick="generarOrden()" >Generar orden</button>
                         </div>
-
-                        <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
-                            <a class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);color: rgb(255,255,255);"
-                                href="/reparaciones/cancelarOrdenTrabajo" title="Cancelar y volver a reparaciones">Cancelar</a></div>
                     </div>
 
                     <div class="row">

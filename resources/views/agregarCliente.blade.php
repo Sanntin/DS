@@ -75,7 +75,7 @@
                             <button class="btn btn-primary btn-block text-white btn-user" type="button" style="background-color: rgb(223,78,104);" onclick=" window.location = '/clientes'">Cancelar</button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-primary btn-block text-white btn-user" type="submit">Guardar cliente</button>
+                            <button id="btnGuardarCliente" class="btn btn-primary btn-block text-white btn-user" type="submit">Guardar cliente</button>
                         </div>
                     </div>
                 </form>

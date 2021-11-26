@@ -70,7 +70,7 @@
                     <article>
                         <div class="row" style="margin-top: 20px;">
                             <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
-                                <a class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);" href="\reparaciones" title="Cancelar">Cancelar</a>
+                                <a id="btnCancelarGenerarReparacion" class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);" href="\reparaciones" title="Cancelar">Cancelar</a>
                             </div>
                             <div class="col d-flex justify-content-center align-content-center">
                                 <button class="btn btn-primary d-flex justify-content-center align-self-center" style="width: 140px;" data-toggle="tooltip" data-bs-tooltip="" title="Generar reparación" id="generarReparacion">Guardar</button>
