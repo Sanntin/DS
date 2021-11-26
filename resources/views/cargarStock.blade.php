@@ -119,10 +119,10 @@
 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <button class="btn btn-primary btn-block text-white btn-user" type="button" style="background-color: rgb(223,78,104);" onclick=" window.location = '/stock'">Cancelar</button>
+                                <button id="btnCancelarGuardarStock" class="btn btn-primary btn-block text-white btn-user" type="button" style="background-color: rgb(223,78,104);" onclick=" window.location = '/stock'">Cancelar</button>
                             </div>
                             <div class="col-sm-6">
-                                <button class="btn btn-primary btn-block text-white btn-user" type="submit">Cargar stock</button>
+                                <button id="btnGuardarStock" class="btn btn-primary btn-block text-white btn-user" type="submit">Cargar stock</button>
                             </div>
                         </div>
                     </form>

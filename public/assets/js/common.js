@@ -83,7 +83,6 @@ $("#btnCambiarTitularidadVehiculo").click(function(){
     }, 1);
 });
 
-
 // -- Clientes --
 $("#btnGuardarCliente").click(function(){
   loadingScreen(true);
@@ -599,7 +598,7 @@ $("#btnModificarCliente").click(function(){
   setTimeout(() => {
     loadingScreen(false);
   }, esperaCorta);
-  submit();
+  //submit();
 });
 
 $("#btnCancelarModificarCliente").click(function(){
@@ -626,6 +625,20 @@ $("#btnRealizarPedido").click(function(){
         window.location = "/realizarPedido/"+ $("#btnRealizarPedido").attr("value");
       }, 1);
       loadingScreen(false);  
+});
+
+$("#btnGuardarStock").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+});
+
+$("#btnCancelarGuardarStock").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
 });
 
 // ---- Functions ----
