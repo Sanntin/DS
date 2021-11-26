@@ -14,7 +14,7 @@
         @isset($fecha)
             {{dd($fecha)}}
         @endisset
-        <form method="POST" action="/generarReparacion/crear" id="formGenerarReparacion">
+        <form method="POST" action="/generarReparacion/crear" id="formGenerarReparacion" name="formGenerarReparacion">
         @csrf
             <div class="container" style="width: 100%;min-width: 100%;padding-left: 0;padding-right: 0;min-height: 100%;height: 100%;max-height: 100%;background-color: rgba(255,0,0,0);">
                 <section>
@@ -73,7 +73,7 @@
                                 <a class="btn btn-primary text-center d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;background-color: rgb(223,78,95);" href="\reparaciones" title="Cancelar">Cancelar</a>
                             </div>
                             <div class="col d-flex justify-content-center align-content-center">
-                                <button class="btn btn-primary d-flex justify-content-center align-self-center" style="width: 140px;" data-toggle="tooltip" data-bs-tooltip="" title="Generar reparación" id="generarReparacion">Guardar</button>
+                                <button  type="submit" class="btn btn-primary d-flex justify-content-center align-self-center" style="width: 140px;" data-toggle="tooltip" data-bs-tooltip="" title="Generar reparación" id="generarReparacion" name="generarReparacion">Guardar</button>
                             </div>
                         </div>
                     </article>
