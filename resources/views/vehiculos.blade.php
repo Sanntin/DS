@@ -31,7 +31,7 @@
                     <tbody>
                         @isset($vehiculos)
                         @foreach ($vehiculos as $vehiculo)
-                        <tr class="t-row task task-vehicle">
+                        <tr class="t-row task task-vehicle"  data-id={{$vehiculo->id}}>
                             <td>{{$vehiculo->patente}}</td>
                             <td>{{$vehiculo->cliente->nombre}} {{$vehiculo->cliente->apellido}}</td>
                             <td>{{$vehiculo->año}}</td>

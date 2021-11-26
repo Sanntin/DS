@@ -85,6 +85,8 @@ Route::post('/cargarStock/guardar', [PiezaController::class,'guardarStock'])->mi
 
 //Vehiculi
 Route::get('/vehiculos', [VehiculoController::class,'obtenerVehiculo'])->middleware('auth');
+Route::get('/vehiculo/modificar/{id}', [VehiculoController::class,'cambiarTitularidadForm'])->middleware('auth');
+Route::post('/vehiculo/modificar/guardar', [VehiculoController::class,'cambiarTitularidad'])->middleware('auth');
 Route::get('/vehiculos/agregar', [VehiculoController::class,'datosAgregarVehiculo'])->middleware('auth');
 Route::post('/vehiculos/agregarVehiculo', [VehiculoController::class,'agregarVehiculo'])->middleware('auth');
 
