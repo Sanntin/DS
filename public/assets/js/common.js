@@ -69,6 +69,15 @@ $("#btnGuardarVehiculo").click(function(){
     // showElement($("#vehiculos-agregar"), $("#vehiculos-main"));
 });
 
+$("#btnCambiarTitularidadVehiculo").click(function(){
+  loadingScreen(true);  
+  setTimeout(() => {
+      window.location = "/vehiculo/modificar/"+ $("#btnCambiarTitularidadVehiculo").attr("value");
+      loadingScreen(false); 
+    }, 1);
+});
+
+
 // -- Clientes --
 
 $("#btnAgregarCliente").click(function(){

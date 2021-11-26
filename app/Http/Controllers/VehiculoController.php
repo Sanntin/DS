@@ -76,4 +76,29 @@ class VehiculoController extends Controller
         return redirect('vehiculos');
 
     }
+
+    public function cambiarTitularidadForm($id)
+    {
+        session()->flash('idVehiculo',$id);
+       $vehiculo=Vehiculo::where('id',$id)->first();
+       $idCliente=$vehiculo->cliente->id;
+       $clientes = Cliente::all()->except($idCliente);
+        return view('cambiarTitularidad',['vehiculo'=>$vehiculo,'clientes'=>$clientes]);
+    }
+
+    public function cambiarTitularidad(Request $request)
+    {
+        $id=session()->get('idVehiculo');
+        $vehiculo=Vehiculo::where('id',$id)->first();
+       if ( $vehiculo!=null) {
+
+        $vehiculo->dniCliente=$request->cliente;
+        $vehiculo->save();
+            return redirect('vehiculos');
+        
+        }
+        return back()->with('errorId','Hubo un error por favor reintente');
+        }
+
+    
 }
