@@ -1,6 +1,9 @@
 // ---- Event handlers ----
 
 // -- General --
+var esperaCorta = 2500;
+var esperaLarga = 5000;
+
 //When mouse hovers over a list item, turn it's background to a different color
 function turnListHover() {
   $(".t-row").mouseenter(function() {
@@ -64,9 +67,12 @@ function volverAgregarVehiculo() {
   }, 1); 
 }
 
-
 $("#btnGuardarVehiculo").click(function(){
-    // showElement($("#vehiculos-agregar"), $("#vehiculos-main"));
+  loadingScreen(true);
+  submit();
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
 });
 
 $("#btnCambiarTitularidadVehiculo").click(function(){
@@ -77,8 +83,13 @@ $("#btnCambiarTitularidadVehiculo").click(function(){
     }, 1);
 });
 
-
 // -- Clientes --
+$("#btnGuardarCliente").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+});
 
 $("#btnAgregarCliente").click(function(){
   loadingScreen(true);  
@@ -96,7 +107,6 @@ $("#btnModificarCliente").click(function(){
       loadingScreen(false); 
     }, 1);
 });
-
 
 $("#btnBorrarCliente").click(function(){
   swal({
@@ -150,28 +160,19 @@ $("#btnBorrarCliente").click(function(){
   });
 });
 
-
-
-
+// -- Reparaciones --
 $("#generarReparacion").click(function(){
-  // swal({
-  //   title: "Seguro desea generar la reparación?",
-  //   icon: "warning",
-  //   buttons: true,
-  //   dangerMode: true,
-  // })
-  // .then((willDelete) => {
-  //   if (willDelete) {
-  //     swal("Se genero la reparación", {
-  //       icon: "success",
-  //     });
-  //     $("formGenerarReparacion").submit();
-  //   } else {
-  //     swal("No se genero la reparación");
-  //   }
-  // });
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaLarga);
+});
 
-  
+$("#btnCancelarGenerarReparacion").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
 });
 
 function obtenerVehiculos() {
@@ -407,7 +408,26 @@ swal({
 // $("#btnAceptarOrdendeTrabajo").click(function(){
      
 // });
+$("#btnGenerarOrden").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaLarga);
+});
 
+$("#btnCancelarGenerarOrden").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+});
+
+$("#btnAgregarTarea").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+});
 
 // --Tareas --
 function completarTarea(btn) {
@@ -528,6 +548,20 @@ swal({
   });
 }
 
+$("#AgregarTarea").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+});
+
+$("#btnCancelarAgregarTarea").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+});
+
 // Clientes
 
 function cancelarAgregarCliente() {
@@ -559,6 +593,21 @@ function cancelarAgregarCliente() {
     });
 }
 
+$("#btnModificarCliente").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+  //submit();
+});
+
+$("#btnCancelarModificarCliente").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+});
+
 //Stock piezas
 $("#btnCargarStock").click(function(){
   loadingScreen(true);  
@@ -577,6 +626,21 @@ $("#btnRealizarPedido").click(function(){
       }, 1);
       loadingScreen(false);  
 });
+
+$("#btnGuardarStock").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+});
+
+$("#btnCancelarGuardarStock").click(function(){
+  loadingScreen(true);
+  setTimeout(() => {
+    loadingScreen(false);
+  }, esperaCorta);
+});
+
 // ---- Functions ----
 
 //When switching from one page to another in the same view, hide the last one and show the current one
