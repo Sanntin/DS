@@ -50,7 +50,7 @@
                         <input class="form-control form-control-user" type="email" id="email" aria-describedby="emailHelp" placeholder="Mail" name="mail" autocomplete="off" required value="{{old('mail')}}">
                         @error('mail')
                         {{-- !!! @eze formatear el texto de error --}}
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                        <p class="text-red-500 text-xs mt-1" style="color:red!important;">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="form-group row">
@@ -58,14 +58,14 @@
                             <input class="form-control form-control-user" type="text" id="localidad" placeholder="Localidad" name="localidad" required value="{{old('localidad')}}" >
                             @error('localidad')
                             {{-- !!! @eze formatear el texto de error --}}
-                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                            <p class="text-red-500 text-xs mt-1" style="color:red!important;">{{$message}}</p>
                             @enderror
                         </div>
                         <div class="col-sm-6">
                            <input class="form-control form-control-user" type="text" id="direccion" placeholder="Dirección" name="direccion" required value="{{old('direccion')}}">
                            @error('direccion')
                            {{-- !!! @eze formatear el texto de error --}}
-                           <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                           <p class="text-red-500 text-xs mt-1" style="color:red!important;">{{$message}}</p>
                            @enderror
                         </div>
                     </div>

@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="/assets/css/common.css">
     <link rel="stylesheet" href="/assets/css/contextMenu.css">
+    <link rel="shortcut icon" type="image/x-icon" href="logo.png" />
 </head>
 <body id="page-top">
     <div id="app">
