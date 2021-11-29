@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\OrdenTrabajo;
 
 class Reparacion extends Model
 {
@@ -31,5 +32,15 @@ class Reparacion extends Model
      return $this->hasMany('App\Models\OrdenTrabajo','id_reparacion','id');
     }
 
+    protected static function boot() {
+        parent::boot();
+    
+        static::deleting(function(Reparacion $reparacion) {
+          
+                foreach ($reparacion->ordenesTrabajo as $ordenTrabajo) {
+                    OrdenTrabajo::destroy($ordenTrabajo->id);
+                }
+        });
+        }
 
 }

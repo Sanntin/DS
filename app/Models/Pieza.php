@@ -11,6 +11,10 @@ class Pieza extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'cantidad',
+        'precio',
+    ];
 
     public function fabricante()
     {

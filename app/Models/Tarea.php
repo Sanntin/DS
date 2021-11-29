@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Pieza;
 
 class Tarea extends Model
 {
@@ -33,6 +34,17 @@ class Tarea extends Model
         return $this->belongsTo(Accion::class, 'id_accion', 'id');
     }
 
-    
+
+    protected static function boot() {
+    parent::boot();
+
+    static::deleting(function(Tarea $tarea) {
+      
+            foreach ($tarea->pieza as $piezaUtilizar) {
+                $cantidad=$piezaUtilizar->cantidad+$piezaUtilizar->pivot->cantidad;
+                Pieza::find($piezaUtilizar->id)->update(['cantidad' =>$cantidad]);
+            }
+    });
+    }
 
 }

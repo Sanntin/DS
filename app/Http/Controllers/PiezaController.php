@@ -19,8 +19,7 @@ class PiezaController extends Controller
     public function precioPieza(Request $request)
     {
         if ($request->has('_token')) {
-            $precio = Pieza::where('id',$request->id)->get('precio');
-
+            $precio = Pieza::where('id',$request->id)->get(['precio','cantidad']);
              return  response()->json($precio);
         }
     

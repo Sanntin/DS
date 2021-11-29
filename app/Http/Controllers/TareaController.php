@@ -60,8 +60,12 @@ class TareaController extends Controller
             $piezaUtilizar->cantidad=$request->$cantidad;
             $piezaUtilizar->precio=$request->$precio*$request->$cantidad;
 
+
             $precioPiezas=$precioPiezas+$piezaUtilizar->precio;
 
+            $pieza=Pieza::where('id',$request->$idPieza)->first();
+            $pieza->cantidad=$pieza->cantidad-$request->$cantidad;
+            $pieza->save();
             $piezaUtilizar->save();
             $i=$i+1;
             }    
@@ -78,7 +82,7 @@ class TareaController extends Controller
     public function eliminarTarea(Request $request)
     {
         $tarea=Tarea::find($request->idtarea);
-        
+
         $horasTareaEliminada=Accion::where('id',$tarea->id_accion)->get();
         $horasTareaEliminada=$horasTareaEliminada[0]->horas;
 
@@ -88,6 +92,14 @@ class TareaController extends Controller
 
         if($cantidadTotal<=1){
             $reparacion=$ordenTrabajo->reparacion;
+            
+            // Desalocar Tarea esto deberia estar en otro lado     
+            // foreach ($tarea->pieza as $piezaUtilizar) {
+            //     $pieza=Pieza::where('id',$piezaUtilizar->id)->first();
+            //      $pieza->cantidad=$pieza->cantidad+$piezaUtilizar->pivot->cantidad;
+            //      $pieza->save();
+            // }
+
             OrdenTrabajo::destroy($ordenTrabajo->id);
 
             if(sizeof($reparacion->ordenesTrabajo)<=1){
@@ -100,6 +112,14 @@ class TareaController extends Controller
             $tareasCompletadas=ceil($porcentaje*$cantidadTotal/100);
             $ordenTrabajo->porcentajeAvance=$tareasCompletadas/($cantidadTotal-1)*100;
             $ordenTrabajo->horasTotales=$ordenTrabajo->horasTotales-$horasTareaEliminada;
+            
+            // Desalocar Tarea esto deberia estar en otro lado     
+            // foreach ($tarea->pieza as $piezaUtilizar) {
+            //     $pieza=Pieza::where('id',$piezaUtilizar->id_pieza)->first();
+            //      $pieza->cantidad=$pieza->cantidad+$piezaUtilizar->pivot_cantidad;
+            //      $pieza->save();
+            // }
+            
             Tarea::destroy($request->idtarea);
             $ordenTrabajo->save();
         }

@@ -6,8 +6,8 @@ const btnsQuitarPieza = document.getElementsByClassName("btn-quitar-pieza");
 
 var id=0;
 document.getElementById("btnAgregarPieza").onclick = function (e) {
-    console.log(piezasListado.value);
-    if(piezaCantidad.value !== "" && piezaPrecio !== "" && piezasListado.value!=='0' && piezaCantidad.value !== '0' && piezaPrecio !=='0'){
+    console.log(piezaCantidad.max);
+    if(piezaCantidad.value !== "" && piezaPrecio !== "" && piezasListado.value!=='0' && piezaCantidad.value > '0'  && piezaCantidad.value <= piezaCantidad.max && piezaPrecio !=='0'){
         const tr = document.createElement("tr");
     id=id+1;
         //Acá agregar como primer elemento el valor de piezaDropDown
@@ -46,7 +46,6 @@ function obtenerPrecio(){
     $('#piezaPrecio').attr("disabled",true);
     $('#btnAgregarPieza').attr("disabled",true);
     let id=piezasListado.value;
-    console.log(id);
     loadingScreen(true);
     $.ajax({
         url: "/obtenerPrecioPieza",
@@ -60,8 +59,11 @@ function obtenerPrecio(){
         //    $('#piezaPrecio').attr("value",result[0].precio);
         //    $('#piezaPrecio').get(0).type = result[0].precio;
         //    $('#piezaPrecio').val("value",result[0].precio);
+        console.log(result[0].cantidad);
         document.getElementById("piezaPrecio").setAttribute("value", result[0].precio);
         document.getElementById("piezaPrecio").value = result[0].precio;
+        document.getElementById("piezaCantidad").setAttribute("placeholder","max: "+result[0].cantidad);
+        document.getElementById("piezaCantidad").setAttribute("max",result[0].cantidad);
            $('#piezaPrecio').attr("disabled",false);
            $('#btnAgregarPieza').attr("disabled",false);
       
