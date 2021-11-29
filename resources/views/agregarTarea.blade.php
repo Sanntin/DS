@@ -33,7 +33,7 @@
                                         <td style="font-weight: 700;">Acción</td>
                                         <td>
                                             <select name="acciones" id="acciones" class="form-control" required>
-                                                <option value='0' selected disabled hidden>-</option>
+                                                <option value='' selected disabled hidden>-</option>
                                                 @foreach ($acciones as $accion)
                                                 <option id='doption' value="{{$accion->id}}" >{{$accion->nombre}}</option>
                                                 @endforeach
