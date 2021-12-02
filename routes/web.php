@@ -49,9 +49,9 @@ Route::POST('/reparaciones/cancelar', [ReparacionController::class,'cancelar'])-
 
 Route::get('/reparaciones/comprobante/{id}', [ReparacionController::class,'comprobante'])->middleware('auth');
 
-Route::get('/reporteDeReparaciones', function () {
-    return view('reporteDeReparaciones');
-});
+Route::get('/reporteDeReparaciones', [ReparacionController::class,'generarReporte'])->middleware('auth');
+
+
 //Ordenes de Trabajo
 
 Route::get('/reparaciones/ordenesDeTrabajo/{id}', [OrdenTrabajoController::class,'obtenerOrdenTrabajos'])->middleware('auth');
@@ -105,16 +105,6 @@ Route::post('/cliente/modificar/guardar', [ClienteController::class,'modificarCl
 
 
 Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');
-Route::get('/clientesAjax', [ClienteController::class,'getClientes']);
+Route::get('/clientesAjax', [ClienteController::class,'getClientes'])->middleware('auth');
 
-Route::get('/cambiarTitularidad', function () {
-    return view('cambiarTitularidad');
-});
 
-Route::get('/cargarStock', function () {
-    return view('cargarStock');
-});
-
-Route::get('/realizarPedido', function () {
-    return view('realizarPedido');
-});

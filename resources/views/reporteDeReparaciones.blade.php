@@ -5,7 +5,12 @@
     <h3 class="text-dark mb-0">Reporte de reparaciones</h3>
 </div>
 <div class="d-sm-flex justify-content-between align-items-center mb-4" style="margin-bottom: 0px;">
-    <h6 class="text-dark mb-0">Datos correspondiente a reparaciones "@estadoReparación" cargadas entre @fechaDesde a @fechaHasta</h6>
+    @isset($record)
+    <h6 class="text-dark mb-0">Datos correspondiente a reparaciones en estado {{$estado}} cargadas entre {{date('d/m/y', strtotime($fechaEntrada))}} a {{date('d/m/y', strtotime($fechaSalida))}}</h6>
+    @else
+    <h6 class="text-dark mb-0">Datos correspondiente a reparaciones en estado {{$estado}} cargadas desde {{date('d/m/y', strtotime($fechaEntrada))}} </h6>
+
+    @endisset
 </div>
 <!-- Start: #reparacionesCard -->
 <div class="row">
@@ -29,15 +34,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($reparaciones as $reparacion)
+
                             <tr>
-                                <td>ABC-123</td>
-                                <td>Elon Musk</td>
-                                <td>21/09/2021</td>
-                                <td>En proceso</td>
-                                <td style="padding-right: 0;">54000</td>
-                                <td>-</td>
-                                <td>Hace "rututu pum pum"</td>
-                            </tr>
+                                <td>{{$reparacion->patente}}</td>
+                                <td>{{$reparacion->cliente->apellido}} {{$reparacion->cliente->nombre}}</td>
+                                <td>{{date('d/m/y', strtotime($reparacion->fechaDeEntrada))}}</td>
+                                <td>{{ucfirst($reparacion->estado)}}</td>
+                                <td style="padding-right: 0;">{{$reparacion->kilometraje}}</td>
+                                <td> @isset($reparacion->fechaDeSalida){{date('d/m/y', strtotime($reparacion->fechaDeSalida))}}@else-@endisset </td>
+                                <td>{{$reparacion->motivo}}</td>
+                            </tr>                     
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr></tr>
@@ -61,15 +69,17 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr>
-                                <th style="width: 85%;">Nombre</th>
-                                <th style="width: 15%;">Cantidad realizada</th>
+                                <th style="width: 72%;">Nombre</th>
+                                <th style="width: 18%;">Cantidad realizada</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($acciones  as $nombre => $cantidad)
                             <tr>
-                                <td>Cambio de aceite</td>
-                                <td>22</td>
+                                <td>{{$nombre}}</td>
+                                <td>{{$cantidad}}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr></tr>
@@ -96,18 +106,18 @@
                                 <th style="width: 30%;">Pieza</th>
                                 <th style="width: 30%;">Fabricante</th>
                                 <th style="width: 22%;">Modelo</th>
-                                <th style="width: 6%;">Precio</th>
-                                <th style="padding-right: 0;width: 12%;">Cantidad utilizada</th>
+                                <th style="padding-right: 0;width: 18%;">Cantidad utilizada</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($piezas as $pieza)
                             <tr>
-                                <td>Cubierta</td>
-                                <td>Pirelli</td>
-                                <td>C90</td>
-                                <td>9300</td>
-                                <td style="padding-right: 0;">12</td>
+                                <td>{{$pieza['nombre']}}</td>
+                                <td>{{$pieza['fabricante']}}</td>
+                                <td>{{$pieza['modelo']}}</td>
+                                <td style="padding-right: 0;">{{$pieza['cantidad']}}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr></tr>
