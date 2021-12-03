@@ -26,10 +26,10 @@
                             </div>
                             <div class="col">
                                 <div class="dropdown" style="width: 100%;">
-                                    <select name="cliente" id="clientesListado" class="form-control" onchange="obtenerVehiculos()" required>
+                                    <select name="cliente" id="clientesListado"  class="form-control js-example-basic-single" onchange="obtenerVehiculos()" required>
                                         <option value='0' selected disabled hidden>-</option>
                                         @foreach ($clientes as $cliente)
-                                        <option id='doption' name='{{$cliente->dni}}' value='{{$cliente->dni}}'>{{$cliente->apellido}} {{$cliente->nombre}} - {{$cliente->dni}}</option>
+                                        <option name='{{$cliente->dni}}' value='{{$cliente->dni}}'>{{$cliente->apellido}} {{$cliente->nombre}} - {{$cliente->dni}}</option>
                                         @endforeach
                                     </select>
                                     {{-- <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;">Dropdown </button>
@@ -43,10 +43,11 @@
                             </div>
                             <div class="col">
                                 <div class="dropdown" style="width: 100%;">
-                                    <select name="vehiculo" id="vehiculosListado" class="form-control" disabled required>
+                                    <select name="vehiculo" id="vehiculosListado" class="form-control js-example-basic-single" disabled required>
                                         <option value='0' selected disabled hidden>-</option>
                                     </select>
                                     
+                                    <p id='noVehiculo' hidden class="text-red-500 text-xs mt-1"> Este cliente no tiene vehiculos registrados.</p>
                                     {{-- <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;">Dropdown </button>
                                     <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div> --}}
                                 </div>

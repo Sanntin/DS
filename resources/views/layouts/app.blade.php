@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="/assets/css/common.css">
     <link rel="stylesheet" href="/assets/css/contextMenu.css">
     <link rel="shortcut icon" type="image/x-icon" href="logo.png" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 </head>
 <body id="page-top">
     <div id="app">
@@ -118,4 +120,5 @@
 <script src="/assets/js/sweetalert.min.js"></script>
 <script src="/assets/js/common.js"></script>
 <script src="/assets/js/contextMenu.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
 </html>

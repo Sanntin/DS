@@ -65,13 +65,13 @@
                         <form class="user">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input class="form-control form-control-user" type="text" id="patente" placeholder="Patente (ABC123)" name="patente" maxlength="7" minlength="6" required value={{old('patente')}}>
+                                    <input class="form-control form-control-user" type="text" id="patente" placeholder="Patente (ABC123)" name="patente" maxlength="7" minlength="6"  value={{old('patente')}}>
                                     @error('patente')
                                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                                     @enderror
                                 </div>
                                 <div class="col-sm-6">
-                                    <input class="form-control form-control-user" type="number" min="1900" max="2099" value={{old('año')? old('año'):'2021'}}  id="año" placeholder="Año" name="año" required}>
+                                    <input class="form-control form-control-user" type="number" min="1900" max="2099" value={{old('año')? old('año'):'2021'}}  id="año" placeholder="Año" name="año" }>
                                     @error('año')
                                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                                     @enderror
@@ -81,15 +81,15 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <div class="dropdown border-primary">
                                         @if(session()->has('marcas'))
-                                        <select name="id_marca" id="marcas" class="form-control" required>
+                                        <select name="id_marca" id="marcas" class="form-control js-example-basic-single" >
                                             <option id='doption' value="" selected hidden>Seleccione un marca</option>
                                             @foreach (session()->get('marcas') as $marca)
-                                                <option id='doption' value="{{$marca->id}}" {{old('id_marca')==$marca->id ? "selected":''}} > {{$marca->nombre}} </option>
+                                                <option value="{{$marca->id}}" {{old('id_marca')==$marca->id ? "selected":''}} > {{$marca->nombre}} </option>
                                             @endforeach
 
                                         @else
-                                            <select name="id_marca" id="marcas" class="form-control" disabled required>
-                                            <option id='doption' value="" selected='true' selected hidden>Seleccione un marca</option>
+                                            <select name="id_marca" id="marcas"  class="form-control js-example-basic-single" disabled >
+                                            <option value="" selected='true' selected hidden>Seleccione un marca</option>
                                         @endif
                                         </select>
                                         @error('marca')
@@ -100,14 +100,14 @@
                             <div class="col-sm-6">
                              
                                     @if(session()->has('modelos'))
-                                    <select name="id_modelo" id="modelos" class="form-control" required>
+                                    <select name="id_modelo" id="modelos"  class="form-control js-example-basic-single" >
                                         @foreach (session()->get('modelos') as $modelo)
-                                         <option id='doption' value="{{$modelo->id}}" {{old('id_modelo')==$modelo->id ? "selected":''}} >{{$modelo->nombre}}</option>
+                                         <option value="{{$modelo->id}}" {{old('id_modelo')==$modelo->id ? "selected":''}} >{{$modelo->nombre}}</option>
                                         @endforeach  
                                     
                                     @else 
-                                        <select name="id_modelo" id="modelos" class="form-control" disabled required>
-                                            <option id='doption' value="" selected='true' selected hidden>Seleccione un modelo</option>
+                                        <select name="id_modelo" id="modelos"  class="form-control js-example-basic-single" disabled >
+                                            <option  value="" selected='true' selected hidden>Seleccione un modelo</option>
                                     @endif
                                     </select>
                                     @error('modelo')
@@ -119,19 +119,20 @@
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0" style="max-width: 100%;min-width: 100%;">
                             @if(session()->has('clientes'))
-                            <select name="dniCliente" id="clientes" class="form-control" required>
+                            <select name="dniCliente" id="clientes" class="form-control" >
                                 @foreach (session()->get('clientes') as $cliente)
-                                    <option id='doption' value="{{$cliente->dni}}" {{old('dniCliente')==$cliente->dni ? "selected":''}}>{{$cliente->apellido}} {{$cliente->nombre}} DNI: {{$cliente->dni}}</option>
+                                    <option value="{{$cliente->dni}}" {{old('dniCliente')==$cliente->dni ? "selected":''}}>{{$cliente->apellido}} {{$cliente->nombre}} DNI: {{$cliente->dni}}</option>
                                 @endforeach
                             @else
-                            <select name="dniCliente" id="clientes" class="form-control" disabled required>
-                                <option id='doption' value="" selected='true' selected>Seleccione un titular</option>
+                            <select name="dniCliente" id="clientes" class="form-control js-example-basic-single"  style="width: 100%" disabled >
+                                <option value="" selected='true' selected>Seleccione un titular</option>
                             @endif
                             </select>
                             @error('cliente')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
                         </div>
+                        
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">

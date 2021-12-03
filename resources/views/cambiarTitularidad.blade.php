@@ -75,7 +75,7 @@
                 <div class="p-5">
                     <form class="user" method="POST" action="/vehiculo/modificar/guardar">
                         @csrf
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <div class="col-sm-6 d-xl-flex justify-content-xl-start align-items-xl-center mb-3 mb-sm-0" style="max-width: 15%;">
                                 <p style="margin-bottom: 0;font-weight: 700;">Nuevo titular</p>
                             </div>
@@ -88,9 +88,26 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+
                         <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="col-sm-6 d-xl-flex justify-content-xl-start align-items-xl-center mb-3 mb-sm-0" style="max-width: 15%;">
+                                <p style="margin-bottom: 0;font-weight: 700;">Nuevo titular</p>
+                            </div>
+                            <div class="col-sm-6" style="max-width: 85%;width: 85%;min-width: 85%;">
+                                <div class="dropdown border-primary">
+                                    <select name="cliente" id="cliente" class="form-control js-example-basic-single" required>
+                                        <option selected value="">-</option>
+                                        @foreach ($clientes as $cliente)
+                                        <option name='{{$cliente->dni}}' value='{{$cliente->dni}}'>{{$cliente->apellido}} {{$cliente->nombre}} - {{$cliente->dni}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0"> 
                                 <button class="btn btn-primary btn-block text-white btn-user" type="button" style="background-color: rgb(223,78,104);" onclick=" window.location = '/vehiculos'">Cancelar</button>
                             </div>
                             <div class="col-sm-6">

@@ -176,7 +176,7 @@ $("#btnCancelarGenerarReparacion").click(function(){
 });
 
 function obtenerVehiculos() {
-  console.log("cambio");
+
   $('#generarReparacion').attr("disabled",true);
   $('#vehiculosListado').attr("disabled",true);
   let id=clientesListado.value;
@@ -191,12 +191,20 @@ function obtenerVehiculos() {
       success: function(result){
         loadingScreen(false);
         $('#vehiculosListado').empty();
-        result['vehiculos'].forEach(i => {
-          var txt1 = "<option name='"+i.patente+"'value'"+i.patente+"'>"+ i.patente+"</option>";    
-          $('#vehiculosListado').append(txt1);
-       });
-       $('#vehiculosListado').attr("disabled",false);
-       $('#generarReparacion').attr("disabled",false);
+     
+        if( result['vehiculos'].length === 0){
+          $('#noVehiculo').attr("hidden",false);
+        }
+        else{
+          result['vehiculos'].forEach(i => {
+            $('#noVehiculo').attr("hidden",true);
+            var txt1 = "<option name='"+i.patente+"'value'"+i.patente+"'>"+ i.patente+"</option>";    
+            $('#vehiculosListado').append(txt1);
+         });
+         $('#vehiculosListado').attr("disabled",false);
+         $('#generarReparacion').attr("disabled",false);
+        }
+ 
        loadingScreen(false);
       }
     });
@@ -644,6 +652,41 @@ $("#btnCancelarGuardarStock").click(function(){
   }, esperaCorta);
 });
 
+
+
+// SEARCH
+
+function searchCliente(input) {
+  console.log(input.value);
+
+  $.ajax({
+    url: "/clientesAjaxSearch",
+    method: 'POST',
+    data: {
+       _token: '{!! csrf_token() !!}',
+       id: id,
+    },
+    success: function(result){
+        loadingScreen(false);
+    console.log(result[0].cantidad);
+    document.getElementById("piezaPrecio").setAttribute("value", result[0].precio);
+    document.getElementById("piezaPrecio").value = result[0].precio;
+    document.getElementById("piezaCantidad").setAttribute("placeholder","max: "+result[0].cantidad);
+    document.getElementById("piezaCantidad").setAttribute("max",result[0].cantidad);
+       $('#piezaPrecio').attr("disabled",false);
+       $('#btnAgregarPieza').attr("disabled",false);
+  
+    }
+  });
+}
+
+$(document).ready(function() {
+  $('.js-example-basic-single').select2();
+});
+
+function activar() {
+  $('.js-example-basic-single').select2();
+}
 // ---- Functions ----
 
 //When switching from one page to another in the same view, hide the last one and show the current one
