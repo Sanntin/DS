@@ -82,7 +82,8 @@ class VehiculoController extends Controller
         session()->flash('idVehiculo',$id);
        $vehiculo=Vehiculo::where('id',$id)->first();
        $idCliente=$vehiculo->cliente->id;
-       $clientes = Cliente::all()->except($idCliente);
+       $clientes = Cliente::where('status',1)
+                            ->where('id', '!=' , $idCliente)->get();
         return view('cambiarTitularidad',['vehiculo'=>$vehiculo,'clientes'=>$clientes]);
     }
 

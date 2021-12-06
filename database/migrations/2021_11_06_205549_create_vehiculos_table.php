@@ -20,6 +20,7 @@ class CreateVehiculosTable extends Migration
             $table->string('dniCliente',8)->references('dni')->on('clientes')->onDelete('cascade');
             $table->foreignId('id_marca')->references('id')->on('marcas');
             $table->foreignId('id_modelo')->references('id')->on('modelos');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

@@ -22,6 +22,7 @@ class CreateClientesTable extends Migration
             $table->string('localidad');
             $table->string('direccion');
             $table->string('mail');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

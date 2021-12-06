@@ -14,7 +14,7 @@ class ClienteController extends Controller
 
     public function obtenerClientes()
     {
-        return view('clientes', ['clientes' => DB::table('clientes')->paginate(7)]);
+        return view('clientes', ['clientes' => DB::table('clientes')->where('status',1)->paginate(7)]);
     }
 
     public function getClientes()
@@ -44,19 +44,23 @@ class ClienteController extends Controller
     public function eliminarCliente(Request $request)
     {
         $cliente=Cliente::where('id',$request->idCliente)->first();
-        $vehiculos= Vehiculo ::where('dniCliente',$cliente->dni)->get();
-        $reparaciones= Reparacion ::where('dniCliente',$cliente->dni)->get();
+
+        $cliente->status=0;
+        $cliente->save();
+        // Cliente::find($request->idCliente)->update(['status' => 0]);
+        // $vehiculos= Vehiculo ::where('dniCliente',$cliente->dni)->get();
+        // $reparaciones= Reparacion ::where('dniCliente',$cliente->dni)->get();
         
-        foreach ($vehiculos as $vehiculo) {
+        // foreach ($vehiculos as $vehiculo) {
 
-            Vehiculo::destroy($vehiculo->id);
-        }
+        //     Vehiculo::destroy($vehiculo->id);
+        // }
 
-        foreach ($reparaciones as $reparacion) {
+        // foreach ($reparaciones as $reparacion) {
 
-            Reparacion::destroy($reparacion->id);
-        }
-        Cliente::destroy($request->idCliente);
+        //     Reparacion::destroy($reparacion->id);
+        // }
+        // Cliente::destroy($request->idCliente);
     }
 
     public function datosClienteElegido($id)

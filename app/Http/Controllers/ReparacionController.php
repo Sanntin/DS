@@ -19,7 +19,7 @@ class ReparacionController extends Controller
 
     public function formGenerarReparacion()
     {
-        return view('generarReparacion', ['clientes' => Cliente::all()]);
+        return view('generarReparacion', ['clientes' => Cliente::where('status',1)->get()]);
     }
 
     public function crearReparacion(Request $request)
