@@ -49,7 +49,7 @@ Route::POST('/reparaciones/cancelar', [ReparacionController::class,'cancelar'])-
 
 Route::get('/reparaciones/comprobante/{id}', [ReparacionController::class,'comprobante'])->middleware('auth');
 
-Route::get('/reporteDeReparaciones', [ReparacionController::class,'generarReporte'])->middleware('auth');
+Route::post('/reporteDeReparaciones', [ReparacionController::class,'generarReporte'])->middleware('auth');
 
 
 //Ordenes de Trabajo

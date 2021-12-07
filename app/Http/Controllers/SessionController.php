@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 class SessionController extends Controller
 {
    
@@ -21,12 +22,12 @@ class SessionController extends Controller
             'password'=>'required'
         ]);
 
-        
-        if (auth()->attempt($atributos)){
+
+        if (auth()->attempt($atributos) and User::where('nickname',request()->nickname)->first()->status){
 
             return redirect('reparaciones');
         }
-        {
+        else{
             
             return back()
             ->withInput()

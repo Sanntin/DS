@@ -3,13 +3,30 @@
 @section('content')
 <div id="modalReporteInput" class="modal">
   <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <input type="date" name="inptFechaDesde"><label for="inptFechaDesde">Fecha desde</label>
-    <input type="date" name="inptFechaHasta"><label for="inptFechaHasta">Fecha hasta</label>
-    <input type="text" name="inptEstadoReparaciones"><label for="inptFechaDesde">Estado de reparaciones</label>
-    <button id="btnAceptarGenerarReporte">Generar reporte</button>
-  </div>
+    <form action="/reporteDeReparaciones" method="POST">
+        @csrf
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <label for="inptFechaDesde">Fecha desde</label>
+            <input type="date" name="inptFechaDesde" required>
+            
+            <label for="inptFechaHasta">Fecha hasta (opcional)</label>
+            <input type="date" name="inptFechaHasta">
+
+            {{-- Deberia realizar consulta a BD para obtener los estados para que sea mejor --}}
+            <label for="inptEstado">Estado de reparaciones</label>
+            <select name="inptEstado" required>
+                <option value='' selected hidden>-</option>
+                <option value='diagnostico'>Diagnóstico</option>
+                <option value='en proceso'>En proceso</option>
+                <option value='completado'>Completado</option>
+            </select>
+
+            <br>
+            <button class="btn btn-primary btn-block text-white btn-user" type="submit">Generar Reporte</button>
+        </div>
+    </form> 
 </div>
 <h3 class="text-dark mb-4">Reparaciones</h3>
 <div class="card shadow">
@@ -28,9 +45,8 @@
                 </div>
             </div>
             <!-- Start: #generarReparacion --><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="margin-left: 10px;background-color: rgb(116,223,78);" title="Nueva reparación" href="/generarReparacion"><i class="fa fa-plus"></i></a>
-                    <!-- End: #generarReparacion -->
-                    <!-- Start: #reporteReparaciones --><button id="btnGenerarReporte" class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;" title="Generar reporte de reparaciones"><i class="fa fa-list-alt"></i></button>
-                    <!-- End: #reporteReparaciones -->
+                    <button id="btnGenerarReporte" class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;" title="Generar reporte de reparaciones"><i class="fa fa-list-alt"></i></button>
+                  
             </div>
     </div>
 </div>

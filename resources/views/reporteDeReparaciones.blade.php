@@ -13,6 +13,17 @@
     @endisset
 </div>
 <!-- Start: #reparacionesCard -->
+@if ($reparaciones==null)
+<div class="row">
+    <div class="col">
+        <div class="card shadow mb-4" style="width: 100%;max-width: 100%;min-width: 100%;">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="text-primary font-weight-bold m-0">No hay reparaciones para la fecha selecionada</h6>
+            </div>
+        </div>
+    </div>
+</div>
+@else
 <div class="row">
     <div class="col">
         <div class="card shadow mb-4" style="width: 100%;max-width: 100%;min-width: 100%;">
@@ -128,5 +139,6 @@
         </div>
     </div>
 </div>
+@endif
 <!-- End: #piezasCard -->
 @endsection
