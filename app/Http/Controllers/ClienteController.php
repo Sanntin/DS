@@ -47,20 +47,6 @@ class ClienteController extends Controller
 
         $cliente->status=0;
         $cliente->save();
-        // Cliente::find($request->idCliente)->update(['status' => 0]);
-        // $vehiculos= Vehiculo ::where('dniCliente',$cliente->dni)->get();
-        // $reparaciones= Reparacion ::where('dniCliente',$cliente->dni)->get();
-        
-        // foreach ($vehiculos as $vehiculo) {
-
-        //     Vehiculo::destroy($vehiculo->id);
-        // }
-
-        // foreach ($reparaciones as $reparacion) {
-
-        //     Reparacion::destroy($reparacion->id);
-        // }
-        // Cliente::destroy($request->idCliente);
     }
 
     public function datosClienteElegido($id)
