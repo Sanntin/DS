@@ -8,14 +8,14 @@
         <div class="modal-content">
             <span class="close">&times;</span>
 
-            <label for="inptFechaDesde">Fecha desde</label>
+            <label for="inptFechaDesde" style="margin-top: 15px;">Fecha desde</label>
             <input type="date" name="inptFechaDesde" required>
             
-            <label for="inptFechaHasta">Fecha hasta (opcional)</label>
+            <label for="inptFechaHasta" style="margin-top: 15px;">Fecha hasta (opcional)</label>
             <input type="date" name="inptFechaHasta">
 
             {{-- Deberia realizar consulta a BD para obtener los estados para que sea mejor --}}
-            <label for="inptEstado">Estado de reparaciones</label>
+            <label for="inptEstado" style="margin-top: 15px;">Estado de reparaciones</label>
             <select name="inptEstado" required>
                 <option value='' selected hidden>-</option>
                 <option value='diagnostico'>Diagnóstico</option>
@@ -24,7 +24,7 @@
             </select>
 
             <br>
-            <button class="btn btn-primary btn-block text-white btn-user" type="submit">Generar Reporte</button>
+            <button class="btn btn-primary btn-block text-white btn-user" style="margin-top: 15px;" type="submit">Generar Reporte</button>
         </div>
     </form> 
 </div>
