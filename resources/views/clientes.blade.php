@@ -2,7 +2,7 @@
 
 @section('content')
 <h3 class="text-dark mb-4">Clientes</h3>
-<div class="card shadow">
+<div class="card shadow card-grid">
     <div class="card-header d-flex justify-content-between align-items-center">
         <div class="row" style="width: 100%;">
             <div class="col d-xl-flex align-items-xl-center">
@@ -36,8 +36,8 @@
                         <tr class="t-row task task-cliente" data-id={{$cliente->id}} >
                             <td>{{$cliente->nombre}}</td>
                             <td>{{$cliente->apellido}}</td>
-                            <td>{{$cliente->dni}}</td>
-                            <td>{{$cliente->telefono}}</td>
+                            <td style="text-align: right;">{{$cliente->dni}}</td>
+                            <td style="text-align: right;">{{$cliente->telefono}}</td>
                             <td>{{$cliente->localidad}}</td>
                             <td>{{$cliente->direccion}}</td>
                             <td>{{$cliente->mail}}</td>

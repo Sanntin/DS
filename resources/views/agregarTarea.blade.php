@@ -74,8 +74,8 @@
                                                 <div class="dropdown-menu" role="menu"><a id="piezaDropdown" class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
                                             </div> --}}
                                         </th>
-                                        <th><input name='precio' id="piezaPrecio" type="number" min="1" style="width: 90px;" value="" disabled></th>
-                                        <th><input name='cantidad' id="piezaCantidad" type="number" min="1" style="width: 100px;" form></th>
+                                        <th><input name='precio' id="piezaPrecio" type="number" min="1" style="width: 90px;" value="" disabled style="text-align: right;"></th>
+                                        <th><input name='cantidad' id="piezaCantidad" type="number" min="1" style="width: 100px;" form style="text-align: right;"></th>
                                         <th>
                                             <button id="btnAgregarPieza" class="btn btn-primary" role="button" type="button" data-toggle="tooltip" data-bs-tooltip="" style="margin-left: 10px;background-color: rgb(116,223,78);" title="Agregar pieza"><i class="fa fa-plus"></i></button>
                                         </th>

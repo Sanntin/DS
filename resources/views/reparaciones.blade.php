@@ -29,7 +29,7 @@
     </form> 
 </div>
 <h3 class="text-dark mb-4">Reparaciones</h3>
-<div class="card shadow">
+<div class="card shadow card-grid">
 <div class="card-header d-flex justify-content-between align-items-center">
     <div class="row" style="width: 100%;">
         <div class="col d-xl-flex align-items-xl-center">
@@ -71,7 +71,7 @@
                     <td>{{$reparacion->cliente->apellido}} {{$reparacion->cliente->nombre}}</td>
                     <td>{{date('d/m/y', strtotime($reparacion->fechaDeEntrada))}}</td>
                     <td>{{ucfirst($reparacion->estado)}}</td>
-                    <td>{{$reparacion->kilometraje}}</td>
+                    <td style="text-align: right;">{{$reparacion->kilometraje}}</td>
                     <td>@isset($reparacion->fechaDeSalida){{date('d/m/y', strtotime($reparacion->fechaDeSalida))}}@else-@endisset</td>
                     <td>{{$reparacion->motivo}}</td>
                 </tr>
