@@ -151,7 +151,14 @@
                     <div class="row" style="margin-top: 15px;">
                         <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
                             <button id="btnAgregarTarea" class="btn btn-primary d-flex justify-content-center align-self-center" role="button" data-toggle="tooltip" data-bs-tooltip="" style="width: 140px;" title="Agregar nueva tarea para esta orden de trabajo" onclick="agregarTarea()">Agregar Tarea</button>
+                            <p id='errorFaltaTarea' hidden>Agregar al menos 1 tarea</p>
                         </div>
+
+                        
+                        {{-- <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
+                          
+                        </div> --}}
+
                     </div>
                 </article>
                 <!-- End: #tareas -->
@@ -167,10 +174,6 @@
                     </div>
 
                     <div class="row">
-
-                        <div class="col d-flex justify-content-center align-items-center">
-                            <p id='errorFaltaTarea' hidden>Agregar al menos 1 tarea</p>
-                        </div>
 
                         <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center">
                         </div>
