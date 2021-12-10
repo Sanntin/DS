@@ -177,7 +177,7 @@
                                                 @endisset
                                             </td>
                                             <td>{{ucfirst($tarea->estado)}}</td>
-                                            <td>{{$tarea->precio}}</td>
+                                            <td style="text-align: right;">{{$tarea->precio}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -217,7 +217,7 @@
                                                 <div class="row" style="margin-left: 0;margin-right: 0;">
                                                     <div class="col" style="padding-left: 0;padding-right: 0;">
                                                         @foreach ($tarea->pieza as $pieza)
-                                                        <p style="margin-bottom: 0;">{{$pieza->pivot->cantidad}}</p>
+                                                        <p style="margin-bottom: 0; text-align: right;">{{$pieza->pivot->cantidad}}</p>
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -226,7 +226,7 @@
                                                 <div class="row" style="margin-left: 0;margin-right: 0;">
                                                     <div class="col" style="padding-left: 0;padding-right: 0;">
                                                         @foreach ($tarea->pieza as $pieza)
-                                                        <p style="margin-bottom: 0;">{{$pieza->pivot->precio}}</p>
+                                                        <p style="margin-bottom: 0; text-align: right;">{{$pieza->pivot->precio}}</p>
                                                         @endforeach
                                                     </div>
                                                 </div>

@@ -5,7 +5,7 @@
     <div id="content">
         <div class="container-fluid" style="padding-top: 18px;">
             <h3 class="text-dark mb-4">Usuario</h3>
-            <div class="card shadow">
+            <div class="card shadow card-grid">
                 <div class="card-body d-xl-flex justify-content-xl-center">
                     <div class="col-lg-7">
                         <div class="p-5">

@@ -5,7 +5,7 @@
     <h3 class="text-dark mb-4">Vehículos</h3>
 
 
-    <div class="card shadow">
+    <div class="card shadow card-grid">
         <div class="card-header d-flex justify-content-between align-items-center">
             <div class="row" style="width: 100%;">
                 <div class="col d-xl-flex align-items-xl-center">
@@ -34,7 +34,7 @@
                         <tr class="t-row task task-vehicle"  data-id={{$vehiculo->id}}>
                             <td>{{$vehiculo->patente}}</td>
                             <td>{{$vehiculo->cliente->nombre}} {{$vehiculo->cliente->apellido}}</td>
-                            <td>{{$vehiculo->año}}</td>
+                            <td style="text-align: right;">{{$vehiculo->año}}</td>
                             <td>{{$vehiculo->marca->nombre}}</td>
                             <td>{{$vehiculo->modelo->nombre}}</td>
                         </tr>

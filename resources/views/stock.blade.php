@@ -30,9 +30,9 @@
                     <td>{{$pieza->nombre}}</td>
                     <td>{{$pieza->fabricante->nombre}}</td>
                     <td>{{$pieza->modelo}}</td>
-                    <td>{{$pieza->precio}}</td>
-                    <td>{{$pieza->cantidad}}</td>
-                    <td>{{$pieza->id}}</td>
+                    <td style="text-align: right;">{{$pieza->precio}}</td>
+                    <td style="text-align: right;">{{$pieza->cantidad}}</td>
+                    <td style="text-align: right;">{{$pieza->id}}</td>
                 </tr>
                 @endforeach
             </tbody>
