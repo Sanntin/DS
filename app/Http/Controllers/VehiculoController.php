@@ -13,8 +13,54 @@ class VehiculoController extends Controller
 {
     public function obtenerVehiculo()
     {
-        return view('vehiculos', ['vehiculos' => Vehiculo::paginate(7)]);
+
+        $repporpagina=9;
+        if(session()->has('campoV') ){
+            $searchTerm=session()->get('campoV');
+
+
+            
+            $dniCliente = Cliente::where('nombre', 'LIKE',"%$searchTerm%")
+            ->orWhere('apellido', 'LIKE', "%{$searchTerm}%")->get('dni');
+            
+            $dnis=[];
+            foreach ($dniCliente->toArray() as $key => $value) {
+               array_push($dnis,$value['dni']);
+            }
+
+            $id_marcas=Marca::where('nombre', 'LIKE',"%$searchTerm%")->get('id');
+
+            $marcas=[];
+            foreach ($id_marcas->toArray() as $key => $value) {
+               array_push($marcas,$value['id']);
+            }
+
+        
+            $id_modelos=Modelo::where('nombre', 'LIKE',"%$searchTerm%")->get('id');
+
+            $modelos=[];
+            foreach ($id_modelos->toArray() as $key => $value) {
+               array_push($modelos,$value['id']);
+            }
+
+            $vehiculos=Vehiculo::where('patente', 'LIKE',"%$searchTerm%")
+            ->orWhere('año', 'LIKE', "%{$searchTerm}%") 
+            ->orWhereIn('dniCliente',$dnis) 
+            ->orWhereIn('id_modelo',$modelos) 
+            ->orWhereIn('id_marca',$marcas) 
+            ->paginate($repporpagina);
+
+
+            session()->flash('campoV', $searchTerm);
+          
+
+            return view('vehiculos', ['vehiculos' =>$vehiculos]);
+        }
+        else{
+            return view('vehiculos', ['vehiculos' => Vehiculo::paginate($repporpagina)]);
+        }
     }
+
 
     public function datosAgregarVehiculo(Request $request){
      
@@ -101,5 +147,17 @@ class VehiculoController extends Controller
         return back()->with('errorId','Hubo un error por favor reintente');
         }
 
+
+        public function filtrar(Request $request)
+        {
+    
+            $searchTerm=$request->get('campo');
+     
+            
+    
+            return redirect('vehiculos')->with('campoV', $searchTerm);
+          
+        
+        }
     
 }

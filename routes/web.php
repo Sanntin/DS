@@ -92,6 +92,7 @@ Route::post('/vehiculo/modificar/guardar', [VehiculoController::class,'cambiarTi
 Route::get('/vehiculos/agregar', [VehiculoController::class,'datosAgregarVehiculo'])->middleware('auth');
 Route::post('/vehiculos/agregarVehiculo', [VehiculoController::class,'agregarVehiculo'])->middleware('auth');
 
+Route::post('/vehiculos/filtrar', [VehiculoController::class,'filtrar'])->middleware('auth');
 
 
 
