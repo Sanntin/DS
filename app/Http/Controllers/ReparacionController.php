@@ -22,14 +22,18 @@ class ReparacionController extends Controller
             $dniCliente = Cliente::where('nombre', 'LIKE',"%$searchTerm%")
             ->orWhere('apellido', 'LIKE', "%{$searchTerm}%")->get('dni');
             
-       
+            $dnis=[];
+            foreach ($dniCliente->toArray() as $key => $value) {
+               array_push($dnis,$value['dni']);
+            }
+
 
             $reparaciones=Reparacion::where('fechaDeEntrada', 'LIKE',"%$searchTerm%")
             ->orWhere('motivo', 'LIKE', "%{$searchTerm}%") 
             ->orWhere('kilometraje', 'LIKE', "%{$searchTerm}%") 
             ->orWhere('fechaDeSalida', 'LIKE', "%{$searchTerm}%") 
             ->orWhere('estado', 'LIKE', "%{$searchTerm}%") 
-            ->orWhere('dniCliente', 'LIKE', "%{$searchTerm}%") 
+            ->orWhereIn('dniCliente',$dnis) 
             ->orWhere('patente', 'LIKE', "%{$searchTerm}%") 
             ->latest('fechaDeEntrada')->paginate($repporpagina);
 
