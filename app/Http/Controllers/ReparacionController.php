@@ -14,7 +14,33 @@ class ReparacionController extends Controller
 {
     public function obtenerReparaciones()
     {
-        return view('reparaciones', ['reparaciones' => Reparacion::latest('fechaDeEntrada')->paginate(7)]);
+
+        $repporpagina=9;
+        if(session()->has('campo') ){
+            $searchTerm=session()->get('campo');
+
+            $dniCliente = Cliente::where('nombre', 'LIKE',"%$searchTerm%")
+            ->orWhere('apellido', 'LIKE', "%{$searchTerm}%")->get('dni');
+            
+       
+
+            $reparaciones=Reparacion::where('fechaDeEntrada', 'LIKE',"%$searchTerm%")
+            ->orWhere('motivo', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('kilometraje', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('fechaDeSalida', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('estado', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('dniCliente', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('patente', 'LIKE', "%{$searchTerm}%") 
+            ->latest('fechaDeEntrada')->paginate($repporpagina);
+
+            session()->flash('campo', $searchTerm);
+          
+
+            return view('reparaciones', ['reparaciones' =>$reparaciones]);
+        }
+        else{
+            return view('reparaciones', ['reparaciones' => Reparacion::latest('fechaDeEntrada')->paginate($repporpagina)]);
+        }
     }
 
     public function formGenerarReparacion()
@@ -185,5 +211,23 @@ class ReparacionController extends Controller
     
             ]);
         }
+    }
+
+    public function filtrar(Request $request)
+    {
+
+        $searchTerm=$request->get('campo');
+ 
+        
+        // $reparaciones=Reparacion::where('fechaDeEntrada', 'LIKE', "%{$searchTerm}%")->get();
+        // $reparaciones=Reparacion::where('patente', 'LIKE',"%$searchTerm%")->latest('fechaDeEntrada')->paginate(2);
+
+
+        // dd($reparaciones);
+        // ->orWhere('motivo', 'LIKE', "%{$searchTerm}%") 
+
+        return redirect('reparaciones')->with('campo', $searchTerm);
+      
+    
     }
 }

@@ -36,13 +36,16 @@
             <h6 class="text-primary font-weight-bold m-0">Reparaciones</h6>
         </div>
         <div class="col d-xl-flex justify-content-xl-end">
+            <form method="POST" action="/reparaciones/filtrar">
+                @csrf
             <div class="input-group search-box">
-                <input class="bg-light form-control border-0 small" type="text" placeholder="Buscar ...">
+                <input name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campo')}}>
                 <div class="input-group-append">
-                    <button class="btn btn-primary py-0" type="button">
+                    <button id="btnBuscarReparacion" class="btn btn-primary py-0" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
+            </form>
             </div>
             <!-- Start: #generarReparacion --><a class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="margin-left: 10px;background-color: rgb(116,223,78);" title="Nueva reparación" href="/generarReparacion"><i class="fa fa-plus"></i></a>
                     <button id="btnGenerarReporte" class="btn btn-primary" data-toggle="tooltip" data-bs-tooltip="" type="button" style="margin-left: 10px;" title="Generar reporte de reparaciones"><i class="fa fa-list-alt"></i></button>

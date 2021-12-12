@@ -51,6 +51,8 @@ Route::get('/reparaciones/comprobante/{id}', [ReparacionController::class,'compr
 
 Route::post('/reporteDeReparaciones', [ReparacionController::class,'generarReporte'])->middleware('auth');
 
+Route::post('/reparaciones/filtrar', [ReparacionController::class,'filtrar'])->middleware('auth');
+
 
 //Ordenes de Trabajo
 
