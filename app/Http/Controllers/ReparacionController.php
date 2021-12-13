@@ -9,6 +9,7 @@ use App\Models\Tarea_Pieza;
 use App\Models\Tarea;
 use App\Models\Accion;
 use App\Models\Pieza;
+use PDF;
 
 class ReparacionController extends Controller
 {
@@ -95,16 +96,21 @@ class ReparacionController extends Controller
         }
 
      
-        return view('comprobante', ['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
+        // return view('comprobante', ['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
+        
+        // $pdf = PDF::loadView('comprobante', compact('reparacion','tareas','totalHoras','totalprecio'));
+        // $pdf = \PDF::loadView('pdf',['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
 
-        $data = [
-            'title' => 'Welcome to ItSolutionStuff.com',
-            'date' => date('m/d/Y')
-                ];
+        $pdf = PDF::loadView('pdf',['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
+        return $pdf->download('pdfview.pdf');
+        // $data = [
+        //     'title' => 'Welcome to ItSolutionStuff.com',
+        //     'date' => date('m/d/Y')
+        //         ];
                 
-        $pdf = PDF::loadView('myPDF', $data);
-        $pdf = PDF::loadView('myPDF', $data);
-        return $pdf->download('itsolutionstuff.pdf');
+        // $pdf = PDF::loadView('myPDF', $data);
+        // $pdf = PDF::loadView('myPDF', $data);
+        // return $pdf->download('itsolutionstuff.pdf');
     
     }
 
