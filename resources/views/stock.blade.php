@@ -8,9 +8,28 @@
         <div class="col d-xl-flex align-items-xl-center">
             <h6 class="text-primary font-weight-bold m-0">Stock</h6>
         </div>
+        <div class="col d-xl-flex justify-content-xl-end">
+            <form method="POST" action="/stock/filtrar">
+                @csrf
+             <div class="input-group search-box">
+                <input name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campoS')}}>
+                <div class="input-group-append">
+                    <button id="btnBuscarVehiculo" class="btn btn-primary py-0" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
     </div>
 </div>
+
 <div class="card-body">
+    @if (sizeof($piezas)<1)
+    <div class="text-center my-auto copyright">No se ha encontrado piezas con los parámetros de búsqueda ingresados.</div>
+    @else
+
+
     <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
         <table class="table my-0" id="dataTable">
             <thead>
@@ -44,7 +63,8 @@
         <div class="col-12 d-flex justify-content-center pt-2">
             {{$piezas->links()}}
         </div>
-    </div>         
+    </div>     
+    @endif    
 </div>
 </div>
 @endsection

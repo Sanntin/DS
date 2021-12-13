@@ -9,6 +9,17 @@
                 <h6 class="text-primary font-weight-bold m-0">Clientes</h6>
             </div>
             <div class="col d-xl-flex justify-content-xl-end">
+                <form method="POST" action="/clientes/filtrar">
+                    @csrf
+                 <div class="input-group search-box">
+                    <input name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campoC')}}>
+                    <div class="input-group-append">
+                        <button id="btnBuscarVehiculo" class="btn btn-primary py-0" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                </div>
                 <button id="btnAgregarCliente" class="btn btn-primary" role="button" data-toggle="tooltip" data-bs-tooltip="" style="margin-left: 10px;background-color: rgb(116,223,78);" title="Nuevo cliente"><i class="fa fa-plus"></i></button>
             </div>
         </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use App\Models\Pieza;
+use App\Models\Fabricante;
 use App\Mail\TestMail;
 
 
@@ -13,7 +14,46 @@ class PiezaController extends Controller
 {
     public function obtenerPiezas()
     {
-        return view('stock', ['piezas' => Pieza::paginate(7)]);
+
+        $repporpagina=9;
+        if(session()->has('campoS') ){
+            $searchTerm=session()->get('campoS');
+
+
+            if(is_numeric($searchTerm)){
+                $piezas=Pieza::where('cantidad',$searchTerm)
+                ->orWhere('precio',$searchTerm) 
+                ->paginate($repporpagina);
+
+
+                session()->flash('campoS', $searchTerm);
+            
+                return view('stock', ['piezas' => $piezas]);
+            }
+            else{
+                $idFabricante = Fabricante::where('nombre', 'LIKE',"%$searchTerm%")->get('id');
+                
+                $fabricantes=[];
+                foreach ($idFabricante->toArray() as $key => $value) {
+                array_push($fabricantes,$value['id']);
+                }
+                $piezas=Pieza::where('nombre', 'LIKE',"%$searchTerm%")
+                ->orWhere('modelo', 'LIKE', "%{$searchTerm}%") 
+                ->orWhereIn('id_fabricante',$fabricantes) 
+                ->paginate($repporpagina);
+
+
+                session()->flash('campoS', $searchTerm);
+            
+                return view('stock', ['piezas' => $piezas]);
+            }
+
+        }
+        else{
+            return view('stock', ['piezas' => Pieza::paginate($repporpagina)]);
+    
+        }
+     
     }
 
     public function precioPieza(Request $request)
@@ -83,5 +123,15 @@ class PiezaController extends Controller
     
         }
         return back()->with('errorId','Hubo un error por favor reintente');
+    }
+
+    public function filtrar(Request $request)
+    {
+
+        $searchTerm=$request->get('campo');
+ 
+        return redirect('stock')->with('campoS', $searchTerm);
+      
+    
     }
 }

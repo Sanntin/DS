@@ -13,9 +13,7 @@
                 </div>
 
      
-                <div class="col d-xl-flex justify-content-xl-end">
-
-                             
+                <div class="col d-xl-flex justify-content-xl-end">          
                     <form method="POST" action="/vehiculos/filtrar">
                         @csrf
                      <div class="input-group search-box">

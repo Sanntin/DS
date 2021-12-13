@@ -14,7 +14,32 @@ class ClienteController extends Controller
 
     public function obtenerClientes()
     {
-        return view('clientes', ['clientes' => DB::table('clientes')->where('status',1)->paginate(7)]);
+
+        $repporpagina=9;
+        if(session()->has('campoC') ){
+            $searchTerm=session()->get('campoC');
+
+
+            $clientes=Cliente::where('dni', 'LIKE',"%$searchTerm%")
+            ->orWhere('nombre', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('apellido', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('telefono', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('localidad', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('direccion', 'LIKE', "%{$searchTerm}%") 
+            ->orWhere('mail', 'LIKE', "%{$searchTerm}%") 
+            ->where('status',1) 
+            ->paginate($repporpagina);
+
+
+            session()->flash('campoC', $searchTerm);
+          
+
+            return view('clientes', ['clientes' =>$clientes]);
+        }
+        else{
+            return view('clientes', ['clientes' => DB::table('clientes')->where('status',1)->paginate($repporpagina)]);
+        }
+
     }
 
     public function getClientes()
@@ -85,5 +110,14 @@ class ClienteController extends Controller
         return back()->with('errorId','Hubo un error por favor reintente');
         }
 
+        public function filtrar(Request $request)
+        {
+    
+            $searchTerm=$request->get('campo');
+     
+            return redirect('clientes')->with('campoC', $searchTerm);
+          
+        
+        }
 
 }
