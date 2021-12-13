@@ -32,6 +32,10 @@
             </div>
         </div>
         <div class="card-body">
+            @if (sizeof($vehiculos)<1)
+            <div class="text-center my-auto copyright">No se ha encontrado vehículos con los parámetros de búsqueda ingresados.</div>
+            @else
+        
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                 <table class="table my-0" id="dataTable">
                     <thead>
@@ -65,7 +69,9 @@
                     @endisset
                 </div>
             </div>   
+            @endif
         </div>
+
     </div>
 </div>
 

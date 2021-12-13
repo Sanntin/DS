@@ -85,6 +85,10 @@ Route::post('/realizarPedido/enviar', [PiezaController::class,'enviarPedido'])->
 Route::get('/cargarStock/{id}', [PiezaController::class,'cargarStockForm'])->middleware('auth');
 Route::post('/cargarStock/guardar', [PiezaController::class,'guardarStock'])->middleware('auth');
 
+
+Route::post('/stock/filtrar', [PiezaController::class,'filtrar'])->middleware('auth');
+
+
 //Vehiculi
 Route::get('/vehiculos', [VehiculoController::class,'obtenerVehiculo'])->middleware('auth');
 Route::get('/vehiculo/modificar/{id}', [VehiculoController::class,'cambiarTitularidadForm'])->middleware('auth');
@@ -105,7 +109,7 @@ Route::post('/cliente/cancelar', [ClienteController::class,'eliminarCliente'])->
 Route::get('/cliente/modificar/{id}', [ClienteController::class,'datosClienteElegido'])->middleware('auth');
 Route::post('/cliente/modificar/guardar', [ClienteController::class,'modificarCliente'])->middleware('auth');
 
-
+Route::post('/clientes/filtrar', [ClienteController::class,'filtrar'])->middleware('auth');
 
 Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');
 Route::get('/clientesAjax', [ClienteController::class,'getClientes'])->middleware('auth');

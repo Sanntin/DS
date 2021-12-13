@@ -54,6 +54,9 @@
     </div>
 </div>
 <div class="card-body">
+    @if (sizeof($reparaciones)<1)
+    <div class="text-center my-auto copyright">No se ha encontrado reparaciones con los parámetros de búsqueda ingresados.</div>
+    @else
     <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
         <table class="table my-0" id="dataTable">
             <thead>
@@ -88,6 +91,8 @@
             {{$reparaciones->links()}}
         </div>
     </div>    
+
+    @endif
         
 </div>
 @endsection
