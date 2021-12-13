@@ -15,15 +15,14 @@ class SessionController extends Controller
        return redirect('/login')->with('mensajeUsuario','Sesión cerrada exitosamente');
     }
 
-    public function login()
+    public function login(Request $request)
     {
        $atributos = request()->validate([
             'nickname'=>'required',
             'password'=>'required'
         ]);
 
-
-        if (auth()->attempt($atributos) and User::where('nickname',request()->nickname)->first()->status){
+        if (Auth::attempt(['nickname' => $request->nickname, 'password' => $request->password]) and User::where('nickname',request()->nickname)->first()->status){
 
             return redirect('reparaciones');
         }
