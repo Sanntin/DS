@@ -112,43 +112,42 @@ class ReparacionController extends Controller
     {
 
 
-        $fechaEntrada=$request->get('inptFechaDesde');
+        $fechaDesde=$request->get('inptFechaDesde');
        
-        $fechaSalida=$request->get('inptFechaHasta');;
+        $fechaHasta=$request->get('inptFechaHasta');;
         $estado=$request->get('inptEstado');
         
 
-        if ($fechaSalida==null) {
+        if ($fechaHasta==null) {
             $reparaciones= Reparacion::where([
-                ['fechaDeEntrada','>=',$fechaEntrada],
+                ['fechaDeEntrada','>=',$fechaDesde],
                 ['estado','=', $estado]
             ])->get();
         }
         else{
 
             $reparaciones= Reparacion::where([
-                ['fechaDeEntrada','>=',$fechaEntrada],
-                ['fechaDeSalida','<=',$fechaSalida],
+                ['fechaDeEntrada','>=',$fechaDesde],
+                ['fechaDeEntrada','<=',$fechaHasta],
                 ['estado','=', $estado]
             ])->get();
     
         }
 
-
-       
+    
+      
        if(sizeof($reparaciones)>0)
        {
             $tareasArray=[];
             $id_accionesArray=[];
             foreach ($reparaciones as $reparacion) {
                 $ordenesTrabajo=$reparacion->ordenesTrabajo;
-
                 foreach ($ordenesTrabajo as $orden) {
                     $tareas=$orden->tareas;
                     
                     foreach ($tareas as $tarea) {
                         $tareasArray[$tarea->id]=$tarea;
-
+                       
                         if (array_key_exists($tarea->id_accion, $id_accionesArray)) {
                             $id_accionesArray[$tarea->id_accion]=$id_accionesArray[$tarea->id_accion]+1;
                         }
@@ -164,10 +163,6 @@ class ReparacionController extends Controller
     
             $idsTarea=array_keys($tareasArray);
         
-            // $piezas=Tarea_Pieza::all()->
-            // groupBy('id_pieza')->map(function ($row) {
-            //     return $row->sum('cantidad');
-            // });
 
             $piezas=Tarea_Pieza::whereIn('id_tarea',$idsTarea)
             ->groupBy('id_pieza')
@@ -187,19 +182,22 @@ class ReparacionController extends Controller
             }
             
         
-
+         
             foreach ($id_accionesArray as $id => $cantidad) {
                 $nombreAccion= Accion::where('id',$id)->get('nombre')->first();
                 $acciones[$nombreAccion->nombre]=$cantidad;
             }
 
+            if($acciones==null){
+                $acciones=[];
+            }
 
             return view('reporteDeReparaciones', [
                 'reparaciones' => $reparaciones, 
                 'acciones'=>$acciones,
                 'piezas'=>$piezasArray,
-                'fechaEntrada'=>$fechaEntrada,
-                'fechaSalida'=>$fechaSalida,
+                'fechaDesde'=>$fechaDesde,
+                'fechaHasta'=>$fechaHasta,
                 'estado'=>$estado,
 
             ]);
@@ -209,8 +207,8 @@ class ReparacionController extends Controller
                 'reparaciones' => null, 
                 'acciones'=>null,
                 'piezas'=>null,
-                'fechaEntrada'=>$fechaEntrada,
-                'fechaSalida'=>$fechaSalida,
+                'fechaDesde'=>$fechaDesde,
+                'fechaHasta'=>$fechaHasta,
                 'estado'=>$estado,
     
             ]);

@@ -79,7 +79,7 @@
                         </div>
                         <div id="tasks-vehicles">
                             <li class="context-menu__item item-vehicle">
-                                <a id="btnCambiarTitularidadVehiculo" class="context-menu__link" data-action="Edit"><i class="fa fa-refresh"></i> Cambiar titularidad de vehículo</a>
+                                <a id="btnCambiarTitularidadVehiculo"  href="#" class="context-menu__link" data-action="Edit"><i class="fa fa-refresh"></i> Cambiar titularidad de vehículo</a>
                             </li>
                         </div>
                         <div id="tasks-clientes">

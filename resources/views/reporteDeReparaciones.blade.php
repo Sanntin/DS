@@ -6,9 +6,9 @@
 </div>
 <div class="d-sm-flex justify-content-between align-items-center mb-4" style="margin-bottom: 0px;">
     @isset($record)
-    <h6 class="text-dark mb-0">Datos correspondiente a reparaciones en estado {{$estado}} cargadas entre {{date('d/m/y', strtotime($fechaEntrada))}} a {{date('d/m/y', strtotime($fechaSalida))}}</h6>
+    <h6 class="text-dark mb-0">Datos correspondiente a reparaciones en estado {{$estado}} cargadas entre {{date('d/m/y', strtotime($fechaDesde))}} a {{date('d/m/y', strtotime($fechaHasta))}}</h6>
     @else
-    <h6 class="text-dark mb-0">Datos correspondiente a reparaciones en estado {{$estado}} cargadas desde {{date('d/m/y', strtotime($fechaEntrada))}} </h6>
+    <h6 class="text-dark mb-0">Datos correspondiente a reparaciones en estado {{$estado}} cargadas desde {{date('d/m/y', strtotime($fechaDesde))}} </h6>
 
     @endisset
 </div>
