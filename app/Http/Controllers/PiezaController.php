@@ -15,7 +15,7 @@ class PiezaController extends Controller
     public function obtenerPiezas()
     {
 
-        $repporpagina=9;
+        $repporpagina=11;
         if(session()->has('campoS') ){
             $searchTerm=session()->get('campoS');
 
