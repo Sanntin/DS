@@ -9,6 +9,7 @@ use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\TareaController;
+use App\Http\Controllers\PDFController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -114,4 +115,7 @@ Route::post('/clientes/filtrar', [ClienteController::class,'filtrar'])->middlewa
 Route::get('/clientes', [ClienteController::class,'obtenerClientes'])->middleware('auth');
 Route::get('/clientesAjax', [ClienteController::class,'getClientes'])->middleware('auth');
 
-
+Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
+Route::get('/prueba', function () {
+    return view('pruebapdf');
+});

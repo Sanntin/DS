@@ -1,7 +1,18 @@
-@extends('layouts.appComprobante')
-
-@section('content')     
-<h1 style="text-align:center;">INFOMEC</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tabla-detalle p{
+            margin: 0;
+        }
+    </style>
+</head>
+<body id="page-top">     
+    <h1 style="text-align:center;">INFOMEC</h1>
     <h3 class="text-center text-dark mb-1" style="text-align: center;padding-top: 20px;background-color: #ffffff;">COMPROBANTE DE REPARACIÓN</h3>
 
     <table id="encabezado">
@@ -18,19 +29,19 @@
                     <tbody>
                         <tr>
                             <td>Nombre</td>
-                            <td>{{$reparacion[0]->cliente->nombre}}</td>
+                            <td>Elon</td>
                         </tr>
                         <tr>
                             <td>Apellido</td>
-                            <td>{{$reparacion[0]->cliente->apellido}} </td>
+                            <td>Musk </td>
                         </tr>
                         <tr>
                             <td>DNI</td>
-                            <td>{{$reparacion[0]->cliente->dni}}</td>
+                            <td>34518745</td>
                         </tr>
                         <tr>
                             <td>Patente</td>
-                            <td>{{$reparacion[0]->patente}}</td>
+                            <td>DSW324</td>
                         </tr>
                     </tbody>
                 </table>
@@ -47,11 +58,11 @@
                     <tbody>
                         <tr style="padding-left: 10px;">
                             <td>De entrada</td>
-                            <td>{{date('d/m/y', strtotime($reparacion[0]->fechaDeEntrada))}}</td>
+                            <td>26/11/21</td>
                         </tr>
                         <tr style="padding-left: 10px;">
                             <td>De salida</td>
-                            <td>{{date('d/m/y', strtotime($reparacion[0]->fechaDeSalida))}}</td>
+                            <td>26/11/21</td>
                         </tr>
                         <tr style="padding-left: 10px;"><td style="color:white;">empty</td></tr>
                         <tr style="padding-left: 10px;"><td style="color:white;">empty</td></tr>
@@ -65,12 +76,11 @@
     <h4 class="text-center" style="padding-top: 30px;">DETALLE</h4>
     
     <!-- Detalle -->
-    @foreach ($tareas as $tarea)
     <table class="tabla-detalle">
         <thead style="text-align: left;">
             <tr>
                 <th>
-                    Tarea {{$loop->index+1}}
+                    Tarea 1
                 </th>
                 <th style="padding-left: 20px;">
                     Acción
@@ -84,26 +94,25 @@
             </tr>
         </thead>
         <tbody>
-        
             <tr>
                 <!-- Tarea DEJAR VACÍO -->
-                <td></td>
+                <td>
+                    
+                </td>
                 <!-- Acción -->
                 <td style="padding-left: 20px;">
-                    <p>{{$tarea->accion->nombre}} (${{$tarea->accion->precio}})</p>
+                    <p>Cambio de cubierta ($500)</p>
                 </td>
                 <!-- Piezas -->
                 <td style="padding-left: 20px;text-align:right;">
-                    <!-- ACÁ PONER LA PRIMER PIEZA DEL LISTADO -->
                     <p>Cubierta C90 x1($2000)</p>
                 </td>
                 <!-- Subtotal -->
                 <td style="padding-left: 20px;text-align:right;">
-                    <p style="font-weight: 400;">${{$tarea->precio}}</p>
+                    <p style="font-weight: 400;">$2500</p>
                 </td>
             </tr>
             <!-- AGREGAR ESTO CADA VEZ QUE SE NECESITE OTRA PIEZA -->
-            @foreach ($tarea->pieza as $pieza)
             <tr>
                 <!-- DEJAR VACÍO -->
                 <td></td>
@@ -111,17 +120,14 @@
                 <td></td>
                 <!-- Pieza -->
                 <td>
-                    <p>{{$pieza->nombre.' '.$pieza->modelo.' x'.$pieza->pivot->cantidad. "($".$pieza->pivot->precio.")"}}</p>
+
                 </td>
                 <!-- DEJAR VACÍO -->
                 <td></td>
             </tr>
-            @endforeach
         </tbody>
     </table>
-    @endforeach
 
-    <!-- Total -->
     <hr>
     <table style="margin-top: 40px;">
         <thead>
@@ -133,12 +139,13 @@
         <tbody>
             <tr>
                 <td>
-                    <p>${{$totalprecio}}</p>
+                    <p>$2500</p>
                 </td>
                 <td style="padding-left: 20px;">
-                    <p>{{$totalHoras}}H</p>
+                    <p>1H</p>
                 </td>
             </tr>
         </tbody>
     </table>
-@endsection
+</body>
+</html>

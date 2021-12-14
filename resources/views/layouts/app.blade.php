@@ -102,7 +102,7 @@
                 </nav>
                 <footer class="sticky-footer">
                     <div class="container my-auto footer-layout">
-                        <div class="text-center my-auto copyright"><span class="copyright">Copyright © InfoMec 2021</span></div>
+                        <div class="text-center my-auto copyright"><span class="copyright">Copyright © InfoMec 2021 - Santiago Nuñez y Ezequiel Silvestre</span></div>
                     </div>
                 </footer>
             </div>     
