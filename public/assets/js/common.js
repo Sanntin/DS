@@ -263,7 +263,10 @@ $("#btnCancelarReparacion").click(function(){
 });
 
 $("#btnGenerarComprobante").click(function(){
-  // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
+
+
+
+
   loadingScreen(true);  
   setTimeout(() => {
       window.location = "/reparaciones/comprobante/"+ $("#btnGenerarComprobante").attr("value");
@@ -297,9 +300,9 @@ $("#btnGenerarReporte").click(async function(){
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
+// span.onclick = function() {
+//   modal.style.display = "none";
+// }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -640,13 +643,18 @@ $("#btnCancelarModificarCliente").click(function(){
 
 //Stock piezas
 $("#btnCargarStock").click(function(){
+  console.log("Aprete");
   loadingScreen(true);  
-  // revisar... esto esta para que corra primero la funcion de contextemenu y le ponga en el value el id de la reparacion.. habria que hacerlo antes
     setTimeout(() => {
         window.location = "/cargarStock/"+ $("#btnCargarStock").attr("value");
-      }, 1);
+      }, 5);
       loadingScreen(false);  
 });
+
+$("#btnPrueba").click(function(){
+  console.log("Aprete");
+});
+
 
 $("#btnRealizarPedido").click(function(){
   loadingScreen(true);  
