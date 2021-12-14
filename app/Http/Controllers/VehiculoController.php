@@ -14,7 +14,7 @@ class VehiculoController extends Controller
     public function obtenerVehiculo()
     {
 
-        $repporpagina=9;
+        $repporpagina=11;
         if(session()->has('campoV') ){
             $searchTerm=session()->get('campoV');
 

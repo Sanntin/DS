@@ -15,7 +15,7 @@ class ClienteController extends Controller
     public function obtenerClientes()
     {
 
-        $repporpagina=9;
+        $repporpagina=11;
         if(session()->has('campoC') ){
             $searchTerm=session()->get('campoC');
 

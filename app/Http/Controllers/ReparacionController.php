@@ -16,7 +16,7 @@ class ReparacionController extends Controller
     public function obtenerReparaciones()
     {
 
-        $repporpagina=9;
+        $repporpagina=11;
         if(session()->has('campo') ){
             $searchTerm=session()->get('campo');
 
@@ -96,7 +96,7 @@ class ReparacionController extends Controller
         }
 
      
-        // return view('comprobante', ['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
+        return view('pdf', ['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
         
         // $pdf = PDF::loadView('comprobante', compact('reparacion','tareas','totalHoras','totalprecio'));
         // $pdf = \PDF::loadView('pdf',['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
