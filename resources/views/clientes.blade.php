@@ -12,7 +12,7 @@
                 <form method="POST" action="/clientes/filtrar">
                     @csrf
                  <div class="input-group search-box">
-                    <input name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campoC')}}>
+                    <input id="searchBarClientes" name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campoC')}}>
                     <div class="input-group-append">
                         <button id="btnBuscarVehiculo" class="btn btn-primary py-0" type="submit">
                             <i class="fas fa-search"></i>
@@ -49,13 +49,13 @@
                     <script src="/assets/js/common.js"></script>
                     @foreach ($clientes as $cliente)
                         <tr class="t-row task task-cliente" data-id={{$cliente->id}} >
-                            <td>{{$cliente->nombre}}</td>
-                            <td>{{$cliente->apellido}}</td>
-                            <td style="text-align: right;">{{$cliente->dni}}</td>
-                            <td style="text-align: right;">{{$cliente->telefono}}</td>
-                            <td>{{$cliente->localidad}}</td>
-                            <td>{{$cliente->direccion}}</td>
-                            <td>{{$cliente->mail}}</td>
+                            <td class="searchResult">{{$cliente->nombre}}</td>
+                            <td class="searchResult">{{$cliente->apellido}}</td>
+                            <td style="text-align: right;" class="searchResult">{{$cliente->dni}}</td>
+                            <td style="text-align: right;" class="searchResult">{{$cliente->telefono}}</td>
+                            <td class="searchResult">{{$cliente->localidad}}</td>
+                            <td class="searchResult">{{$cliente->direccion}}</td>
+                            <td class="searchResult">{{$cliente->mail}}</td>
                         </tr>
                     @endforeach 
                     {{-- <script>

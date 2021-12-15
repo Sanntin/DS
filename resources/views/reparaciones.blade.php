@@ -39,7 +39,7 @@
             <form method="POST" action="/reparaciones/filtrar">
                 @csrf
             <div class="input-group search-box">
-                <input name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campo')}}>
+                <input id="searchBarReparaciones" name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campo')}}>
                 <div class="input-group-append">
                     <button id="btnBuscarReparacion" class="btn btn-primary py-0" type="submit">
                         <i class="fas fa-search"></i>
@@ -73,13 +73,13 @@
             <tbody>
                 @foreach ($reparaciones as $reparacion)
                 <tr class="t-row task task-repair" data-id={{$reparacion->id}} value="{{$reparacion->estado}}">
-                    <td>{{$reparacion->patente}}</td>
-                    <td>{{$reparacion->cliente->apellido}} {{$reparacion->cliente->nombre}}</td>
-                    <td>{{date('d/m/y', strtotime($reparacion->fechaDeEntrada))}}</td>
-                    <td>{{ucfirst($reparacion->estado)}}</td>
-                    <td style="text-align: right;">{{$reparacion->kilometraje}}</td>
-                    <td>@isset($reparacion->fechaDeSalida){{date('d/m/y', strtotime($reparacion->fechaDeSalida))}}@else-@endisset</td>
-                    <td>{{$reparacion->motivo}}</td>
+                    <td class="searchResult">{{$reparacion->patente}}</td>
+                    <td class="searchResult">{{$reparacion->cliente->apellido}} {{$reparacion->cliente->nombre}}</td>
+                    <td class="searchResult">{{date('d/m/y', strtotime($reparacion->fechaDeEntrada))}}</td>
+                    <td class="searchResult">{{ucfirst($reparacion->estado)}}</td>
+                    <td style="text-align: right;" class="searchResult">{{$reparacion->kilometraje}}</td>
+                    <td class="searchResult">@isset($reparacion->fechaDeSalida){{date('d/m/y', strtotime($reparacion->fechaDeSalida))}}@else-@endisset</td>
+                    <td class="searchResult">{{$reparacion->motivo}}</td>
                 </tr>
                 @endforeach
             </tbody>

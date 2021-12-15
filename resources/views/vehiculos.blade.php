@@ -17,7 +17,7 @@
                     <form method="POST" action="/vehiculos/filtrar">
                         @csrf
                      <div class="input-group search-box">
-                        <input name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campoV')}}>
+                        <input id="searchBarVehiculos" name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campoV')}}>
                         <div class="input-group-append">
                             <button id="btnBuscarVehiculo" class="btn btn-primary py-0" type="submit">
                                 <i class="fas fa-search"></i>
@@ -51,11 +51,11 @@
                         @isset($vehiculos)
                         @foreach ($vehiculos as $vehiculo)
                         <tr class="t-row task task-vehicle"  data-id={{$vehiculo->id}}>
-                            <td>{{$vehiculo->patente}}</td>
-                            <td>{{$vehiculo->cliente->nombre}} {{$vehiculo->cliente->apellido}}</td>
-                            <td style="text-align: right;">{{$vehiculo->año}}</td>
-                            <td>{{$vehiculo->marca->nombre}}</td>
-                            <td>{{$vehiculo->modelo->nombre}}</td>
+                            <td class="searchResult">{{$vehiculo->patente}}</td>
+                            <td class="searchResult">{{$vehiculo->cliente->nombre}} {{$vehiculo->cliente->apellido}}</td>
+                            <td style="text-align: right;" class="searchResult">{{$vehiculo->año}}</td>
+                            <td class="searchResult">{{$vehiculo->marca->nombre}}</td>
+                            <td class="searchResult">{{$vehiculo->modelo->nombre}}</td>
                         </tr>
                         @endforeach
                        

@@ -25,6 +25,74 @@ function loadingScreen(loading){
   }
 }
 
+$( document ).ready(function() {
+  let searchResults = document.getElementsByClassName("searchResult");
+
+  let searchValueReparaciones;
+  let searchValueClientes;
+  let searchValueStock;
+  let searchValueVehiculos;
+
+  if(window.location.href === "http://localhost/reparaciones"){
+    searchValueReparaciones = $("#searchBarReparaciones")[0].value
+    
+    if(searchValueReparaciones !== ""){
+      for (const result of searchResults) {
+        if(result.innerHTML.includes(searchValueReparaciones)){
+          result.classList.add("bold");
+        }
+      }
+    }
+  }
+
+  if(window.location.href === "http://localhost/clientes"){
+    searchValueClientes = $("#searchBarClientes")[0].value
+    
+    if(searchValueClientes !== ""){
+      for (const result of searchResults) {
+        if(result.innerHTML.includes(searchValueClientes)){
+          result.classList.add("bold");
+        }
+      }
+    }
+  }
+
+  if(window.location.href === "http://localhost/stock"){
+    searchValueStock = $("#searchBarStock")[0].value
+    
+    if(searchValueStock !== ""){
+      for (const result of searchResults) {
+        if(result.innerHTML.includes(searchValueStock)){
+          result.classList.add("bold");
+        }
+      }
+    }
+  }
+
+  if(window.location.href === "http://localhost/vehiculos"){
+    searchValueVehiculos = $("#searchBarVehiculos")[0].value
+    
+    if(searchValueVehiculos !== ""){
+      for (const result of searchResults) {
+        if(result.innerHTML.includes(searchValueVehiculos)){
+          result.classList.add("bold");
+        }
+      }
+    }
+  }
+/*
+  let searchValueClientes = $("#searchBarClientes")[0].value;
+
+
+  if(searchValueClientes !== ""){
+    for (const result of searchResults) {
+      if(result.innerHTML.includes(searchValueClientes)){
+        result.classList.add("bold");
+      }
+    }
+  }*/
+});
+
 // -- Vehículos --
 $("#btnAgregarVehiculo").click(function(){
 
@@ -270,8 +338,11 @@ $("#btnGenerarComprobante").click(function(){
   loadingScreen(true);  
   setTimeout(() => {
       window.location = "/reparaciones/comprobante/"+ $("#btnGenerarComprobante").attr("value");
-      loadingScreen(false); 
+      
     }, 1);
+    setTimeout(() => {
+      loadingScreen(false); 
+    }, 2000);
 });
 
 $("#btnVerOrdenesTrabajo").click(function(){
@@ -648,7 +719,6 @@ $("#btnCargarStock").click(function(){
     setTimeout(() => {
         window.location = "/cargarStock/"+ $("#btnCargarStock").attr("value");
       }, 5);
-      loadingScreen(false);  
 });
 
 $("#btnPrueba").click(function(){
@@ -687,6 +757,11 @@ $("#btnConfirmarRealizarPedido").click(function(){
         window.location = "/stock";
     }
   });
+});
+
+$("#btnCancelarRealizarPedido").click(function(){
+  loadingScreen(true);
+  window.location = "/stock";
 });
 
 $("#btnGuardarStock").click(function(){

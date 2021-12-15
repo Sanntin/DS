@@ -12,7 +12,7 @@
             <form method="POST" action="/stock/filtrar">
                 @csrf
              <div class="input-group search-box">
-                <input name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campoS')}}>
+                <input id="searchBarStock" name='campo' class="bg-light form-control border-0 small" type="text" placeholder="Buscar ..."  value={{session()->get('campoS')}}>
                 <div class="input-group-append">
                     <button id="btnBuscarVehiculo" class="btn btn-primary py-0" type="submit">
                         <i class="fas fa-search"></i>
@@ -46,12 +46,12 @@
                 @foreach ($piezas as $pieza)
 
                 <tr class="t-row task task-stock"  data-id={{$pieza->id}}>
-                    <td>{{$pieza->nombre}}</td>
-                    <td>{{$pieza->fabricante->nombre}}</td>
-                    <td>{{$pieza->modelo}}</td>
-                    <td style="text-align: right;">{{$pieza->precio}}</td>
-                    <td style="text-align: right;">{{$pieza->cantidad}}</td>
-                    <td style="text-align: right;">{{$pieza->id}}</td>
+                    <td class="searchResult">{{$pieza->nombre}}</td>
+                    <td class="searchResult">{{$pieza->fabricante->nombre}}</td>
+                    <td class="searchResult">{{$pieza->modelo}}</td>
+                    <td style="text-align: right;" class="searchResult">{{$pieza->precio}}</td>
+                    <td style="text-align: right;" class="searchResult">{{$pieza->cantidad}}</td>
+                    <td style="text-align: right;" class="searchResult">{{$pieza->id}}</td>
                 </tr>
                 @endforeach
             </tbody>

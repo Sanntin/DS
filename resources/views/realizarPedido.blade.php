@@ -89,11 +89,10 @@
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                                 @enderror
                             </div>
-                        
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <button class="btn btn-primary btn-block text-white btn-user" type="button" style="background-color: rgb(223,78,104);"  onclick=" window.location = '/stock'">Cancelar</button>
+                                <button id="btnCancelarRealizarPedido" class="btn btn-primary btn-block text-white btn-user" type="button" style="background-color: rgb(223,78,104);">Cancelar</button>
                             </div>
                             <div class="col-sm-6">
                                 <button id="btnConfirmarRealizarPedido" class="btn btn-primary btn-block text-white btn-user">Realizar pedido</button>
