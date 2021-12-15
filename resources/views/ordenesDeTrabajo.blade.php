@@ -159,7 +159,8 @@
                                             <th>Fecha</th>
                                             <th>Hora</th>
                                             <th>Estado</th>
-                                            <th>Precio tarea</th>
+                                            <th>Mecánico</th>
+                                            <th style="text-align: right;">Precio total de tarea</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -177,6 +178,12 @@
                                                 @endisset
                                             </td>
                                             <td>{{ucfirst($tarea->estado)}}</td>
+                                            <td>
+                                                @isset($tarea->id_nickname)
+                                                {{Auth::user()->apellido}} {{ Auth::user()->nombre}} 
+                                                @else -
+                                                @endisset
+                                            </td>
                                             <td style="text-align: right;">{{$tarea->precio}}</td>
                                         </tr>
                                     </tbody>
@@ -194,7 +201,7 @@
                                             <th>Acción</th>
                                             <th>Pieza</th>
                                             <th>Cantidad</th>
-                                            <th>Precio pieza</th>
+                                            <th style="text-align: right;">Precio pieza</th>
                                         </tr>
                                     </thead>
                                     <tbody>
