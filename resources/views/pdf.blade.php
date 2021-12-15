@@ -76,7 +76,7 @@
                     Acción
                 </th>
                 <th style="padding-left: 20px;">
-         
+                    Piezas
                 </th>
                 <th style="padding-left: 20px;">
                     Subtotal
@@ -93,29 +93,31 @@
                     <p>{{$tarea->accion->nombre}} (${{$tarea->accion->precio}})</p>
                 </td>
                 <!-- Piezas -->
-                <th style="padding-left: 20px;">
-                    Piezas
-                </th>
+                <td style="padding-left: 20px;">
+                      <p>{{$tarea->pieza[0]->nombre.' '.$tarea->pieza[0]->modelo.' x'.$tarea->pieza[0]->pivot->cantidad. "($".$tarea->pieza[0]->pivot->precio.")"}}</p>
+                </td>
                 <!-- Subtotal -->
                 <td style="padding-left: 20px;text-align:right;">
                     <p style="font-weight: 400;">${{$tarea->precio}}</p>
                 </td>
             </tr>
             <!-- AGREGAR ESTO CADA VEZ QUE SE NECESITE OTRA PIEZA -->
-            @foreach ($tarea->pieza as $pieza)
+         
+            @for ($i = 1; $i < sizeof($tarea->pieza); $i++)
+                    
             <tr>
                 <!-- DEJAR VACÍO -->
                 <td></td>
                 <!-- DEJAR VACÍO -->
                 <td></td>
                 <!-- Pieza -->
-                <td>
-                    <p>{{$pieza->nombre.' '.$pieza->modelo.' x'.$pieza->pivot->cantidad. "($".$pieza->pivot->precio.")"}}</p>
+                <td style="padding-left: 20px;">
+                    <p>{{$tarea->pieza[$i]->nombre.' '.$tarea->pieza[$i]->modelo.' x'.$tarea->pieza[$i]->pivot->cantidad. "($".$tarea->pieza[$i]->pivot->precio.")"}}</p>
                 </td>
                 <!-- DEJAR VACÍO -->
                 <td></td>
             </tr>
-            @endforeach
+            @endfor
             <hr>
         </tbody>
     </table>
