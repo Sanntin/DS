@@ -179,10 +179,11 @@
                                             </td>
                                             <td>{{ucfirst($tarea->estado)}}</td>
                                             <td>
-                                                @isset($tarea->id_nickname)
+                                              
+                                                @if($tarea->id_nickname!='')
                                                 {{Auth::user()->apellido}} {{ Auth::user()->nombre}} 
                                                 @else -
-                                                @endisset
+                                                @endif
                                             </td>
                                             <td style="text-align: right;">{{$tarea->precio}}</td>
                                         </tr>
