@@ -28,7 +28,6 @@ class TareaController extends Controller
 
     public function agregarTarea(Request $request)
     {   
-
         session()->flash('id_ordenTrabajo',$request->id_ordenTrabajo);
         $data=$request->all();
         $tarea= new Tarea;

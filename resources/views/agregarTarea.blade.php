@@ -70,9 +70,6 @@
                                                 <option  value="{{$pieza->id}}" >{{$pieza->nombre}} - {{$pieza->modelo}}</option>
                                                 @endforeach
                                             </select>
-                                            {{-- <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 100%;">Piezas</button>
-                                                <div class="dropdown-menu" role="menu"><a id="piezaDropdown" class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
-                                            </div> --}}
                                         </th>
                                         <th><input name='precio' id="piezaPrecio" type="number" min="1" style="width: 90px;" value="" disabled style="text-align: right;"></th>
                                         <th><input name='cantidad' id="piezaCantidad" type="number" min="1" style="width: 100px;" form style="text-align: right;"></th>

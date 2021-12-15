@@ -134,4 +134,11 @@ class PiezaController extends Controller
       
     
     }
+
+    public function listadoPiezasFiltrado(Request $request)
+    {
+        $piezas = Pieza::all()->except($request['id']);
+
+        return $piezas;
+    }
 }

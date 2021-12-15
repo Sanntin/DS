@@ -6,10 +6,11 @@ const btnsQuitarPieza = document.getElementsByClassName("btn-quitar-pieza");
 
 var id=0;
 document.getElementById("btnAgregarPieza").onclick = function (e) {
-    console.log(piezaCantidad.max);
-    if(piezaCantidad.value !== "" && piezaPrecio !== "" && piezasListado.value!=='0' && piezaCantidad.value > '0'  && piezaCantidad.value <= piezaCantidad.max && piezaPrecio !=='0'){
+    loadingScreen(true);
+    console.log(Number(piezaCantidad.value) <= Number(piezaCantidad.max));
+    if(piezaCantidad.value !== "" && piezaPrecio !== "" && piezasListado.value!=='0' && Number(piezaCantidad.value)> '0'  && Number(piezaCantidad.value) <= Number(piezaCantidad.max) && piezaPrecio !=='0'){
         const tr = document.createElement("tr");
-    id=id+1;
+        id=id+1;
         //Acá agregar como primer elemento el valor de piezaDropDown
 
         // var pieza=<input id="piezaPrecio" type="number" min="0" style="width: 100px;" value="" disabled></input>
@@ -36,6 +37,31 @@ document.getElementById("btnAgregarPieza").onclick = function (e) {
             piezaListado.appendChild(tr);
         } 
 
+
+
+        // var idValues = [];
+        // var fields = document.querySelectorAll("input[name^='pieza N'");
+        // for(var i = 0; i < fields.length; i++) {
+        //     idValues.push(fields[i].value);
+        // }
+        
+        // $.ajax({
+        //     url: "/obtenerListadoPiezas",
+        //     method: 'POST',
+        //     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        //     data: {
+        //        id: idValues,
+        //     },
+        //     success: function(result){
+        //         loadingScreen(false);
+        //         while (selectBox.options.length > 0) {
+        //             selectBox.remove(0);
+        //         }
+          
+        //     }
+        //   });
+
+
         if(  $('#AgregarTarea').attr("disabled")){
             $('#AgregarTarea').attr("disabled",false)
         }
@@ -45,6 +71,9 @@ document.getElementById("btnAgregarPieza").onclick = function (e) {
 function obtenerPrecio(){
     $('#piezaPrecio').attr("disabled",true);
     $('#btnAgregarPieza').attr("disabled",true);
+    $('#piezaCantidad').val(''); 
+
+    
     let id=piezasListado.value;
     loadingScreen(true);
     $.ajax({
