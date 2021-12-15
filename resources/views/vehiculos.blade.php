@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body card-overflow">
             @if (sizeof($vehiculos)<1)
             <div class="text-center my-auto copyright">No se ha encontrado vehículos con los parámetros de búsqueda ingresados.</div>
             @else

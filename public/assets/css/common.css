@@ -237,3 +237,7 @@
   margin-top: 0px;
   padding: 0;
 }
+
+.card-overflow{
+  overflow-y: scroll;
+}

@@ -2,7 +2,7 @@
 
 @section('content')
 <h3 class="text-dark mb-4">Stock</h3>
-<div class="card shadow">
+<div class="card shadow card-grid">
 <div class="card-header d-flex justify-content-between align-items-center">
     <div class="row" style="width: 100%;">
         <div class="col d-xl-flex align-items-xl-center">
@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<div class="card-body">
+<div class="card-body card-overflow">
     @if (sizeof($piezas)<1)
     <div class="text-center my-auto copyright">No se ha encontrado piezas con los parámetros de búsqueda ingresados.</div>
     @else

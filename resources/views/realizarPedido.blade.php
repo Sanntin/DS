@@ -76,7 +76,7 @@
         <div class="row" style="margin-top: 20px;">
             <div class="col">
                 <div class="p-5">
-                    <form class="user" method="POST" action="/realizarPedido/enviar">
+                    <form class="user" method="POST" id="formRealizarPedido" action="/realizarPedido/enviar">
                         @csrf
                         <div class="form-group row">
                             <div class="col-sm-6 d-xl-flex justify-content-xl-start align-items-xl-center mb-3 mb-sm-0" style="max-width: 20%;">
@@ -96,7 +96,7 @@
                                 <button class="btn btn-primary btn-block text-white btn-user" type="button" style="background-color: rgb(223,78,104);"  onclick=" window.location = '/stock'">Cancelar</button>
                             </div>
                             <div class="col-sm-6">
-                                <button class="btn btn-primary btn-block text-white btn-user" type="submit">Realizar pedido</button>
+                                <button id="btnConfirmarRealizarPedido" class="btn btn-primary btn-block text-white btn-user">Realizar pedido</button>
                             </div>
                         </div>
                     </form>

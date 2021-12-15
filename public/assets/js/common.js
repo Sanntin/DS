@@ -662,7 +662,31 @@ $("#btnRealizarPedido").click(function(){
     setTimeout(() => {
         window.location = "/realizarPedido/"+ $("#btnRealizarPedido").attr("value");
       }, 1);
-      loadingScreen(false);  
+      //loadingScreen(false);  
+});
+
+$("#btnConfirmarRealizarPedido").click(function(){
+  document.getElementById("formRealizarPedido").submit();
+  swal({
+    title: "El mail se envió correctamente",
+    icon: "info",
+    buttons: true,
+    dangerMode: true,
+    buttons: {
+      confirm: {
+        text: "Ok",
+        visible: true,
+        className: "greenBg",
+        closeModal: true,
+      }
+    }
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+        loadingScreen(true);
+        window.location = "/stock";
+    }
+  });
 });
 
 $("#btnGuardarStock").click(function(){
