@@ -85,6 +85,7 @@ Route::get('/realizarPedido/{id}', [PiezaController::class,'realizarpedidoForm']
 Route::post('/realizarPedido/enviar', [PiezaController::class,'enviarPedido'])->middleware('auth');
 Route::get('/cargarStock/{id}', [PiezaController::class,'cargarStockForm'])->middleware('auth');
 Route::post('/cargarStock/guardar', [PiezaController::class,'guardarStock'])->middleware('auth');
+Route::post('/obtenerListadoPiezas', [PiezaController::class,'listadoPiezasFiltrado'])->middleware('auth');
 
 
 Route::post('/stock/filtrar', [PiezaController::class,'filtrar'])->middleware('auth');
