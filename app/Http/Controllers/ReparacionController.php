@@ -96,13 +96,14 @@ class ReparacionController extends Controller
         }
 
      
-        return view('pdf', ['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
+        // return view('pdf', ['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
         
         // $pdf = PDF::loadView('comprobante', compact('reparacion','tareas','totalHoras','totalprecio'));
         // $pdf = \PDF::loadView('pdf',['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
-
+        
         $pdf = PDF::loadView('pdf',['reparacion' => $reparacion,'tareas'=> $tareas,'totalHoras'=>$totalHoras,'totalprecio'=>$totalprecio]);
-        return $pdf->download('pdfview.pdf');
+        $nombreArchivo='Comprobante_'.$reparacion[0]->patente."_".$reparacion[0]->cliente->apellido.$reparacion[0]->cliente->nombre."_".$reparacion[0]->fechaDeEntrada;
+        return $pdf->download($nombreArchivo.'.pdf');
         // $data = [
         //     'title' => 'Welcome to ItSolutionStuff.com',
         //     'date' => date('m/d/Y')

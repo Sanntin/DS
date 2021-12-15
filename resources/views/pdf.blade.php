@@ -76,7 +76,7 @@
                     Acción
                 </th>
                 <th style="padding-left: 20px;">
-                    Piezas
+         
                 </th>
                 <th style="padding-left: 20px;">
                     Subtotal
@@ -93,10 +93,9 @@
                     <p>{{$tarea->accion->nombre}} (${{$tarea->accion->precio}})</p>
                 </td>
                 <!-- Piezas -->
-                <td style="padding-left: 20px;text-align:right;">
-                    <!-- ACÁ PONER LA PRIMER PIEZA DEL LISTADO -->
-                    <p>Cubierta C90 x1($2000)</p>
-                </td>
+                <th style="padding-left: 20px;">
+                    Piezas
+                </th>
                 <!-- Subtotal -->
                 <td style="padding-left: 20px;text-align:right;">
                     <p style="font-weight: 400;">${{$tarea->precio}}</p>
@@ -117,27 +116,32 @@
                 <td></td>
             </tr>
             @endforeach
+            <hr>
         </tbody>
     </table>
     @endforeach
 
     <!-- Total -->
     <hr>
-    <table style="margin-top: 40px;">
+    <table style="margin-top: 40px; margin-right: 20px;   margin-left: auto;">
         <thead>
             <tr>
-                <th>Total</th>
                 <th style="padding-left: 20px;">Tiempo</th>
+                <th></th>
+                <th>Total</th>
+              
             </tr>
         </thead>
         <tbody>
             <tr>
+                <td style="padding-left: 20px; text-align:right;" >
+                    <p>{{$totalHoras}}H</p>
+                </td>
+                <td></td>
                 <td>
                     <p>${{$totalprecio}}</p>
                 </td>
-                <td style="padding-left: 20px;">
-                    <p>{{$totalHoras}}H</p>
-                </td>
+
             </tr>
         </tbody>
     </table>
