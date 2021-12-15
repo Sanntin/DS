@@ -42,7 +42,7 @@
                         <tr>
                             <th>Patente</th>
                             <th>Titular</th>
-                            <th>Año</th>
+                            <th style="text-align: right;">Año</th>
                             <th>Marca</th>
                             <th>Modelo</th>
                         </tr>

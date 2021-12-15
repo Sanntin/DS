@@ -14,7 +14,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">Bienvenido devuelta!</h4>
+                                        <h4 class="text-dark mb-4">Bienvenido de vuelta!</h4>
                                         
                                         {{-- Ver que hacer... cuando lo crea al usaaurio lo manda aca y aparece ese mensaje... hay que foramtearlo --}}
                                         {{-- El mensaje puede ser de exito de registro y que se logee, o que cerrro sesion --}}

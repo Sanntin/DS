@@ -37,7 +37,7 @@
                     <th>Pieza</th>
                     <th>Fabricante</th>
                     <th style="width: 180px;">Modelo</th>
-                    <th>Precio</th>
+                    <th style="text-align: right;">Precio</th>
                     <th style="padding-right: 0;width: 90px;">Cantidad</th>
                     <th style="text-align: right;">ID</th>
                 </tr>
