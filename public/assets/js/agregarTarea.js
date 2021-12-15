@@ -39,27 +39,50 @@ document.getElementById("btnAgregarPieza").onclick = function (e) {
 
 
 
-        // var idValues = [];
-        // var fields = document.querySelectorAll("input[name^='pieza N'");
-        // for(var i = 0; i < fields.length; i++) {
-        //     idValues.push(fields[i].value);
-        // }
+        var idValues = [];
+        var fields = document.querySelectorAll("input[name^='pieza N'");
+        for(var i = 0; i < fields.length; i++) {
+            idValues.push(fields[i].value);
+        }
         
-        // $.ajax({
-        //     url: "/obtenerListadoPiezas",
-        //     method: 'POST',
-        //     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        //     data: {
-        //        id: idValues,
-        //     },
-        //     success: function(result){
-        //         loadingScreen(false);
-        //         while (selectBox.options.length > 0) {
-        //             selectBox.remove(0);
-        //         }
+        $.ajax({
+            url: "/obtenerListadoPiezas",
+            method: 'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+               id: idValues,
+            },
+            success: function(result){
+                loadingScreen(false);
+                var selectBox = document.getElementById("piezasListado");
+                while (selectBox.options.length > 0) {
+                    selectBox.remove(0);
+                }
           
-        //     }
-        //   });
+                var newOption = document.createElement('option');
+                var optionText = document.createTextNode("-");
+                newOption.appendChild(optionText);
+                newOption.setAttribute('value',"");
+                newOption.setAttribute('selected',true);
+                selectBox.appendChild(newOption);
+
+               document.getElementById("piezaPrecio").value = "";
+               var piezacantidad=document.getElementById("piezaCantidad")
+               piezacantidad.value = "";
+               piezacantidad.setAttribute('placeholder','');
+
+                result.forEach(pieza => {
+                    console.log(pieza['id']);
+                    var newOption = document.createElement('option');
+                    var optionText = document.createTextNode(pieza['nombre']+" - "+pieza['modelo']);
+                    // set option text
+                    newOption.appendChild(optionText);
+                    // and option value
+                    newOption.setAttribute('value',pieza['id']);
+                    selectBox.appendChild(newOption);
+                });
+            }
+          });
 
 
         if(  $('#AgregarTarea').attr("disabled")){

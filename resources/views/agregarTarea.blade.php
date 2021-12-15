@@ -64,7 +64,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            <select name="piezas" id="piezasListado" class="form-control js-example-basic-single" onchange="obtenerPrecio()" required>
+                                            <select name="piezas" id="piezasListado" class="form-control js-example-basic-single" onchange="obtenerPrecio()">
                                                 <option value='0' selected disabled hidden>-</option>
                                                 @foreach ($piezas as $pieza)
                                                 <option  value="{{$pieza->id}}" >{{$pieza->nombre}} - {{$pieza->modelo}}</option>
